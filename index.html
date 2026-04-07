@@ -219,9 +219,9 @@
             </div>
             <input type="text" id="checkout-name" placeholder="Jouw naam" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent">
             <input type="email" id="checkout-email" placeholder="jouw@email.nl" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm mb-4 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent">
-            <button disabled class="w-full bg-brand text-white font-bold py-3.5 rounded-xl opacity-60 cursor-not-allowed flex items-center justify-center gap-2 text-sm">
+            <button onclick="submitPayment()" id="pay-submit-btn" class="w-full bg-brand text-white font-bold py-3.5 rounded-xl hover:bg-brandDark transition flex items-center justify-center gap-2 text-sm">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                Betalen via Mollie — binnenkort beschikbaar
+                Betalen via Mollie →
             </button>
             <button onclick="simulatePaymentSuccess()" class="w-full mt-2 border border-gray-200 text-gray-400 text-xs py-2 rounded-xl hover:bg-gray-50 transition">
                 🧪 Test: Simuleer betaling (tijdelijk — verwijderen voor go-live)
@@ -231,6 +231,8 @@
     </div>
     <script>
         var addonActive = false;
+        var BACKEND_URL = 'http://204.168.229.181:8000';
+
         function openCheckout() { document.getElementById('checkout-modal').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
         function closeCheckout() { document.getElementById('checkout-modal').style.display = 'none'; document.body.style.overflow = ''; }
         function toggleAddon() {
@@ -241,6 +243,59 @@
             else { t.style.backgroundColor='#e5e7eb'; th.style.transform='translateX(0)'; al.style.display='none'; tp.textContent='€29,00'; box.style.borderColor='#e5e7eb'; }
         }
         document.getElementById('checkout-modal').addEventListener('click', function(e) { if (e.target===this) closeCheckout(); });
+
+        async function submitPayment() {
+            var name = document.getElementById('checkout-name').value.trim();
+            var email = document.getElementById('checkout-email').value.trim();
+
+            if (!name) { document.getElementById('checkout-name').style.borderColor='#ef4444'; return; }
+            if (!email || !email.includes('@')) { document.getElementById('checkout-email').style.borderColor='#ef4444'; return; }
+
+            var btn = document.getElementById('pay-submit-btn');
+            btn.disabled = true;
+            btn.textContent = 'Bezig met verwerken...';
+
+            // Get answers from report data
+            var reportData = window._reportData;
+            if (!reportData) {
+                alert('Doe eerst de check voordat je betaalt.');
+                btn.disabled = false;
+                btn.textContent = 'Betalen via Mollie →';
+                return;
+            }
+
+            try {
+                var response = await fetch(BACKEND_URL + '/create-payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        include_update_service: addonActive,
+                        answers: {
+                            scores: reportData.scores,
+                            risk_level: reportData.riskLevel,
+                            total_score: reportData.total,
+                            pct: reportData.pct
+                        }
+                    })
+                });
+
+                var data = await response.json();
+
+                if (data.payment_url) {
+                    // Redirect to Mollie payment page
+                    window.location.href = data.payment_url;
+                } else {
+                    throw new Error('No payment URL received');
+                }
+            } catch (err) {
+                console.error(err);
+                btn.disabled = false;
+                btn.textContent = 'Betalen via Mollie →';
+                alert('Er ging iets mis. Probeer het opnieuw of neem contact op.');
+            }
+        }
     </script>
 
     <!-- THE ACTUAL CHECK -->
