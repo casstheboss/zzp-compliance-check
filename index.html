@@ -239,18 +239,259 @@
         document.getElementById('checkout-modal').addEventListener('click', function(e) { if (e.target===this) closeCheckout(); });
     </script>
 
-    <!-- CTA -->
-    <section id="check" class="py-16 md:py-24 bg-brand text-white">
-        <div class="max-w-3xl mx-auto px-6 text-center">
-            <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4">Weet vandaag nog waar je staat</h2>
-            <p class="text-blue-200 text-lg mb-8">Gratis, binnen 5 minuten, geen registratie nodig.</p>
-            <form action="https://formspree.io/f/REPLACE_ME" method="POST" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4">
-                <input type="email" name="email" placeholder="jouw@email.nl" required class="flex-1 px-4 py-3 rounded-xl text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-white">
-                <button type="submit" class="bg-white text-brand font-bold px-6 py-3 rounded-xl hover:bg-blue-50 transition text-sm whitespace-nowrap">Start Gratis Check →</button>
-            </form>
-            <p class="text-blue-300 text-xs">Geen spam. Alleen jouw compliance resultaat.</p>
+    <!-- THE ACTUAL CHECK -->
+    <section id="check" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-3">Doe de Wet DBA Check</h2>
+                <p class="text-gray-500">12 vragen · 5 minuten · Direct resultaat</p>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="mb-8">
+                <div class="flex justify-between text-xs text-gray-400 mb-2">
+                    <span id="q-label">Vraag 1 van 12</span>
+                    <span id="q-pct">0%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div id="progress-bar" class="bg-brand h-2 rounded-full transition-all duration-500" style="width:0%"></div>
+                </div>
+            </div>
+
+            <!-- Question card -->
+            <div id="check-form" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+                <div id="q-block-label" class="text-xs font-semibold text-brand uppercase tracking-wider mb-2"></div>
+                <h3 id="q-text" class="text-xl font-bold text-gray-900 mb-6"></h3>
+                <div id="q-options" class="space-y-3"></div>
+                <div class="mt-8 flex justify-between items-center">
+                    <button id="btn-back" onclick="prevQuestion()" class="text-gray-400 hover:text-gray-600 text-sm font-medium transition hidden">← Terug</button>
+                    <div></div>
+                    <button id="btn-next" onclick="nextQuestion()" class="bg-brand text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-brandDark transition text-sm disabled:opacity-40" disabled>Volgende →</button>
+                </div>
+            </div>
+
+            <!-- Result card (hidden until done) -->
+            <div id="result-card" class="hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+                <div id="result-icon" class="text-5xl text-center mb-4"></div>
+                <h3 id="result-title" class="text-2xl font-bold text-center text-gray-900 mb-2"></h3>
+                <p id="result-desc" class="text-gray-500 text-center mb-6"></p>
+                <div id="result-score-bar" class="mb-8">
+                    <div class="flex justify-between text-xs text-gray-400 mb-1"><span>Hoog risico</span><span>Laag risico</span></div>
+                    <div class="w-full bg-gray-100 rounded-full h-4 relative">
+                        <div id="score-indicator" class="h-4 rounded-full transition-all duration-700" style="width:50%"></div>
+                    </div>
+                </div>
+                <div id="result-points" class="space-y-3 mb-8"></div>
+                <button onclick="openCheckout()" class="w-full bg-brand text-white font-bold py-3.5 rounded-xl hover:bg-brandDark transition">Bekijk volledig rapport + actieplan — €29 →</button>
+                <button onclick="restartCheck()" class="w-full mt-3 text-gray-400 hover:text-gray-600 text-sm transition">Opnieuw beginnen</button>
+            </div>
+
+            <p class="text-center text-gray-400 text-xs mt-4">Deze check is informatief en vervangt geen juridisch advies.</p>
         </div>
     </section>
+
+    <script>
+    var questions = [
+        { block: "Gezagsverhouding", text: "Wie bepaalt hoe jij je werk uitvoert?", options: [
+            { label: "Ik bepaal dat volledig zelf", score: 3 },
+            { label: "Grotendeels ik, soms overleg met opdrachtgever", score: 1 },
+            { label: "De opdrachtgever geeft duidelijke instructies", score: -2 },
+            { label: "De opdrachtgever bepaalt alles", score: -4 }
+        ]},
+        { block: "Gezagsverhouding", text: "Ben jij verplicht persoonlijk aanwezig te zijn op een vaste locatie of tijd?", options: [
+            { label: "Nee, ik werk wanneer en waar ik wil", score: 3 },
+            { label: "Soms vaste locatie maar met flexibele tijden", score: 1 },
+            { label: "Vaste tijden of locatie is verplicht", score: -2 },
+            { label: "Vaste tijden én locatie zijn beiden verplicht", score: -4 }
+        ]},
+        { block: "Gezagsverhouding", text: "Kan de opdrachtgever je tussentijds opdrachten geven buiten de originele opdracht?", options: [
+            { label: "Nee, ik werk alleen aan wat in het contract staat", score: 2 },
+            { label: "Soms kleine aanvullingen", score: 0 },
+            { label: "Ja, regelmatig", score: -2 },
+            { label: "Ja, altijd", score: -3 }
+        ]},
+        { block: "Gezagsverhouding", text: "Word jij beoordeeld zoals een werknemer? (functioneringsgesprekken, targets)", options: [
+            { label: "Nee, helemaal niet", score: 2 },
+            { label: "Af en toe informeel", score: 0 },
+            { label: "Ja, formeel met vaste gesprekken", score: -3 }
+        ]},
+        { block: "Vervangbaarheid", text: "Kun jij je laten vervangen door iemand anders?", options: [
+            { label: "Ja, ik regel zelf vervanging zonder toestemming", score: 4 },
+            { label: "Ja, maar de opdrachtgever moet akkoord geven", score: 1 },
+            { label: "In theorie ja, maar het is nog nooit gebeurd", score: -1 },
+            { label: "Nee, ik moet het persoonlijk uitvoeren", score: -4 }
+        ]},
+        { block: "Vervangbaarheid", text: "Is de opdracht aan jou gegund op basis van jouw persoonlijke naam of expertise?", options: [
+            { label: "Nee, het gaat puur om het resultaat", score: 2 },
+            { label: "Deels — zowel mijn persoon als het resultaat", score: 0 },
+            { label: "Ja, puur op mijn persoon", score: -2 }
+        ]},
+        { block: "Vervangbaarheid", text: "Betaalt de opdrachtgever door bij ziekte of vakantie?", options: [
+            { label: "Nee, geen uren gewerkt = geen inkomsten", score: 3 },
+            { label: "Nee, maar er is enige flexibiliteit", score: 1 },
+            { label: "Ja, ik word doorbetaald", score: -4 }
+        ]},
+        { block: "Ondernemersrisico", text: "Loop jij financieel risico? (eigen materiaal, aansprakelijkheid, geen betaling bij slechte kwaliteit)", options: [
+            { label: "Ja, significant ondernemersrisico", score: 4 },
+            { label: "Beperkt risico", score: 1 },
+            { label: "Nee, vrijwel geen financieel risico", score: -3 }
+        ]},
+        { block: "Ondernemersrisico", text: "Hoeveel opdrachtgevers heb jij dit jaar?", options: [
+            { label: "3 of meer", score: 4 },
+            { label: "2", score: 2 },
+            { label: "1", score: -3 }
+        ]},
+        { block: "Ondernemersrisico", text: "Investeer jij zelf in je bedrijf? (tools, training, marketing, website)", options: [
+            { label: "Ja, regelmatig", score: 3 },
+            { label: "Af en toe", score: 1 },
+            { label: "Nauwelijks", score: -2 }
+        ]},
+        { block: "Tarief & duur", text: "Wat is jouw gemiddeld uurtarief bij deze opdrachtgever?", options: [
+            { label: "Meer dan €38 per uur", score: 2 },
+            { label: "Tussen €32 en €38 per uur", score: 0 },
+            { label: "Minder dan €32 per uur", score: -3 }
+        ]},
+        { block: "Tarief & duur", text: "Hoe lang werk je al voor deze opdrachtgever?", options: [
+            { label: "Minder dan 6 maanden", score: 2 },
+            { label: "6 tot 12 maanden", score: 0 },
+            { label: "1 tot 2 jaar", score: -1 },
+            { label: "Meer dan 2 jaar", score: -3 }
+        ]}
+    ];
+
+    var current = 0;
+    var scores = new Array(12).fill(null);
+    var selectedIndex = null;
+
+    function renderQuestion() {
+        var q = questions[current];
+        document.getElementById('q-block-label').textContent = q.block;
+        document.getElementById('q-text').textContent = q.text;
+        document.getElementById('q-label').textContent = 'Vraag ' + (current+1) + ' van 12';
+        var pct = Math.round((current/12)*100);
+        document.getElementById('q-pct').textContent = pct + '%';
+        document.getElementById('progress-bar').style.width = pct + '%';
+
+        var opts = document.getElementById('q-options');
+        opts.innerHTML = '';
+        q.options.forEach(function(opt, i) {
+            var btn = document.createElement('button');
+            btn.className = 'w-full text-left px-4 py-3.5 rounded-xl border-2 text-sm font-medium transition-all duration-150 ' +
+                (scores[current] !== null && scores[current] === opt.score && selectedIndex === i
+                    ? 'border-brand bg-blue-50 text-brand'
+                    : 'border-gray-200 text-gray-700 hover:border-brand hover:bg-blue-50');
+            btn.textContent = opt.label;
+            btn.onclick = (function(score, idx) { return function() { selectOption(score, idx); }; })(opt.score, i);
+            opts.appendChild(btn);
+        });
+
+        // Restore selection if navigating back
+        if (scores[current] !== null) {
+            var btnNext = document.getElementById('btn-next');
+            btnNext.disabled = false;
+            highlightSelected();
+        } else {
+            document.getElementById('btn-next').disabled = true;
+        }
+
+        document.getElementById('btn-back').classList.toggle('hidden', current === 0);
+        document.getElementById('btn-next').textContent = current === 11 ? 'Bekijk resultaat →' : 'Volgende →';
+    }
+
+    function highlightSelected() {
+        var q = questions[current];
+        var btns = document.getElementById('q-options').querySelectorAll('button');
+        btns.forEach(function(btn, i) {
+            var isSelected = (q.options[i].score === scores[current] && i === selectedIndex);
+            btn.className = 'w-full text-left px-4 py-3.5 rounded-xl border-2 text-sm font-medium transition-all duration-150 ' +
+                (isSelected ? 'border-brand bg-blue-50 text-brand' : 'border-gray-200 text-gray-700 hover:border-brand hover:bg-blue-50');
+        });
+    }
+
+    function selectOption(score, idx) {
+        scores[current] = score;
+        selectedIndex = idx;
+        document.getElementById('btn-next').disabled = false;
+        highlightSelected();
+    }
+
+    function nextQuestion() {
+        if (scores[current] === null) return;
+        if (current === 11) { showResult(); return; }
+        current++;
+        selectedIndex = null;
+        renderQuestion();
+        document.getElementById('check-form').scrollIntoView({behavior:'smooth', block:'center'});
+    }
+
+    function prevQuestion() {
+        if (current === 0) return;
+        current--;
+        // Restore selectedIndex
+        var q = questions[current];
+        selectedIndex = null;
+        if (scores[current] !== null) {
+            q.options.forEach(function(opt, i) { if (opt.score === scores[current]) selectedIndex = i; });
+        }
+        renderQuestion();
+    }
+
+    function showResult() {
+        var total = scores.reduce(function(a,b){ return a + (b||0); }, 0);
+        var pct = Math.round(((total + 31) / 65) * 100);
+        pct = Math.max(5, Math.min(95, pct));
+
+        var title, desc, icon, color, points;
+
+        if (total >= 15) {
+            icon = '🟢'; title = 'Laag risico'; color = '#22c55e';
+            desc = 'Jouw situatie ziet er goed uit op basis van de Wet DBA criteria. Je werkt als echte ondernemer.';
+            points = ['✅ Sterke indicaties van zelfstandigheid', '✅ Ondernemersrisico aanwezig', '✅ Weinig gezagsverhouding', 'ℹ️ Bekijk het volledige rapport voor eventuele verbeterpunten.'];
+        } else if (total >= 0) {
+            icon = '🟡'; title = 'Gemiddeld risico'; color = '#eab308';
+            desc = 'Er zijn een paar aandachtspunten. Met gerichte aanpassingen kun jij jouw situatie versterken.';
+            points = ['⚠️ Enkele risicofactoren aanwezig', '⚠️ Mogelijke gezagsverhouding signalen', 'ℹ️ Actieplan beschikbaar om risico te verlagen', 'ℹ️ Bespreek je contract met een adviseur.'];
+        } else if (total >= -15) {
+            icon = '🟠'; title = 'Hoog risico'; color = '#f97316';
+            desc = 'Er zijn significante signalen van schijnzelfstandigheid. Actie is nodig om naheffingen te voorkomen.';
+            points = ['❌ Sterke gezagsverhouding gedetecteerd', '❌ Beperkt ondernemersrisico', '❌ Vervangbaarheid onzeker', '⚠️ Bekijk direct het actieplan.'];
+        } else {
+            icon = '🔴'; title = 'Kritiek risico'; color = '#ef4444';
+            desc = 'Jouw situatie vertoont ernstige signalen van schijnzelfstandigheid. Direct aanpassen is noodzakelijk.';
+            points = ['❌ Zeer sterke indicaties van dienstverband', '❌ Nauwelijks ondernemersrisico', '❌ Persoonlijke arbeid vereist', '🚨 Raadpleeg direct een belastingadviseur.'];
+        }
+
+        document.getElementById('result-icon').textContent = icon;
+        document.getElementById('result-title').textContent = title;
+        document.getElementById('result-desc').textContent = desc;
+        document.getElementById('score-indicator').style.width = pct + '%';
+        document.getElementById('score-indicator').style.backgroundColor = color;
+
+        var pts = document.getElementById('result-points');
+        pts.innerHTML = points.map(function(p) {
+            return '<div class="flex items-start gap-2 text-sm text-gray-700 bg-gray-50 rounded-xl px-4 py-3">' + p + '</div>';
+        }).join('');
+
+        document.getElementById('check-form').classList.add('hidden');
+        document.getElementById('result-card').classList.remove('hidden');
+        document.getElementById('progress-bar').style.width = '100%';
+        document.getElementById('q-label').textContent = 'Check voltooid';
+        document.getElementById('q-pct').textContent = '100%';
+        document.getElementById('result-card').scrollIntoView({behavior:'smooth', block:'center'});
+    }
+
+    function restartCheck() {
+        current = 0;
+        scores = new Array(12).fill(null);
+        selectedIndex = null;
+        document.getElementById('result-card').classList.add('hidden');
+        document.getElementById('check-form').classList.remove('hidden');
+        renderQuestion();
+    }
+
+    // Init
+    renderQuestion();
+    </script>
 
     <!-- FOOTER -->
     <footer class="bg-gray-900 text-gray-400 py-12">
