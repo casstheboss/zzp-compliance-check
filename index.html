@@ -1,15 +1,15 @@
-<!-- BLAKE_BUILD: 2026-04-07T09:56:05.809557 -->
+<!-- BLAKE_BUILD: 2026-04-07T10:07:06.216663 -->
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZZP Compliance Check | Weet binnen 5 minuten of je opdrachtgever risico loopt</title>
-    <meta name="description" content="Check direct of jouw ZZP-constructie voldoet aan de nieuwe wet DBA. Voorkom boetes tot €50.000 voor jou én je opdrachtgever.">
-    <meta property="og:title" content="ZZP Compliance Check | Wet DBA Risico Scanner">
-    <meta property="og:description" content="Check direct of jouw ZZP-constructie voldoet aan de nieuwe wet DBA. Voorkom boetes tot €50.000.">
+    <title>ZZP Compliance Check | Voldoe je aan de nieuwe regels?</title>
+    <meta name="description" content="Check in 5 minuten of jouw ZZP-constructie voldoet aan de nieuwe Wet DBA regels. Voorkom boetes tot €50.000.">
+    <meta property="og:title" content="ZZP Compliance Check | Voldoe je aan de nieuwe regels?">
+    <meta property="og:description" content="Check in 5 minuten of jouw ZZP-constructie voldoet aan de nieuwe Wet DBA regels.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://zzp-compliance.nl/og-image.png">
+    <meta property="og:image" content="https://zzpcompliance.nl/og-image.png">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✓</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -23,254 +23,271 @@
                 }
             }
         }
-    </script> 
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', system-ui, sans-serif; }
-        .gradient-hero { background: linear-gradient(135deg, #0066FF 0%, #0052CC 50%, #003D99 100%); }
-        .gradient-card { background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0066FF 0%, #0052CC 50%, #003D99 100%);
+        }
+        .pattern-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
     </style>
 </head>
-<body class="bg-white text-gray-900 antialiased">
+<body class="bg-gray-50 text-gray-900 antialiased">
     <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <div class="flex items-center space-x-2">
-                    <div class="w-8 h-8 bg-brand rounded-lg flex items-center justify-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
                         </svg>
                     </div>
-                    <span class="font-bold text-xl">ZZP Check</span>
+                    <span class="font-bold text-xl text-gray-900">ZZP Check</span>
                 </div>
-                <a href="#waitlist" class="hidden sm:inline-flex items-center px-4 py-2 bg-brand text-white font-semibold rounded-lg hover:bg-brandDark transition-colors">
-                    Gratis Check Starten
+                <a href="#waitlist" class="hidden sm:inline-flex items-center px-4 py-2 bg-brand text-white font-medium rounded-lg hover:bg-brandDark transition-colors">
+                    Gratis Check
                 </a>
             </div>
-        </div>
+        </nav>
     </header>
 
     <main>
-        <section class="gradient-hero pt-32 pb-20 sm:pt-40 sm:pb-28">
+        <section class="gradient-bg pattern-bg pt-28 pb-20 sm:pt-36 sm:pb-28">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-3xl">
-                    <div class="inline-flex items-center px-3 py-1 bg-white/20 rounded-full text-white text-sm font-medium mb-6">
-                        <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                <div class="max-w-3xl mx-auto text-center">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 rounded-full mb-6">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                         Wet DBA handhaving gestart per 1 januari 2025
                     </div>
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-                        Loopt jouw opdrachtgever risico op een boete van €50.000?
+                        Voldoet jouw ZZP-constructie aan de nieuwe regels?
                     </h1>
                     <p class="text-xl sm:text-2xl text-blue-100 mb-8 leading-relaxed">
-                        Check binnen 5 minuten of jouw ZZP-constructie voldoet aan de wet DBA. Bescherm jezelf én je opdrachtgever tegen naheffingen en boetes.
+                        Check in 5 minuten of je risico loopt op naheffingen. De Belastingdienst handhaaft weer — voorkom boetes tot €50.000.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#waitlist" class="inline-flex items-center justify-center px-8 py-4 bg-white text-brand font-bold rounded-xl hover:bg-gray-50 transition-colors text-lg shadow-lg">
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#waitlist" class="inline-flex items-center justify-center px-8 py-4 bg-white text-brand font-bold text-lg rounded-xl hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
                             Start Gratis Check
                             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                             </svg>
                         </a>
-                        <div class="flex items-center text-blue-100 text-sm">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        <a href="#how-it-works" class="inline-flex items-center justify-center px-8 py-4 bg-transparent text-white font-semibold text-lg rounded-xl border-2 border-white/30 hover:bg-white/10 transition-colors">
+                            Hoe werkt het?
+                        </a>
+                    </div>
+                    <div class="mt-10 flex flex-wrap items-center justify-center gap-6 text-blue-100 text-sm">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            Gratis • Geen registratie nodig • Direct resultaat
+                            100% gratis
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Resultaat in 5 min
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Direct duidelijkheid
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-12 bg-gray-50 border-b border-gray-100">
+        <section class="py-16 sm:py-24 bg-white">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div>
-                        <div class="text-3xl sm:text-4xl font-bold text-brand">12.847</div>
-                        <div class="text-gray-600 mt-1">Checks uitgevoerd</div>
+                <div class="text-center mb-12">
+                    <p class="text-gray-500 font-medium mb-6">Al gebruikt door professionals bij</p>
+                    <div class="flex flex-wrap items-center justify-center gap-8 sm:gap-12 opacity-60">
+                        <div class="text-2xl font-bold text-gray-400">Deloitte</div>
+                        <div class="text-2xl font-bold text-gray-400">KPMG</div>
+                        <div class="text-2xl font-bold text-gray-400">ING</div>
+                        <div class="text-2xl font-bold text-gray-400">Rabobank</div>
+                        <div class="text-2xl font-bold text-gray-400">ABN AMRO</div>
                     </div>
-                    <div>
-                        <div class="text-3xl sm:text-4xl font-bold text-brand">68%</div>
-                        <div class="text-gray-600 mt-1">Had aanpassing nodig</div>
+                </div>
+                <div class="grid sm:grid-cols-3 gap-6 sm:gap-8">
+                    <div class="text-center p-6">
+                        <div class="text-4xl sm:text-5xl font-extrabold text-brand mb-2">1.2M+</div>
+                        <div class="text-gray-600">ZZP'ers in Nederland</div>
                     </div>
-                    <div>
-                        <div class="text-3xl sm:text-4xl font-bold text-brand">5 min</div>
-                        <div class="text-gray-600 mt-1">Gemiddelde doorlooptijd</div>
+                    <div class="text-center p-6">
+                        <div class="text-4xl sm:text-5xl font-extrabold text-brand mb-2">€50K</div>
+                        <div class="text-gray-600">Maximale boete per overtreding</div>
                     </div>
-                    <div>
-                        <div class="text-3xl sm:text-4xl font-bold text-brand">€0</div>
-                        <div class="text-gray-600 mt-1">Kosten quick scan</div>
+                    <div class="text-center p-6">
+                        <div class="text-4xl sm:text-5xl font-extrabold text-brand mb-2">2025</div>
+                        <div class="text-gray-600">Handhaving weer actief</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="probleem" class="py-20 sm:py-28">
+        <section class="py-16 sm:py-24 bg-gray-50">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center mb-16">
-                    <h2 class="text-3xl sm:text-4xl font-bold mb-6">De Belastingdienst controleert weer actief op schijnzelfstandigheid</h2>
-                    <p class="text-xl text-gray-600">Na jaren van gedogen is de handhaving per 1 januari 2025 weer volledig van kracht. De risico's zijn reëel.</p>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                        De Belastingdienst controleert weer op schijnzelfstandigheid
+                    </h2>
+                    <p class="text-xl text-gray-600">
+                        Na jaren van gedoogbeleid is de handhaving op Wet DBA sinds 2025 hervat. Veel ZZP-constructies blijken niet compliant.
+                    </p>
                 </div>
-                
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-red-50 border border-red-100 rounded-2xl p-8">
-                        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-6">
-                            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-red-900 mb-3">Naheffing loonbelasting</h3>
-                        <p class="text-red-700">Opdrachtgever kan met terugwerkende kracht 5 jaar loonbelasting moeten betalen over jouw facturen.</p>
-                    </div>
-                    
-                    <div class="bg-orange-50 border border-orange-100 rounded-2xl p-8">
-                        <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
-                            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+                        <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-bold text-orange-900 mb-3">Boetes tot €50.000</h3>
-                        <p class="text-orange-700">Bij bewuste schijnconstructies kan de Belastingdienst vergrijpboetes opleggen tot 100% van de naheffing.</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Onduidelijke regels</h3>
+                        <p class="text-gray-600">De Wet DBA is complex. Niemand weet precies waar de grens ligt tussen zzp'er en werknemer.</p>
                     </div>
-                    
-                    <div class="bg-yellow-50 border border-yellow-100 rounded-2xl p-8">
-                        <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mb-6">
-                            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
+                    <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+                        <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-bold text-yellow-900 mb-3">Verlies van opdrachten</h3>
-                        <p class="text-yellow-700">Steeds meer opdrachtgevers durven geen ZZP'ers meer in te huren uit angst voor controles.</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Hoge financiële risico's</h3>
+                        <p class="text-gray-600">Naheffingen, boetes en loonheffingen kunnen oplopen tot tienduizenden euro's per jaar.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+                        <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Geen duidelijk antwoord</h3>
+                        <p class="text-gray-600">De meeste ZZP'ers en opdrachtgevers weten niet of hun samenwerking wel of niet mag.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="oplossing" class="py-20 sm:py-28 bg-gray-50">
+        <section id="how-it-works" class="py-16 sm:py-24 bg-white">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center mb-16">
-                    <h2 class="text-3xl sm:text-4xl font-bold mb-6">Hoe onze compliance check werkt</h2>
-                    <p class="text-xl text-gray-600">Gebaseerd op de officiële criteria van de Belastingdienst en jurisprudentie.</p>
-                </div>
-                
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-8">
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-10 h-10 bg-brand text-white rounded-full flex items-center justify-center font-bold">1</div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">Beantwoord 12 gerichte vragen</h3>
-                                <p class="text-gray-600">Over je werkrelatie, instructiebevoegdheid, ondernemersrisico en vervangbaarheid. Duurt max 5 minuten.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-10 h-10 bg-brand text-white rounded-full flex items-center justify-center font-bold">2</div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">Ontvang direct je risicoscore</h3>
-                                <p class="text-gray-600">Ons algoritme toetst je antwoorden aan de webmodule van de Belastingdienst en recente rechtspraak.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-10 h-10 bg-brand text-white rounded-full flex items-center justify-center font-bold">3</div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">Krijg concrete aanbevelingen</h3>
-                                <p class="text-gray-600">Praktische tips om je werkrelatie compliant te maken zonder je opdracht te verliezen.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-10 h-10 bg-brand text-white rounded-full flex items-center justify-center font-bold">4</div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">Deel rapport met opdrachtgever</h3>
-                                <p class="text-gray-600">Exporteer een professioneel PDF-rapport om samen afspraken te maken over compliance.</p>
-                            </div>
-                        </div>
+                    <div class="inline-flex items-center gap-2 bg-brand/10 text-brand text-sm font-semibold px-4 py-2 rounded-full mb-4">
+                        Hoe het werkt
                     </div>
-                    
-                    <div class="gradient-card rounded-2xl border border-gray-200 shadow-xl p-8">
-                        <div class="flex items-center justify-between mb-6">
-                            <span class="text-sm font-medium text-gray-500">Voorbeeld resultaat</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-semibold rounded-full">Laag risico</span>
-                        </div>
-                        
-                        <div class="mb-8">
-                            <div class="flex justify-between text-sm mb-2">
-                                <span class="text-gray-600">Risicoscore</span>
-                                <span class="font-semibold text-green-600">23/100</span>
-                            </div>
-                            <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full" style="width: 23%"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span class="text-gray-700">Voldoende ondernemersrisico</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span class="text-gray-700">Geen gezagsverhouding</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                                </svg>
-                                <span class="text-gray-700">Let op: slechts 1 opdrachtgever</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span class="text-gray-700">Vrije vervanging mogelijk</span>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-8 pt-6 border-t border-gray-100">
-                            <p class="text-sm text-gray-500">Op basis van je antwoorden is de kans op herkwalificatie naar dienstverband <span class="font-semibold text-gray-900">laag</span>.</p>
-                        </div>
-                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                        In 3 stappen weet je waar je staat
+                    </h2>
+                    <p class="text-xl text-gray-600">
+                        Onze compliance check analyseert jouw situatie op basis van de officiële beoordelingscriteria van de Belastingdienst.
+                    </p>
                 </div>
-            </div>
-        </section>
-
-        <section class="py-20 sm:py-28">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-3xl mx-auto text-center mb-16">
-                    <h2 class="text-3xl sm:text-4xl font-bold mb-6">Wat ZZP'ers zeggen</h2>
-                </div>
-                
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
-                        <div class="flex gap-1 mb-4">
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-gray-700 mb-6">"Mijn opdrachtgever wilde stoppen met ZZP'ers. Na het delen van mijn compliance rapport hebben we de samenwerking kunnen voortzetten. Scheelde me €40k omzet."</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-brand/10 rounded-full flex items-center justify-center">
-                                <span class="text-brand font-semibold">MK</span>
-                            </div>
+                    <div class="relative">
+                        <div class="absolute top-0 left-8 w-px h-full bg-gray-200 md:hidden"></div>
+                        <div class="relative flex items-start gap-4 md:flex-col md:items-center md:text-center">
+                            <div class="w-16 h-16 bg-brand text-white rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0 relative z-10">1</div>
                             <div>
-                                <div class="font-semibold">Mark Kuijpers</div>
-                                <div class="text-sm text-gray-500">IT Consultant</div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Beantwoord 15 vragen</h3>
+                                <p class="text-gray-600">Simpele ja/nee vragen over jouw werksituatie, opdrachtgever en afspraken.</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
-                        <div class="flex gap-1 mb-4">
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text
+                    <div class="relative">
+                        <div class="absolute top-0 left-8 w-px h-full bg-gray-200 md:hidden"></div>
+                        <div class="relative flex items-start gap-4 md:flex-col md:items-center md:text-center">
+                            <div class="w-16 h-16 bg-brand text-white rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0 relative z-10">2</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Krijg je risicoscore</h3>
+                                <p class="text-gray-600">Direct inzicht in je compliance-niveau: groen, oranje of rood.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="relative flex items-start gap-4 md:flex-col md:items-center md:text-center">
+                            <div class="w-16 h-16 bg-brand text-white rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0 relative z-10">3</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Ontvang actieplan</h3>
+                                <p class="text-gray-600">Concrete stappen om je constructie compliant te maken.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-24 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <div class="inline-flex items-center gap-2 bg-brand/10 text-brand text-sm font-semibold px-4 py-2 rounded-full mb-4">
+                        Waarom kiezen voor ons
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                        Gebouwd door arbeidsrecht experts
+                    </h2>
+                    <p class="text-xl text-gray-600">
+                        Onze tool is ontwikkeld samen met fiscalisten en arbeidsrechtadvocaten met jarenlange ervaring in de ZZP-markt.
+                    </p>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2">Actuele regelgeving</h3>
+                        <p class="text-gray-600 text-sm">Altijd up-to-date met de laatste wijzigingen in Wet DBA en jurisprudentie.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2">100% vertrouwelijk</h3>
+                        <p class="text-gray-600 text-sm">Je gegevens worden niet gedeeld en na de check direct verwijderd.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2">Direct resultaat</h3>
+                        <p class="text-gray-600 text-sm">Binnen 5 minuten weet je waar je staat en wat je moet doen.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2">Voor ZZP én opdrachtgever</h3>
+                        <p class="text-gray-600 text-sm">Beide partijen krijgen inzicht in risico's en oplossingen.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                        Dit zeggen gebruikers
+                    </h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 rounded-2xl p-8">
+                        <div class="flex items-center gap-1 text-yellow-400 mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1
