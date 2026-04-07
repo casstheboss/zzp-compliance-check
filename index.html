@@ -1,3 +1,4 @@
+
 <!-- BLAKE_BUILD: 2026-04-07T12:00:00 -->
 <!DOCTYPE html>
 <html lang="nl">
@@ -275,15 +276,82 @@
                 <div id="result-icon" class="text-5xl text-center mb-4"></div>
                 <h3 id="result-title" class="text-2xl font-bold text-center text-gray-900 mb-2"></h3>
                 <p id="result-desc" class="text-gray-500 text-center mb-6"></p>
-                <div id="result-score-bar" class="mb-8">
+                <div class="mb-6">
                     <div class="flex justify-between text-xs text-gray-400 mb-1"><span>Hoog risico</span><span>Laag risico</span></div>
-                    <div class="w-full bg-gray-100 rounded-full h-4 relative">
+                    <div class="w-full bg-gray-100 rounded-full h-4">
                         <div id="score-indicator" class="h-4 rounded-full transition-all duration-700" style="width:50%"></div>
                     </div>
+                    <div class="text-center text-xs text-gray-400 mt-1" id="score-label"></div>
                 </div>
-                <div id="result-points" class="space-y-3 mb-8"></div>
-                <button onclick="openCheckout()" class="w-full bg-brand text-white font-bold py-3.5 rounded-xl hover:bg-brandDark transition">Bekijk volledig rapport + actieplan — €29 →</button>
-                <button onclick="restartCheck()" class="w-full mt-3 text-gray-400 hover:text-gray-600 text-sm transition">Opnieuw beginnen</button>
+                <div id="result-points" class="space-y-3 mb-6"></div>
+
+                <!-- Email gate for full report -->
+                <div id="email-gate" class="border-t border-gray-100 pt-6">
+                    <h4 class="font-bold text-gray-900 mb-1">Ontvang jouw volledige rapport</h4>
+                    <p class="text-gray-500 text-sm mb-4">Inclusief persoonlijk actieplan + PDF om te delen met je opdrachtgever.</p>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="email" id="report-email" placeholder="jouw@email.nl" class="flex-1 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand">
+                        <button onclick="unlockReport()" class="bg-brand text-white font-bold px-6 py-3 rounded-xl hover:bg-brandDark transition text-sm whitespace-nowrap">Bekijk rapport →</button>
+                    </div>
+                    <p class="text-gray-400 text-xs mt-2">Gratis preview. Volledig rapport incl. PDF voor €29.</p>
+                </div>
+
+                <button onclick="restartCheck()" class="w-full mt-4 text-gray-400 hover:text-gray-600 text-sm transition">Opnieuw beginnen</button>
+            </div>
+
+            <!-- Full report (hidden until email submitted) -->
+            <div id="full-report" class="hidden bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <!-- Report header -->
+                <div class="bg-brand text-white px-8 py-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span class="font-bold">ZZP Compliance Check</span>
+                            </div>
+                            <h2 class="font-serif text-2xl font-bold">Jouw Wet DBA Rapport</h2>
+                            <p class="text-blue-200 text-sm mt-1" id="report-date"></p>
+                        </div>
+                        <div id="report-badge" class="text-right">
+                            <div id="report-risk-label" class="text-2xl font-bold"></div>
+                            <div class="text-blue-200 text-xs">Risicoprofiel</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-8">
+                    <!-- Score summary -->
+                    <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                        <div class="flex justify-between text-xs text-gray-400 mb-1"><span>Hoog risico</span><span>Laag risico</span></div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div id="report-score-bar" class="h-3 rounded-full" style="width:50%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2 text-center" id="report-score-text"></p>
+                    </div>
+
+                    <!-- Per-question breakdown -->
+                    <h3 class="font-bold text-gray-900 mb-4">Analyse per criterium</h3>
+                    <div id="report-breakdown" class="space-y-3 mb-8"></div>
+
+                    <!-- Actieplan -->
+                    <div class="border border-brand rounded-xl overflow-hidden mb-8">
+                        <div class="bg-brand text-white px-5 py-3">
+                            <h3 class="font-bold">Jouw persoonlijk actieplan</h3>
+                        </div>
+                        <div id="actieplan" class="p-5 space-y-3"></div>
+                    </div>
+
+                    <!-- PDF CTA -->
+                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">Deel dit rapport met je opdrachtgever</p>
+                            <p class="text-gray-500 text-xs mt-0.5">Download de volledige PDF voor €29 — inclusief juridische toelichting.</p>
+                        </div>
+                        <button onclick="openCheckout()" class="bg-brand text-white font-bold px-5 py-2.5 rounded-xl hover:bg-brandDark transition text-sm whitespace-nowrap">Download PDF — €29</button>
+                    </div>
+
+                    <button onclick="restartCheck()" class="w-full mt-4 text-gray-400 hover:text-gray-600 text-sm transition">Opnieuw beginnen</button>
+                </div>
             </div>
 
             <p class="text-center text-gray-400 text-xs mt-4">Deze check is informatief en vervangt geen juridisch advies.</p>
@@ -441,34 +509,36 @@
         var pct = Math.round(((total + 31) / 65) * 100);
         pct = Math.max(5, Math.min(95, pct));
 
-        var title, desc, icon, color, points;
+        var title, desc, icon, color, riskLevel;
 
         if (total >= 15) {
-            icon = '🟢'; title = 'Laag risico'; color = '#22c55e';
+            icon = '🟢'; title = 'Laag risico'; color = '#22c55e'; riskLevel = 'laag';
             desc = 'Jouw situatie ziet er goed uit op basis van de Wet DBA criteria. Je werkt als echte ondernemer.';
-            points = ['✅ Sterke indicaties van zelfstandigheid', '✅ Ondernemersrisico aanwezig', '✅ Weinig gezagsverhouding', 'ℹ️ Bekijk het volledige rapport voor eventuele verbeterpunten.'];
         } else if (total >= 0) {
-            icon = '🟡'; title = 'Gemiddeld risico'; color = '#eab308';
+            icon = '🟡'; title = 'Gemiddeld risico'; color = '#eab308'; riskLevel = 'gemiddeld';
             desc = 'Er zijn een paar aandachtspunten. Met gerichte aanpassingen kun jij jouw situatie versterken.';
-            points = ['⚠️ Enkele risicofactoren aanwezig', '⚠️ Mogelijke gezagsverhouding signalen', 'ℹ️ Actieplan beschikbaar om risico te verlagen', 'ℹ️ Bespreek je contract met een adviseur.'];
         } else if (total >= -15) {
-            icon = '🟠'; title = 'Hoog risico'; color = '#f97316';
+            icon = '🟠'; title = 'Hoog risico'; color = '#f97316'; riskLevel = 'hoog';
             desc = 'Er zijn significante signalen van schijnzelfstandigheid. Actie is nodig om naheffingen te voorkomen.';
-            points = ['❌ Sterke gezagsverhouding gedetecteerd', '❌ Beperkt ondernemersrisico', '❌ Vervangbaarheid onzeker', '⚠️ Bekijk direct het actieplan.'];
         } else {
-            icon = '🔴'; title = 'Kritiek risico'; color = '#ef4444';
+            icon = '🔴'; title = 'Kritiek risico'; color = '#ef4444'; riskLevel = 'kritiek';
             desc = 'Jouw situatie vertoont ernstige signalen van schijnzelfstandigheid. Direct aanpassen is noodzakelijk.';
-            points = ['❌ Zeer sterke indicaties van dienstverband', '❌ Nauwelijks ondernemersrisico', '❌ Persoonlijke arbeid vereist', '🚨 Raadpleeg direct een belastingadviseur.'];
         }
+
+        // Store for report
+        window._reportData = { total: total, pct: pct, title: title, desc: desc, icon: icon, color: color, riskLevel: riskLevel, scores: scores.slice() };
 
         document.getElementById('result-icon').textContent = icon;
         document.getElementById('result-title').textContent = title;
         document.getElementById('result-desc').textContent = desc;
         document.getElementById('score-indicator').style.width = pct + '%';
         document.getElementById('score-indicator').style.backgroundColor = color;
+        document.getElementById('score-label').textContent = 'Totaalscore: ' + total + ' punten';
 
+        // Summary points
+        var summaryPoints = getSummaryPoints(riskLevel, scores);
         var pts = document.getElementById('result-points');
-        pts.innerHTML = points.map(function(p) {
+        pts.innerHTML = summaryPoints.map(function(p) {
             return '<div class="flex items-start gap-2 text-sm text-gray-700 bg-gray-50 rounded-xl px-4 py-3">' + p + '</div>';
         }).join('');
 
@@ -477,16 +547,128 @@
         document.getElementById('progress-bar').style.width = '100%';
         document.getElementById('q-label').textContent = 'Check voltooid';
         document.getElementById('q-pct').textContent = '100%';
-        document.getElementById('result-card').scrollIntoView({behavior:'smooth', block:'center'});
+        document.getElementById('result-card').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function getSummaryPoints(riskLevel, scores) {
+        var points = [];
+        // Gezagsverhouding (q0-3)
+        var gezag = scores[0] + scores[1] + scores[2] + scores[3];
+        if (gezag < 0) points.push('⚠️ Gezagsverhouding: signalen van werknemersstatus');
+        else points.push('✅ Gezagsverhouding: voldoende zelfstandigheid');
+        // Vervangbaarheid (q4-6)
+        var verv = scores[4] + scores[5] + scores[6];
+        if (verv < 0) points.push('⚠️ Vervangbaarheid: persoonlijke arbeidsplicht aanwezig');
+        else points.push('✅ Vervangbaarheid: vervanging mogelijk');
+        // Ondernemersrisico (q7-9)
+        var ond = scores[7] + scores[8] + scores[9];
+        if (ond < 0) points.push('⚠️ Ondernemersrisico: te weinig financieel risico');
+        else points.push('✅ Ondernemersrisico: aanwezig');
+        // Tarief & duur (q10-11)
+        var tar = scores[10] + scores[11];
+        if (tar < 0) points.push('⚠️ Tarief/duur: verhoogd risico door laag tarief of lange looptijd');
+        else points.push('✅ Tarief & looptijd: binnen veilige marges');
+        return points;
+    }
+
+    function unlockReport() {
+        var email = document.getElementById('report-email').value;
+        if (!email || !email.includes('@')) {
+            document.getElementById('report-email').style.borderColor = '#ef4444';
+            return;
+        }
+        document.getElementById('result-card').classList.add('hidden');
+        buildFullReport();
+        document.getElementById('full-report').classList.remove('hidden');
+        document.getElementById('full-report').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function buildFullReport() {
+        var d = window._reportData;
+        var now = new Date();
+        document.getElementById('report-date').textContent = 'Gegenereerd op ' + now.toLocaleDateString('nl-NL', {day:'numeric', month:'long', year:'numeric'});
+        document.getElementById('report-risk-label').textContent = d.icon + ' ' + d.title;
+        document.getElementById('report-score-bar').style.width = d.pct + '%';
+        document.getElementById('report-score-bar').style.backgroundColor = d.color;
+        document.getElementById('report-score-text').textContent = 'Score: ' + d.total + ' punten van maximaal 34 | Risicoprofiel: ' + d.title;
+
+        // Per-question breakdown
+        var blocks = [
+            { name: 'Gezagsverhouding', qs: [0,1,2,3] },
+            { name: 'Vervangbaarheid', qs: [4,5,6] },
+            { name: 'Ondernemersrisico', qs: [7,8,9] },
+            { name: 'Tarief & looptijd', qs: [10,11] }
+        ];
+        var breakdown = document.getElementById('report-breakdown');
+        breakdown.innerHTML = '';
+        blocks.forEach(function(block) {
+            var blockScore = block.qs.reduce(function(a,i){ return a + (d.scores[i]||0); }, 0);
+            var isOk = blockScore >= 0;
+            var div = document.createElement('div');
+            div.className = 'border rounded-xl p-4 ' + (isOk ? 'border-green-100 bg-green-50' : 'border-red-100 bg-red-50');
+            div.innerHTML = '<div class="flex justify-between items-center mb-2">' +
+                '<span class="font-semibold text-sm text-gray-900">' + (isOk ? '✅' : '❌') + ' ' + block.name + '</span>' +
+                '<span class="text-xs font-medium ' + (isOk ? 'text-green-700' : 'text-red-700') + '">' + (blockScore >= 0 ? '+' : '') + blockScore + ' punten</span>' +
+                '</div>' +
+                '<ul class="space-y-1">' +
+                block.qs.map(function(qi) {
+                    var q = questions[qi];
+                    var sc = d.scores[qi];
+                    var answer = '';
+                    q.options.forEach(function(opt) { if (opt.score === sc) answer = opt.label; });
+                    var isPos = sc >= 0;
+                    return '<li class="text-xs text-gray-600"><span class="' + (isPos ? 'text-green-600' : 'text-red-600') + ' font-medium">' + (isPos ? '▲' : '▼') + '</span> ' + q.text.substring(0,40) + '...<br><span class="text-gray-500 ml-3">→ ' + answer + '</span></li>';
+                }).join('') +
+                '</ul>';
+            breakdown.appendChild(div);
+        });
+
+        // Actieplan
+        var actieplan = document.getElementById('actieplan');
+        actieplan.innerHTML = '';
+        var acties = getActieplan(d.riskLevel, d.scores);
+        acties.forEach(function(actie, i) {
+            var div = document.createElement('div');
+            div.className = 'flex gap-3 items-start';
+            div.innerHTML = '<div class="w-6 h-6 rounded-full bg-brand text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">' + (i+1) + '</div>' +
+                '<div><p class="text-sm font-semibold text-gray-900">' + actie.title + '</p><p class="text-xs text-gray-500 mt-0.5">' + actie.desc + '</p></div>';
+            actieplan.appendChild(div);
+        });
+    }
+
+    function getActieplan(riskLevel, scores) {
+        var acties = [];
+        // Gezagsverhouding
+        if (scores[0] < 0) acties.push({ title: 'Leg werkwijze contractueel vast', desc: 'Zorg dat in jouw overeenkomst van opdracht expliciet staat dat jij zelf bepaalt hoe je het werk uitvoert, inclusief methodes en planning.' });
+        if (scores[1] < 0) acties.push({ title: 'Flexibiliseer locatie en werktijden', desc: 'Spreek af dat je niet gebonden bent aan vaste locaties of tijden. Werk resultaatgericht: lever het eindproduct, niet uren op locatie.' });
+        if (scores[2] < 0) acties.push({ title: 'Beperk scope-uitbreidingen buiten contract', desc: 'Weiger of heronderhandel opdrachten die buiten de originele opdracht vallen. Leg nieuwe taken altijd vast in een aanvullende opdracht.' });
+        if (scores[3] < 0) acties.push({ title: 'Stop met functioneringsgesprekken', desc: 'Functioneringsgesprekken zijn een sterk werknemerssignaal. Vervang door resultaatreviews op projectbasis.' });
+        // Vervangbaarheid
+        if (scores[4] < 0) acties.push({ title: 'Leg vervangbaarheid contractueel vast', desc: 'Voeg een vervangingsclausule toe aan je contract. Zorg dat je aantoonbaar vervangers kunt inzetten zonder toestemming van de opdrachtgever.' });
+        if (scores[6] < 0) acties.push({ title: 'Sluit doorbetaling bij ziekte uit', desc: 'Verwijder elke vorm van loondoorbetaling uit je afspraken. Werk uitsluitend op basis van geleverde resultaten of uren.' });
+        // Ondernemersrisico
+        if (scores[7] < 0) acties.push({ title: 'Vergroot aantoonbaar ondernemersrisico', desc: 'Sluit een beroepsaansprakelijkheidsverzekering af, werk met eigen materiaal, en zorg dat slechte kwaliteit financieel gevolgen heeft.' });
+        if (scores[8] < 0) acties.push({ title: 'Verbreed je klantenbestand', desc: 'Één opdrachtgever is het grootste risicosignaal. Streef naar minimaal 2-3 actieve opdrachtgevers per jaar, ook als één opdracht dominant is.' });
+        if (scores[9] < 0) acties.push({ title: 'Investeer zichtbaar in je onderneming', desc: 'Koop eigen tools, volg trainingen op eigen kosten, onderhoud een website of LinkedIn. Dit bewijst ondernemerschap.' });
+        // Tarief & duur
+        if (scores[10] < 0) acties.push({ title: 'Overweeg tariefverhoging boven €38/uur', desc: 'Onder de €38/uur employment presumption val je automatisch in een hogere risicocategorie. Heronderhandel je tarief.' });
+        if (scores[11] < 0) acties.push({ title: 'Beperk opdracht looptijd of introduceer pauze', desc: 'Langdurige opdrachten (2+ jaar) voor één opdrachtgever zijn een sterk risicosignaal. Overweeg een contractpauze of roulatie.' });
+        // Fallback
+        if (acties.length === 0) acties.push({ title: 'Jouw situatie ziet er sterk uit', desc: 'Blijf de criteria actief monitoren bij wijziging van je werksituatie of bij nieuwe wet- en regelgeving.' });
+        return acties;
     }
 
     function restartCheck() {
         current = 0;
         scores = new Array(12).fill(null);
         selectedIndex = null;
+        window._reportData = null;
         document.getElementById('result-card').classList.add('hidden');
+        document.getElementById('full-report').classList.add('hidden');
         document.getElementById('check-form').classList.remove('hidden');
+        document.getElementById('report-email').value = '';
         renderQuestion();
+        document.getElementById('check-form').scrollIntoView({behavior:'smooth', block:'center'});
     }
 
     // Init
