@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jouw Wet DBA Rapport — ZZP Compliance Check</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✓</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { brand: '#1E40AF' }, fontFamily: { sans: ['DM Sans','sans-serif'], serif: ['DM Serif Display','serif'] } } } }</script>
+    <style>body { font-family: 'DM Sans', sans-serif; } @keyframes spin { to { transform: rotate(360deg); } } .spin { animation: spin 1s linear infinite; }</style>
+</head>
+<body class="bg-gray-50 antialiased">
+
+    <nav class="bg-white border-b border-gray-100 sticky top-0 z-10 print:hidden">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="https://www.zzpcompliancecheck.nl" class="flex items-center gap-2 text-brand font-bold text-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                ZZP Compliance Check
+            </a>
+            <button onclick="window.print()" class="text-sm text-gray-500 hover:text-brand transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                Download PDF
+            </button>
+        </div>
+    </nav>
+
+    <div id="loading" class="max-w-2xl mx-auto px-6 py-24 text-center">
+        <div class="w-12 h-12 border-4 border-brand border-t-transparent rounded-full spin mx-auto mb-6"></div>
+        <h2 style="font-family:'DM Serif Display',serif" class="text-2xl font-bold text-gray-900 mb-2">Jouw rapport wordt geladen...</h2>
+        <p class="text-gray-500 text-sm">Even geduld.</p>
+    </div>
+
+    <div id="pending" class="hidden max-w-2xl mx-auto px-6 py-24 text-center">
+        <div class="text-5xl mb-6">⏳</div>
+        <h2 style="font-family:'DM Serif Display',serif" class="text-2xl font-bold text-gray-900 mb-2">Betaling wordt verwerkt...</h2>
+        <p class="text-gray-500 text-sm mb-4">Je betaling is ontvangen. Je rapport wordt aangemaakt — dit duurt normaal minder dan een minuut.</p>
+        <p class="text-gray-400 text-xs">Deze pagina herlaadt automatisch...</p>
+    </div>
+
+    <div id="error" class="hidden max-w-2xl mx-auto px-6 py-24 text-center">
+        <div class="text-5xl mb-6">❌</div>
+        <h2 style="font-family:'DM Serif Display',serif" class="text-2xl font-bold text-gray-900 mb-2">Rapport niet gevonden</h2>
+        <p class="text-gray-500 text-sm mb-6">We konden jouw rapport niet ophalen. Controleer of je de juiste link gebruikt of neem contact op.</p>
+        <a href="mailto:support@zzpcompliancecheck.nl" class="bg-brand text-white font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition text-sm inline-block">Contact opnemen</a>
+    </div>
+
+    <div id="report-container" class="hidden max-w-4xl mx-auto px-6 py-8"></div>
+
+    <script>
+    var BACKEND = 'https://api.zzpcompliancecheck.nl';
+    var attempts = 0;
+
+    async function loadReport() {
+        var params = new URLSearchParams(window.location.search);
+        var reportId = params.get('id');
+        if (!reportId) { showError(); return; }
+
+        attempts++;
+        if (attempts > 30) { showError(); return; } // Give up after ~2.5 min
+
+        try {
+            var res = await fetch(BACKEND + '/rapport/' + reportId, { headers: { 'Accept': 'text/html' } });
+
+            if (res.status === 202) {
+                showPending();
+                setTimeout(loadReport, 5000);
+                return;
+            }
+            if (!res.ok) { showError(); return; }
+
+            var html = await res.text();
+            showReport(html);
+
+        } catch(e) {
+            console.error(e);
+            if (attempts < 5) setTimeout(loadReport, 3000);
+            else showError();
+        }
+    }
+
+    function showReport(html) {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('pending').classList.add('hidden');
+        document.getElementById('error').classList.add('hidden');
+        var container = document.getElementById('report-container');
+        container.classList.remove('hidden');
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+        // Try to get just the report content div
+        var content = doc.querySelector('.container') || doc.querySelector('body');
+        // Remove the download bar from the embedded report (we have our own nav)
+        var downloadBar = content.querySelector('.no-print');
+        if (downloadBar) downloadBar.remove();
+        container.innerHTML = content.innerHTML;
+    }
+
+    function showPending() {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('pending').classList.remove('hidden');
+    }
+
+    function showError() {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('error').classList.remove('hidden');
+    }
+
+    loadReport();
+    </script>
+</body>
+</html>
