@@ -36,14 +36,14 @@
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 <span class="font-bold text-lg">ZZP Compliance Check</span>
             </div>
-            <a href="#check" class="bg-white text-brand font-semibold px-5 py-2 rounded-lg hover:bg-blue-50 transition text-sm shadow">Gratis Check Starten</a>
+            <a href="#" onclick="openCheckout();return false;" class="bg-white text-brand font-semibold px-5 py-2 rounded-lg hover:bg-blue-50 transition text-sm shadow">Check Starten</a>
         </nav>
         <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
             <div class="inline-block bg-white/15 text-white text-xs font-semibold px-3 py-1 rounded-full mb-5 border border-white/20">🔴 Handhaving actief per 1 januari 2026</div>
             <h1 class="font-serif text-4xl md:text-6xl font-bold leading-tight mb-6 max-w-3xl">Loop jij risico op een naheffing van de Belastingdienst?</h1>
             <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl leading-relaxed">Als ZZP'er kun jij geconfronteerd worden met boetes tot <strong class="text-white">€100.000</strong> en naheffingen over 5 jaar. Doe de gratis check en weet binnen 5 minuten waar je staat.</p>
             <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                <a href="#check" class="bg-white text-brand font-bold px-8 py-4 rounded-xl text-center hover:bg-blue-50 transition shadow-xl">Start Gratis Check →</a>
+                <a href="#" onclick="openCheckout();return false;" class="bg-white text-brand font-bold px-8 py-4 rounded-xl text-center hover:bg-blue-50 transition shadow-xl">Start Check →</a>
                 <a href="#hoe-werkt-het" class="border border-white/40 text-white font-semibold px-8 py-4 rounded-xl text-center hover:bg-white/10 transition">Hoe werkt het?</a>
             </div>
             <div class="flex flex-wrap gap-6 text-sm text-blue-200">
@@ -163,7 +163,7 @@
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>PDF rapport om te delen met opdrachtgever</li>
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Direct beschikbaar, geen wachttijd</li>
                     </ul>
-                    <a href="#check" class="block text-center bg-brand text-white font-bold py-3 rounded-xl hover:bg-brandDark transition">Start voor €29 →</a>
+                    <a href="#" onclick="openCheckout();return false;" class="block text-center bg-brand text-white font-bold py-3 rounded-xl hover:bg-brandDark transition">Start voor €29 →</a>
                 </div>
                 <!-- Add-on -->
                 <div class="bg-white border border-gray-200 rounded-2xl p-8">
@@ -183,6 +183,61 @@
             <p class="text-center text-gray-400 text-xs mt-6">Niet tevreden? Binnen 14 dagen geld terug, geen vragen gesteld.</p>
         </div>
     </section>
+
+    <!-- CHECKOUT MODAL -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" style="background:rgba(15,23,42,0.7);backdrop-filter:blur(4px)">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative">
+            <button onclick="closeCheckout()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">Jouw bestelling</h2>
+            <p class="text-gray-500 text-sm mb-6">Controleer je keuze en ga verder</p>
+            <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-4">
+                <div class="flex justify-between items-start">
+                    <div><p class="font-semibold text-gray-900">Wet DBA Check</p><p class="text-gray-500 text-xs mt-0.5">Persoonlijk rapport + actieplan</p></div>
+                    <span class="font-bold text-gray-900">€29</span>
+                </div>
+            </div>
+            <div id="addon-box" class="border border-gray-200 rounded-xl p-4 mb-6 cursor-pointer hover:border-brand transition" onclick="toggleAddon()">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div id="addon-toggle" class="w-10 h-6 rounded-full bg-gray-200 relative transition-colors duration-200">
+                            <div id="addon-thumb" class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow transition-transform duration-200"></div>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900 text-sm">Blijf Compliant <span class="text-gray-400 font-normal">— optioneel</span></p>
+                            <p class="text-gray-500 text-xs mt-0.5">Jaarlijkse updates als regels veranderen</p>
+                        </div>
+                    </div>
+                    <span class="text-gray-600 text-sm font-medium">+€15/jaar</span>
+                </div>
+            </div>
+            <div class="border-t border-gray-100 pt-4 mb-6">
+                <div class="flex justify-between text-sm text-gray-600 mb-1"><span>Wet DBA Check</span><span>€29,00</span></div>
+                <div id="addon-line" class="hidden justify-between text-sm text-gray-600 mb-1"><span>Blijf Compliant (jaar 1)</span><span>€15,00</span></div>
+                <div class="flex justify-between font-bold text-gray-900 mt-3 pt-3 border-t border-gray-100"><span>Totaal</span><span id="total-price">€29,00</span></div>
+            </div>
+            <input type="email" id="checkout-email" placeholder="jouw@email.nl" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm mb-4 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent">
+            <button disabled class="w-full bg-brand text-white font-bold py-3.5 rounded-xl opacity-60 cursor-not-allowed flex items-center justify-center gap-2 text-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                Betalen via Mollie — binnenkort beschikbaar
+            </button>
+            <p class="text-center text-gray-400 text-xs mt-3">🔒 Veilige betaling · 14 dagen geld terug garantie</p>
+        </div>
+    </div>
+    <script>
+        var addonActive = false;
+        function openCheckout() { document.getElementById('checkout-modal').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        function closeCheckout() { document.getElementById('checkout-modal').style.display = 'none'; document.body.style.overflow = ''; }
+        function toggleAddon() {
+            addonActive = !addonActive;
+            var t = document.getElementById('addon-toggle'), th = document.getElementById('addon-thumb');
+            var al = document.getElementById('addon-line'), tp = document.getElementById('total-price'), box = document.getElementById('addon-box');
+            if (addonActive) { t.style.backgroundColor='#1E40AF'; th.style.transform='translateX(16px)'; al.style.display='flex'; tp.textContent='€44,00'; box.style.borderColor='#1E40AF'; }
+            else { t.style.backgroundColor='#e5e7eb'; th.style.transform='translateX(0)'; al.style.display='none'; tp.textContent='€29,00'; box.style.borderColor='#e5e7eb'; }
+        }
+        document.getElementById('checkout-modal').addEventListener('click', function(e) { if (e.target===this) closeCheckout(); });
+    </script>
 
     <!-- CTA -->
     <section id="check" class="py-16 md:py-24 bg-brand text-white">
