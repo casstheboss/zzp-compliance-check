@@ -36,14 +36,14 @@
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 <span class="font-bold text-lg">ZZP Compliance Check</span>
             </div>
-            <a href="#" onclick="openCheckout();return false;" class="bg-white text-brand font-semibold px-5 py-2 rounded-lg hover:bg-blue-50 transition text-sm shadow">Check Starten</a>
+            <a href="#check" class="bg-white text-brand font-semibold px-5 py-2 rounded-lg hover:bg-blue-50 transition text-sm shadow">Check Starten</a>
         </nav>
         <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
             <div class="inline-block bg-white/15 text-white text-xs font-semibold px-3 py-1 rounded-full mb-5 border border-white/20">🔴 Handhaving actief per 1 januari 2026</div>
             <h1 class="font-serif text-4xl md:text-6xl font-bold leading-tight mb-6 max-w-3xl">Loop jij risico op een naheffing van de Belastingdienst?</h1>
             <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl leading-relaxed">Als ZZP'er kun jij geconfronteerd worden met boetes tot <strong class="text-white">€100.000</strong> en naheffingen over 5 jaar. Doe de gratis check en weet binnen 5 minuten waar je staat.</p>
             <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                <a href="#" onclick="openCheckout();return false;" class="bg-white text-brand font-bold px-8 py-4 rounded-xl text-center hover:bg-blue-50 transition shadow-xl">Start Check →</a>
+                <a href="#check" class="bg-white text-brand font-bold px-8 py-4 rounded-xl text-center hover:bg-blue-50 transition shadow-xl">Start Check →</a>
                 <a href="#hoe-werkt-het" class="border border-white/40 text-white font-semibold px-8 py-4 rounded-xl text-center hover:bg-white/10 transition">Hoe werkt het?</a>
             </div>
             <div class="flex flex-wrap gap-6 text-sm text-blue-200">
@@ -200,72 +200,6 @@
         </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="py-16 md:py-24 bg-white">
-        <div class="max-w-3xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-3">Veelgestelde vragen</h2>
-                <p class="text-gray-500">Alles wat je wilt weten over de Wet DBA check</p>
-            </div>
-            <div class="space-y-4" id="faq">
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(0)" class="w-full flex justify-between items-center px-6 py-4 text-left font-semibold text-gray-900 hover:bg-gray-50 transition text-sm">
-                        <span>Is de gratis check voldoende of heb ik het rapport nodig?</span>
-                        <span class="text-brand text-lg font-bold faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer hidden px-6 pb-4">
-                        <p class="text-gray-600 text-sm leading-relaxed">De gratis check geeft je jouw risicoscore (groen/oranje/rood) en een overzicht per criterium. Dat is waardevol als eerste indicatie. Het betaalde rapport voegt toe: juridische toelichting per criterium met wetsreferenties, een persoonlijk actieplan met prioriteiten, contract clausules die je direct kunt gebruiken, en een PDF om te delen met je opdrachtgever. Als je in de oranje of rode zone zit, is het rapport zeker de moeite waard.</p>
-                    </div>
-                </div>
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(1)" class="w-full flex justify-between items-center px-6 py-4 text-left font-semibold text-gray-900 hover:bg-gray-50 transition text-sm">
-                        <span>Beschermt dit rapport mij juridisch?</span>
-                        <span class="text-brand text-lg font-bold faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer hidden px-6 pb-4">
-                        <p class="text-gray-600 text-sm leading-relaxed">Het rapport is informatief en vervangt geen juridisch advies. Wat het wél doet: het geeft je inzicht in je risicoprofiel, concrete acties om je situatie te verbeteren, en documentatie die aantoont dat jij actief bezig bent met compliance. Dat laatste telt mee bij een controle. Voor juridische zekerheid raden wij aan de bevindingen te bespreken met een belastingadviseur of arbeidsrechtadvocaat.</p>
-                    </div>
-                </div>
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(2)" class="w-full flex justify-between items-center px-6 py-4 text-left font-semibold text-gray-900 hover:bg-gray-50 transition text-sm">
-                        <span>Hoe werkt de €38 per uur grens precies?</span>
-                        <span class="text-brand text-lg font-bold faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer hidden px-6 pb-4">
-                        <p class="text-gray-600 text-sm leading-relaxed">De employment presumption houdt in dat bij een tarief onder €38/uur wordt vermoed dat er sprake is van een arbeidsrelatie. Dit vermoeden is weerlegbaar — maar jij moet bewijzen dat je ondanks het lage tarief écht als zelfstandige werkt. Dat betekent: aantoonbaar meerdere opdrachtgevers, geen gezagsverhouding, en eigen ondernemersrisico. Lees ons uitgebreide artikel over de €38 regel voor meer details.</p>
-                    </div>
-                </div>
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(3)" class="w-full flex justify-between items-center px-6 py-4 text-left font-semibold text-gray-900 hover:bg-gray-50 transition text-sm">
-                        <span>Wat als ik maar één opdrachtgever heb?</span>
-                        <span class="text-brand text-lg font-bold faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer hidden px-6 pb-4">
-                        <p class="text-gray-600 text-sm leading-relaxed">Één opdrachtgever is op zichzelf niet verboden, maar het is statistisch gezien het grootste risicosignaal. De Belastingdienst kijkt extra kritisch naar ZZP'ers die al meer dan een jaar uitsluitend voor één bedrijf werken. Compenseer dit door de andere criteria sterker te maken: aantoonbare vervangbaarheid, geen gezagsverhouding, eigen materiaal en aansprakelijkheid, en actief werken aan uitbreiding van je klantenbestand.</p>
-                    </div>
-                </div>
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(4)" class="w-full flex justify-between items-center px-6 py-4 text-left font-semibold text-gray-900 hover:bg-gray-50 transition text-sm">
-                        <span>Wanneer moet ik de check herhalen?</span>
-                        <span class="text-brand text-lg font-bold faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer hidden px-6 pb-4">
-                        <p class="text-gray-600 text-sm leading-relaxed">Doe de check opnieuw als je werkrelatie verandert (nieuwe opdrachtgever, andere werkomstandigheden, nieuw contract), als de Wet DBA wordt aangepast, of minimaal één keer per jaar. Met de optionele Blijf Compliant add-on ontvang je automatisch een herinnering en updates als de regelgeving wijzigt.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-    function toggleFaq(idx) {
-        var answers = document.querySelectorAll('.faq-answer');
-        var icons = document.querySelectorAll('.faq-icon');
-        var isOpen = !answers[idx].classList.contains('hidden');
-        answers.forEach(function(a, i) { a.classList.add('hidden'); icons[i].textContent = '+'; });
-        if (!isOpen) { answers[idx].classList.remove('hidden'); icons[idx].textContent = '−'; }
-    }
-    </script>
     <section class="py-16 md:py-24 bg-gray-50">
         <div class="max-w-3xl mx-auto px-6">
             <div class="text-center mb-12">
