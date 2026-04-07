@@ -171,7 +171,101 @@
         </div>
     </section>
 
-    <!-- PRICING -->
+    <!-- FOR OPDRACHTGEVERS -->
+    <section class="py-16 bg-blue-50 border-y border-blue-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-block bg-brand text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">Voor opdrachtgevers</div>
+                    <h2 class="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-4">Ook als opdrachtgever loop jij risico</h2>
+                    <p class="text-gray-600 leading-relaxed mb-4">Bij schijnzelfstandigheid is niet alleen de ZZP'er de klos. Als opdrachtgever kun jij worden aangeslagen voor <strong>naheffingen loonheffingen over 5 jaar</strong>, plus vergrijpboetes. Veel bedrijven weten niet dat hun ingehuurde ZZP'ers risico lopen — tot de Belastingdienst klopt.</p>
+                    <p class="text-gray-600 leading-relaxed mb-6">Stuur jouw ZZP'er de compliance check toe. Als hij of zij laag risico scoort, beschermt dat ook jou. Het kost €29 en kan een naheffing van tienduizenden euro's voorkomen.</p>
+                    <a href="#check" class="inline-block bg-brand text-white font-bold px-6 py-3 rounded-xl hover:opacity-90 transition text-sm">Stuur de check naar jouw ZZP'er →</a>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl p-5 border border-blue-100">
+                        <p class="font-semibold text-gray-900 text-sm mb-1">🔍 Wat controleert de Belastingdienst bij opdrachtgevers?</p>
+                        <p class="text-gray-500 text-sm leading-relaxed">Hoe de samenwerking is georganiseerd, of er sprake is van gezag, hoe lang de relatie duurt en of vervanging mogelijk is. Ze vragen dit actief op via vragenlijsten.</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 border border-blue-100">
+                        <p class="font-semibold text-gray-900 text-sm mb-1">💰 Wat zijn de kosten bij een naheffing?</p>
+                        <p class="text-gray-500 text-sm leading-relaxed">Loonheffingen + premies over 5 jaar terug, plus vergrijpboetes tot 100% van de naheffing. Bij 10 ZZP'ers à €60/uur kan dit oplopen tot honderdduizenden euro's.</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 border border-blue-100">
+                        <p class="font-semibold text-gray-900 text-sm mb-1">📋 Hoe bescherm ik mijn bedrijf?</p>
+                        <p class="text-gray-500 text-sm leading-relaxed">Zorg dat alle ZZP'ers een compliance rapport hebben. Leg afspraken contractueel vast. Gebruik gevalideerde modelcontracten en check jaarlijks opnieuw.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-3">Veelgestelde vragen</h2>
+                <p class="text-gray-500">Alles wat je wilt weten over de Wet DBA check</p>
+            </div>
+            <div class="space-y-4" id="faq">
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(0)" class="w-full flex justify-between items-center px-6 py-4 text-left font-semibold text-gray-900 hover:bg-gray-50 transition text-sm">
+                        <span>Is de gratis check voldoende of heb ik het rapport nodig?</span>
+                        <span class="text-brand text-lg font-bold faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed">De gratis check geeft je jouw risicoscore (groen/oranje/rood) en een overzicht per criterium. Dat is waardevol als eerste indicatie. Het betaalde rapport voegt toe: juridische toelichting per criterium met wetsreferenties, een persoonlijk actieplan met prioriteiten, contract clausules die je direct kunt gebruiken, en een PDF om te delen met je opdrachtgever. Als je in de oranje of rode zone zit, is het rapport zeker de moeite waard.</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(1)" class="w-full flex justify-between items-center px-6 py-4 text-left font-semibold text-gray-900 hover:bg-gray-50 transition text-sm">
+                        <span>Beschermt dit rapport mij juridisch?</span>
+                        <span class="text-brand text-lg font-bold faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed">Het rapport is informatief en vervangt geen juridisch advies. Wat het wél doet: het geeft je inzicht in je risicoprofiel, concrete acties om je situatie te verbeteren, en documentatie die aantoont dat jij actief bezig bent met compliance. Dat laatste telt mee bij een controle. Voor juridische zekerheid raden wij aan de bevindingen te bespreken met een belastingadviseur of arbeidsrechtadvocaat.</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(2)" class="w-full flex justify-between items-center px-6 py-4 text-left font-semibold text-gray-900 hover:bg-gray-50 transition text-sm">
+                        <span>Hoe werkt de €38 per uur grens precies?</span>
+                        <span class="text-brand text-lg font-bold faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed">De employment presumption houdt in dat bij een tarief onder €38/uur wordt vermoed dat er sprake is van een arbeidsrelatie. Dit vermoeden is weerlegbaar — maar jij moet bewijzen dat je ondanks het lage tarief écht als zelfstandige werkt. Dat betekent: aantoonbaar meerdere opdrachtgevers, geen gezagsverhouding, en eigen ondernemersrisico. Lees ons uitgebreide artikel over de €38 regel voor meer details.</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(3)" class="w-full flex justify-between items-center px-6 py-4 text-left font-semibold text-gray-900 hover:bg-gray-50 transition text-sm">
+                        <span>Wat als ik maar één opdrachtgever heb?</span>
+                        <span class="text-brand text-lg font-bold faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed">Één opdrachtgever is op zichzelf niet verboden, maar het is statistisch gezien het grootste risicosignaal. De Belastingdienst kijkt extra kritisch naar ZZP'ers die al meer dan een jaar uitsluitend voor één bedrijf werken. Compenseer dit door de andere criteria sterker te maken: aantoonbare vervangbaarheid, geen gezagsverhouding, eigen materiaal en aansprakelijkheid, en actief werken aan uitbreiding van je klantenbestand.</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(4)" class="w-full flex justify-between items-center px-6 py-4 text-left font-semibold text-gray-900 hover:bg-gray-50 transition text-sm">
+                        <span>Wanneer moet ik de check herhalen?</span>
+                        <span class="text-brand text-lg font-bold faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed">Doe de check opnieuw als je werkrelatie verandert (nieuwe opdrachtgever, andere werkomstandigheden, nieuw contract), als de Wet DBA wordt aangepast, of minimaal één keer per jaar. Met de optionele Blijf Compliant add-on ontvang je automatisch een herinnering en updates als de regelgeving wijzigt.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    function toggleFaq(idx) {
+        var answers = document.querySelectorAll('.faq-answer');
+        var icons = document.querySelectorAll('.faq-icon');
+        var isOpen = !answers[idx].classList.contains('hidden');
+        answers.forEach(function(a, i) { a.classList.add('hidden'); icons[i].textContent = '+'; });
+        if (!isOpen) { answers[idx].classList.remove('hidden'); icons[idx].textContent = '−'; }
+    }
+    </script>
     <section class="py-16 md:py-24 bg-gray-50">
         <div class="max-w-3xl mx-auto px-6">
             <div class="text-center mb-12">
@@ -883,6 +977,90 @@
 
     // Init
     renderQuestion();
+    </script>
+
+    <!-- FOR OPDRACHTGEVERS -->
+    <section class="py-16 bg-blue-50 border-y border-blue-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-block bg-brand text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">Voor opdrachtgevers</div>
+                    <h2 class="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-4">Ook jij als opdrachtgever loopt risico</h2>
+                    <p class="text-gray-600 leading-relaxed mb-4">Als de Belastingdienst bepaalt dat een ZZP'er die jij inhuurt eigenlijk een werknemer is, ben jij als opdrachtgever verantwoordelijk voor de naheffing. Je kunt tot 5 jaar terug worden aangesproken voor loonheffingen en premies — ook als je te goeder trouw handelde.</p>
+                    <p class="text-gray-600 leading-relaxed mb-6">Bescherm jezelf en jouw ZZP'ers door de werkrelatie vooraf te toetsen. Een compliance check geeft beide partijen zekerheid en een gedocumenteerd bewijs van zelfstandigheid.</p>
+                    <a href="#check" class="inline-block bg-brand text-white font-bold px-6 py-3 rounded-xl hover:opacity-90 transition text-sm">Check de werkrelatie →</a>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl p-4 border border-blue-100 flex gap-3">
+                        <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                        <div><p class="font-semibold text-sm text-gray-900">Naheffing tot 5 jaar terug</p><p class="text-xs text-gray-500 mt-0.5">De Belastingdienst vordert loonheffingen na bij de opdrachtgever, niet de ZZP'er.</p></div>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 border border-blue-100 flex gap-3">
+                        <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
+                        <div><p class="font-semibold text-sm text-gray-900">Verplicht dienstverband</p><p class="text-xs text-gray-500 mt-0.5">Jij moet de ZZP'er alsnog als werknemer behandelen, inclusief alle werkgeverslasten.</p></div>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 border border-blue-100 flex gap-3">
+                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                        <div><p class="font-semibold text-sm text-gray-900">Rapport als bewijs</p><p class="text-xs text-gray-500 mt-0.5">Het compliance rapport dient als aantoonbaar bewijs dat de werkrelatie is getoetst.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 md:py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-3">Veelgestelde vragen</h2>
+                <p class="text-gray-500">Alles wat je wilt weten over de Wet DBA check</p>
+            </div>
+            <div class="space-y-4" id="faq">
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(0)" class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                        <span class="font-semibold text-gray-900 text-sm">Is de gratis check echt gratis?</span>
+                        <svg class="w-4 h-4 text-gray-400 faq-icon-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer-0 hidden px-6 pb-4"><p class="text-sm text-gray-600 leading-relaxed">Ja. De 12 vragen en jouw risicoscore (groen/oranje/rood) zijn volledig gratis. Je betaalt €29 voor het volledige rapport — inclusief juridische analyse per criterium, persoonlijk actieplan, contract clausules, en het PDF-rapport om te delen met je opdrachtgever.</p></div>
+                </div>
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(1)" class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                        <span class="font-semibold text-gray-900 text-sm">Hoe betrouwbaar is de check?</span>
+                        <svg class="w-4 h-4 text-gray-400 faq-icon-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer-1 hidden px-6 pb-4"><p class="text-sm text-gray-600 leading-relaxed">De check is gebaseerd op de officiële criteria van de Belastingdienst: gezagsverhouding (art. 7:610 BW), vervangbaarheid (art. 7:659 BW), ondernemersrisico, en de employment presumption van de Wet DBA 2026. Het is een indicatief instrument — geen juridisch advies. Bij twijfel raden we aan een belastingadviseur te raadplegen.</p></div>
+                </div>
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(2)" class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                        <span class="font-semibold text-gray-900 text-sm">Wat krijg ik precies voor €29?</span>
+                        <svg class="w-4 h-4 text-gray-400 faq-icon-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer-2 hidden px-6 pb-4"><p class="text-sm text-gray-600 leading-relaxed">Je ontvangt: een volledig PDF-rapport met jouw risicoscore en juridische toelichting per criterium, een persoonlijk actieplan met concrete stappen gesorteerd op prioriteit (urgent/binnen 3 maanden/nice to have), kant-en-klare contract clausules die je direct kunt gebruiken, en een handtekeningblok voor je opdrachtgever. Het rapport wordt direct na betaling per e-mail verstuurd.</p></div>
+                </div>
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(3)" class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                        <span class="font-semibold text-gray-900 text-sm">Ik werk al jaren voor dezelfde opdrachtgever. Is dat een probleem?</span>
+                        <svg class="w-4 h-4 text-gray-400 faq-icon-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer-3 hidden px-6 pb-4"><p class="text-sm text-gray-600 leading-relaxed">Een langdurige samenwerking met één opdrachtgever is op zichzelf niet verboden, maar het is wel een risicosignaal. De Belastingdienst kijkt extra kritisch naar situaties waarbij een ZZP'er al meer dan een jaar exclusief voor één bedrijf werkt. Doe de check om te zien hoe jouw totaalplaatje eruitziet en wat je eventueel kunt aanpassen.</p></div>
+                </div>
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(4)" class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                        <span class="font-semibold text-gray-900 text-sm">Mijn tarief is onder €38 per uur. Moet ik stoppen?</span>
+                        <svg class="w-4 h-4 text-gray-400 faq-icon-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer-4 hidden px-6 pb-4"><p class="text-sm text-gray-600 leading-relaxed">Nee. Werken onder €38 per uur is niet verboden, maar de employment presumption maakt het lastiger om zelfstandigheid te bewijzen. Je kunt dit vermoeden weerleggen door sterk te scoren op de andere criteria: geen gezagsverhouding, vervangbaarheid, en duidelijk ondernemersrisico. De check laat je precies zien hoe je ervoor staat.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+    function toggleFaq(i) {
+        var ans = document.querySelector('.faq-answer-'+i);
+        var icon = document.querySelector('.faq-icon-'+i);
+        ans.classList.toggle('hidden');
+        icon.style.transform = ans.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    }
     </script>
 
     <!-- FOOTER -->
