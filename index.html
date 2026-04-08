@@ -1,1041 +1,683 @@
-<!-- BLAKE_BUILD: 2026-04-07T12:00:00 -->
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZZP Compliance Check | Weet binnen 5 minuten of jij risico loopt</title>
-    <meta name="description" content="Controleer direct of jouw ZZP-opdracht voldoet aan de Wet DBA 2026. Voorkom naheffingen en boetes tot €100.000 met onze gratis compliance check.">
-    <meta property="og:title" content="ZZP Compliance Check | Is jouw opdracht Wet DBA-proof?">
-    <meta property="og:description" content="Controleer direct of jouw ZZP-opdracht voldoet aan de Wet DBA 2026. Voorkom boetes tot €100.000.">
-    <meta property="og:type" content="website">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✓</text></svg>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: { extend: { colors: { brand: '#1E40AF', brandDark: '#1e3a8a' }, fontFamily: { sans: ['DM Sans', 'sans-serif'], serif: ['DM Serif Display', 'serif'] } } }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZZP Compliance Check | Weet binnen 5 minuten of jij risico loopt</title>
+  <meta name="description" content="72% van de ZZP'ers loopt risico op naheffing. Doe de gratis Wet DBA check en weet in 5 minuten waar jij staat. Volledig rapport voor €29.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23DC2626' stroke-width='2'><path d='M12 2L2 7l10 5 10-5-10-5z'/><path d='M2 17l10 5 10-5'/><path d='M2 12l10 5 10-5'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: '#1E40AF', danger: '#DC2626' },
+          fontFamily: { serif: ['Instrument Serif', 'serif'], sans: ['DM Sans', 'sans-serif'] }
         }
-    </script>
-    <style>
-        body { font-family: 'DM Sans', sans-serif; }
-        .hero-bg {
-            background-image: linear-gradient(135deg, rgba(30,64,175,0.93) 0%, rgba(30,58,138,0.96) 55%, rgba(15,23,42,0.98) 100%), url('https://images.unsplash.com/photo-1664575602807-e002fc20892c?w=1600&q=80&auto=format&fit=crop');
-            background-size: cover; background-position: center;
-        }
-        .star { color: #FBBF24; }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'DM Sans', sans-serif; }
+    .serif { font-family: 'Instrument Serif', serif; }
+    @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.4} }
+    .live-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+    @keyframes slide-in { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    .slide-in { animation: slide-in 0.35s ease forwards; }
+    .progress-bar { transition: width 0.4s ease; }
+    .opt-btn { transition: all 0.15s ease; }
+    .opt-btn:hover { border-color: #1E40AF; background: #EFF6FF; }
+    .opt-btn.selected { border-color: #1E40AF; background: #EFF6FF; color: #1E3A8A; }
+  </style>
 </head>
-<body class="antialiased text-gray-900">
+<body class="bg-gray-50 antialiased">
 
-    <!-- HERO -->
-    <header class="hero-bg text-white">
-        <nav class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="font-bold text-lg">ZZP Compliance Check</span>
-            </div>
-            <a href="#check" class="bg-white text-brand font-semibold px-5 py-2 rounded-lg hover:bg-blue-50 transition text-sm shadow">Check Starten</a>
-        </nav>
-        <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
-            <div class="inline-block bg-white/15 text-white text-xs font-semibold px-3 py-1 rounded-full mb-5 border border-white/20">🔴 Handhaving actief per 1 januari 2026</div>
-            <h1 class="font-serif text-4xl md:text-6xl font-bold leading-tight mb-6 max-w-3xl">Loop jij risico op een naheffing van de Belastingdienst?</h1>
-            <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl leading-relaxed">Als ZZP'er kun jij geconfronteerd worden met boetes tot <strong class="text-white">€100.000</strong> en naheffingen over 5 jaar. Doe de gratis check en weet binnen 5 minuten waar je staat.</p>
-            <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                <a href="#check" class="bg-white text-brand font-bold px-8 py-4 rounded-xl text-center hover:bg-blue-50 transition shadow-xl">Start Check →</a>
-                <a href="#hoe-werkt-het" class="border border-white/40 text-white font-semibold px-8 py-4 rounded-xl text-center hover:bg-white/10 transition">Hoe werkt het?</a>
-            </div>
-            <div class="flex flex-wrap gap-6 text-sm text-blue-200">
-                <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Geen registratie</span>
-                <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Direct resultaat</span>
-                <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Risicoscore gratis · Volledig rapport €29</span>
-            </div>
-        </div>
-    </header>
+<!-- URGENT TOP BANNER -->
+<div class="bg-brand text-white text-center py-2.5 px-4 text-sm font-medium">
+  <span class="live-dot inline-block w-2 h-2 bg-blue-300 rounded-full mr-2 align-middle"></span>
+  Handhaving actief per 1 januari 2026 — De Belastingdienst controleert nu actief op schijnzelfstandigheid
+</div>
 
-    <!-- STATS -->
-    <section class="bg-brand text-white py-10">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div><div class="text-3xl font-bold mb-1">1.2M+</div><div class="text-blue-200 text-sm">ZZP'ers in Nederland</div></div>
-            <div><div class="text-3xl font-bold mb-1">€100K</div><div class="text-blue-200 text-sm">Maximale boete</div></div>
-            <div><div class="text-3xl font-bold mb-1">5.000+</div><div class="text-blue-200 text-sm">Checks uitgevoerd</div></div>
-            <div><div class="text-3xl font-bold mb-1">72%</div><div class="text-blue-200 text-sm">Had aanpassing nodig</div></div>
-        </div>
-    </section>
+<!-- NAV -->
+<nav class="bg-white border-b border-gray-100 sticky top-0 z-20">
+  <div class="max-w-4xl mx-auto px-5 py-3.5 flex justify-between items-center">
+    <a href="/" class="flex items-center gap-2 font-semibold text-gray-900 text-base">
+      <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      ZZP Compliance Check
+    </a>
+    <a href="#check" class="bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-green-700 transition">Start gratis check →</a>
+  </div>
+</nav>
 
-    <!-- ALERT -->
-    <section class="py-12 bg-red-50 border-y border-red-100">
-        <div class="max-w-3xl mx-auto px-6 text-center">
-            <div class="inline-block bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">⚠️ Let op: Handhaving is gestart</div>
-            <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-3">Per 1 januari 2026 handhaaft de Belastingdienst actief op schijnzelfstandigheid</h2>
-            <p class="text-gray-600">Veel ZZP'ers weten niet dat hun werkrelatie als dienstverband kan worden gezien. De gevolgen voor jou: naheffingen, boetes, en verlies van opdrachten.</p>
+<!-- HERO -->
+<section class="bg-white border-b border-gray-100">
+  <div class="max-w-4xl mx-auto px-5 pt-12 pb-10">
+    <div class="max-w-2xl">
+      <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-brand text-xs font-semibold px-3 py-1.5 rounded-full mb-5">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-9a1 1 0 112 0v4a1 1 0 11-2 0V9zm1-5a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"/></svg>
+        Handhaving gestart — 72% van de ZZP'ers loopt risico
+      </div>
+      <h1 class="serif text-4xl md:text-5xl text-gray-900 leading-tight mb-4">
+        Voldoe jij aan de<br><span class="text-brand italic">Wet DBA eisen?</span>
+      </h1>
+      <p class="text-gray-500 text-lg leading-relaxed mb-8 max-w-xl">
+        Sinds 1 januari 2026 handhaaft de Belastingdienst actief. Weet in 5 minuten of jij compliant bent — de check is gratis.
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <div class="bg-blue-50 rounded-xl p-3 text-center">
+          <div class="text-xl font-semibold text-brand">72%</div>
+          <div class="text-xs text-blue-400 mt-0.5">loopt risico</div>
         </div>
-    </section>
-
-    <!-- RISKS -->
-    <section class="py-16 md:py-24 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="font-serif text-2xl md:text-3xl font-bold mb-3">De 3 grootste risico's voor jou als ZZP'er in 2026</h2>
-                <p class="text-gray-500 max-w-xl mx-auto">Dit zijn de gevolgen als de Belastingdienst jouw situatie als schijnzelfstandigheid beoordeelt</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-red-50 rounded-2xl p-6 border border-red-100">
-                    <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-                    <h3 class="font-bold text-lg mb-2">Naheffing loonbelasting</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-3">De Belastingdienst kan tot <strong>5 jaar terug</strong> loonbelasting van jou navorderen. Bij langdurige opdrachten loopt dit snel op tot tienduizenden euro's.</p>
-                    <p class="text-gray-500 text-xs leading-relaxed">Dit geldt ook als jij niet wist dat je risico liep. Onwetendheid is geen verweer bij een controle.</p>
-                </div>
-                <div class="bg-orange-50 rounded-2xl p-6 border border-orange-100">
-                    <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div>
-                    <h3 class="font-bold text-lg mb-2">Boetes tot €100.000</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-3">Bij bewuste schijnconstructies legt de Belastingdienst vergrijpboetes op van tot <strong>100% van de naheffing</strong>. Dit kan jouw financiële situatie volledig op zijn kop zetten.</p>
-                    <p class="text-gray-500 text-xs leading-relaxed">Sinds 2026 worden ook ZZP'ers zelf aangesproken — niet alleen de opdrachtgever.</p>
-                </div>
-                <div class="bg-purple-50 rounded-2xl p-6 border border-purple-100">
-                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg></div>
-                    <h3 class="font-bold text-lg mb-2">Verlies van opdrachten</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-3">Steeds meer opdrachtgevers stoppen met ZZP'ers inhuren uit angst voor controles. Als jouw situatie niet klopt, <strong>ben jij de eerste die ze laten gaan</strong>.</p>
-                    <p class="text-gray-500 text-xs leading-relaxed">Een negatieve beoordeling van jouw werkrelatie kan leiden tot directe beëindiging van je contract.</p>
-                </div>
-            </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <div class="text-xl font-semibold text-gray-800">€100K</div>
+          <div class="text-xs text-gray-400 mt-0.5">maximale boete</div>
         </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section id="hoe-werkt-het" class="py-16 md:py-24 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="font-serif text-2xl md:text-3xl font-bold mb-3">Zo werkt de Compliance Check</h2>
-                <p class="text-gray-500 max-w-xl mx-auto">In drie simpele stappen weet je waar je staat</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center"><div class="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-4">1</div><h3 class="font-bold text-lg mb-2">Beantwoord 12 vragen</h3><p class="text-gray-500 text-sm leading-relaxed">Over je werkrelatie, vervanging, gezag en hoe je betaald wordt. Duurt maximaal 5 minuten.</p></div>
-                <div class="text-center"><div class="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-4">2</div><h3 class="font-bold text-lg mb-2">Krijg je risicoscore</h3><p class="text-gray-500 text-sm leading-relaxed">Direct inzicht in hoe de Belastingdienst jouw opdracht waarschijnlijk beoordeelt: groen, oranje of rood.</p></div>
-                <div class="text-center"><div class="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-4">3</div><h3 class="font-bold text-lg mb-2">Ontvang persoonlijk actieplan</h3><p class="text-gray-500 text-sm leading-relaxed">Concrete stappen om jouw situatie compliant te maken, of bevestiging dat je goed zit.</p></div>
-            </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <div class="text-xl font-semibold text-gray-800">5 jaar</div>
+          <div class="text-xs text-gray-400 mt-0.5">terugvordering</div>
         </div>
-    </section>
-
-    <!-- INFORMATIVE TEXT SECTION -->
-    <section class="py-16 md:py-20 bg-white border-t border-gray-100">
-        <div class="max-w-3xl mx-auto px-6">
-            <div class="text-center mb-10">
-                <h2 class="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-3">Wat is schijnzelfstandigheid en waarom loopt jij risico?</h2>
-            </div>
-            <div class="prose max-w-none">
-                <p class="text-gray-600 leading-relaxed mb-4">Schijnzelfstandigheid betekent dat jij op papier ZZP'er bent, maar in de praktijk functioneert als werknemer. De Belastingdienst kijkt niet naar wat er in je contract staat — maar naar hoe jouw dagelijkse werkrelatie er <em>in de praktijk</em> uitziet.</p>
-                <p class="text-gray-600 leading-relaxed mb-4">Drie criteria zijn doorslaggevend: is er sprake van een <strong>gezagsverhouding</strong> (bepaalt de opdrachtgever hoe jij werkt?), ben jij <strong>persoonlijk verplicht</strong> het werk uit te voeren (of kun je jezelf laten vervangen?), en loop jij <strong>ondernemersrisico</strong> (meerdere opdrachtgevers, eigen aansprakelijkheid, geen doorbetaling bij ziekte)?</p>
-                <p class="text-gray-600 leading-relaxed mb-6">Voldoe jij aan deze criteria niet, dan kan de Belastingdienst jouw werkrelatie herkwalificeren als dienstverband — met naheffingen, boetes en verlies van opdrachten als gevolg. Sinds 1 januari 2026 is het moratorium op handhaving beëindigd en worden actief controles uitgevoerd.</p>
-                <div class="grid md:grid-cols-2 gap-4 not-prose">
-                    <a href="./artikel-1.html" class="border border-gray-200 rounded-xl p-4 hover:border-brand transition group">
-                        <p class="text-xs text-brand font-semibold mb-1">Lees meer →</p>
-                        <p class="font-semibold text-gray-900 text-sm group-hover:text-brand transition">De €38 per uur regel uitgelegd</p>
-                        <p class="text-xs text-gray-500 mt-1">Wat de employment presumption betekent voor jou</p>
-                    </a>
-                    <a href="./artikel-2.html" class="border border-gray-200 rounded-xl p-4 hover:border-brand transition group">
-                        <p class="text-xs text-brand font-semibold mb-1">Lees meer →</p>
-                        <p class="font-semibold text-gray-900 text-sm group-hover:text-brand transition">7 signalen dat jij risico loopt</p>
-                        <p class="text-xs text-gray-500 mt-1">Herken schijnzelfstandigheid in jouw situatie</p>
-                    </a>
-                </div>
-            </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <div class="text-xl font-semibold text-gray-800">€29</div>
+          <div class="text-xs text-gray-400 mt-0.5">volledig rapport</div>
         </div>
-    </section>
-
-    <!-- REVIEWS -->
-    <section class="py-16 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="font-serif text-2xl md:text-3xl font-bold mb-3">ZZP'ers vertrouwen op onze check</h2>
-                <p class="text-gray-500">Meer dan 18.400 ZZP'ers gingen je voor</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                    <div class="flex gap-0.5 mb-4">★★★★★</div>
-                    <p class="text-gray-700 mb-4 text-sm leading-relaxed">"Dacht dat ik compliant was, maar de check wees op 3 concrete verbeterpunten. Heb mijn contract direct aangepast. Scheelde me waarschijnlijk een naheffing van €30K."</p>
-                    <div class="flex items-center gap-3"><div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">MV</div><div><p class="font-semibold text-sm">Mark de V.</p><p class="text-gray-400 text-xs">IT Consultant, Utrecht</p></div></div>
-                </div>
-                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                    <div class="flex gap-0.5 mb-4">★★★★★</div>
-                    <p class="text-gray-700 mb-4 text-sm leading-relaxed">"Als freelance designer werkte ik al 3 jaar voor één opdrachtgever. De check liet zien dat dit een risico is. Met het actieplan heb ik twee extra klanten aangenomen. Voelt nu veel veiliger."</p>
-                    <div class="flex items-center gap-3"><div class="w-10 h-10 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">SB</div><div><p class="font-semibold text-sm">Sarah B.</p><p class="text-gray-400 text-xs">UX Designer, Amsterdam</p></div></div>
-                </div>
-                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                    <div class="flex gap-0.5 mb-4">★★★★★</div>
-                    <p class="text-gray-700 mb-4 text-sm leading-relaxed">"Mijn accountant adviseerde me de check te doen. Bleek dat ik grotendeels goed zat, op één punt na. Dat gerust gevoel is me echt wat waard. Aanrader voor elke ZZP'er."</p>
-                    <div class="flex items-center gap-3"><div class="w-10 h-10 bg-gradient-to-br from-green-400 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-sm">RJ</div><div><p class="font-semibold text-sm">Remco J.</p><p class="text-gray-400 text-xs">Projectmanager, Rotterdam</p></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOR OPDRACHTGEVERS -->
-    <section class="py-16 bg-blue-50 border-y border-blue-100">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <div class="inline-block bg-brand text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">Voor opdrachtgevers</div>
-                    <h2 class="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-4">Ook als opdrachtgever loop jij risico</h2>
-                    <p class="text-gray-600 leading-relaxed mb-4">Bij schijnzelfstandigheid is niet alleen de ZZP'er de klos. Als opdrachtgever kun jij worden aangeslagen voor <strong>naheffingen loonheffingen over 5 jaar</strong>, plus vergrijpboetes. Veel bedrijven weten niet dat hun ingehuurde ZZP'ers risico lopen — tot de Belastingdienst klopt.</p>
-                    <p class="text-gray-600 leading-relaxed mb-6">Stuur jouw ZZP'er de compliance check toe. Als hij of zij laag risico scoort, beschermt dat ook jou. Het kost €29 en kan een naheffing van tienduizenden euro's voorkomen.</p>
-                    <a href="#check" class="inline-block bg-brand text-white font-bold px-6 py-3 rounded-xl hover:opacity-90 transition text-sm">Stuur de check naar jouw ZZP'er →</a>
-                </div>
-                <div class="space-y-4">
-                    <div class="bg-white rounded-xl p-5 border border-blue-100">
-                        <p class="font-semibold text-gray-900 text-sm mb-1">🔍 Wat controleert de Belastingdienst bij opdrachtgevers?</p>
-                        <p class="text-gray-500 text-sm leading-relaxed">Hoe de samenwerking is georganiseerd, of er sprake is van gezag, hoe lang de relatie duurt en of vervanging mogelijk is. Ze vragen dit actief op via vragenlijsten.</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-5 border border-blue-100">
-                        <p class="font-semibold text-gray-900 text-sm mb-1">💰 Wat zijn de kosten bij een naheffing?</p>
-                        <p class="text-gray-500 text-sm leading-relaxed">Loonheffingen + premies over 5 jaar terug, plus vergrijpboetes tot 100% van de naheffing. Bij 10 ZZP'ers à €60/uur kan dit oplopen tot honderdduizenden euro's.</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-5 border border-blue-100">
-                        <p class="font-semibold text-gray-900 text-sm mb-1">📋 Hoe bescherm ik mijn bedrijf?</p>
-                        <p class="text-gray-500 text-sm leading-relaxed">Zorg dat alle ZZP'ers een compliance rapport hebben. Leg afspraken contractueel vast. Gebruik gevalideerde modelcontracten en check jaarlijks opnieuw.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 md:py-24 bg-gray-50">
-        <div class="max-w-3xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="font-serif text-2xl md:text-3xl font-bold mb-3">Simpele, eerlijke prijzen</h2>
-                <p class="text-gray-500">Eenmalig betalen. Geen abonnement, geen verrassingen.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Main product -->
-                <div class="bg-white border-2 border-brand rounded-2xl p-8 relative shadow-lg">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand text-white text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap">Meest gekozen</div>
-                    <h3 class="font-bold text-xl mb-1">Wet DBA Check</h3>
-                    <p class="text-gray-500 text-sm mb-4">Eenmalige betaling</p>
-                    <div class="text-4xl font-bold mb-6">€29</div>
-                    <ul class="space-y-3 text-sm text-gray-600 mb-8">
-                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Volledige compliance check (12 vragen)</li>
-                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Persoonlijk risicoscore rapport</li>
-                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Concreet actieplan op maat</li>
-                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>PDF rapport om te delen met opdrachtgever</li>
-                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Direct beschikbaar, geen wachttijd</li>
-                    </ul>
-                    <a href="#" onclick="openCheckout();return false;" class="block text-center bg-brand text-white font-bold py-3 rounded-xl hover:bg-brandDark transition">Start voor €29 →</a>
-                </div>
-                <!-- Add-on -->
-                <div class="bg-white border border-gray-200 rounded-2xl p-8">
-                    <h3 class="font-bold text-xl mb-1">Blijf Compliant</h3>
-                    <p class="text-gray-500 text-sm mb-4">Optionele add-on</p>
-                    <div class="text-4xl font-bold mb-1">€15<span class="text-base font-normal text-gray-500">/jaar</span></div>
-                    <p class="text-gray-400 text-xs mb-6">Aanvullend op de Wet DBA Check</p>
-                    <ul class="space-y-3 text-sm text-gray-600 mb-8">
-                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Melding als Wet DBA regels veranderen</li>
-                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Jaarlijkse hercheck herinnering</li>
-                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Bijgewerkt actieplan bij wetswijzigingen</li>
-                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Op elk moment opzegbaar</li>
-                    </ul>
-                    <a href="#check" class="block text-center border border-brand text-brand font-semibold py-3 rounded-xl hover:bg-blue-50 transition">Voeg toe bij checkout</a>
-                </div>
-            </div>
-            <p class="text-center text-gray-400 text-xs mt-6">Niet tevreden? Binnen 14 dagen geld terug, geen vragen gesteld.</p>
-        </div>
-    </section>
-
-    <!-- CHECKOUT MODAL -->
-    <div id="checkout-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" style="background:rgba(15,23,42,0.7);backdrop-filter:blur(4px)">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative">
-            <button onclick="closeCheckout()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-            <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">Jouw bestelling</h2>
-            <p class="text-gray-500 text-sm mb-6">Controleer je keuze en ga verder</p>
-            <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-4">
-                <div class="flex justify-between items-start">
-                    <div><p class="font-semibold text-gray-900">Wet DBA Check</p><p class="text-gray-500 text-xs mt-0.5">Persoonlijk rapport + actieplan</p></div>
-                    <span class="font-bold text-gray-900">€29</span>
-                </div>
-            </div>
-            <div id="addon-box" class="border border-gray-200 rounded-xl p-4 mb-6 cursor-pointer hover:border-brand transition" onclick="toggleAddon()">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div id="addon-toggle" class="w-10 h-6 rounded-full bg-gray-200 relative transition-colors duration-200">
-                            <div id="addon-thumb" class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow transition-transform duration-200"></div>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-gray-900 text-sm">Blijf Compliant <span class="text-gray-400 font-normal">— optioneel</span></p>
-                            <p class="text-gray-500 text-xs mt-0.5">Jaarlijkse updates als regels veranderen</p>
-                        </div>
-                    </div>
-                    <span class="text-gray-600 text-sm font-medium">+€15/jaar</span>
-                </div>
-            </div>
-            <div class="border-t border-gray-100 pt-4 mb-6">
-                <div class="flex justify-between text-sm text-gray-600 mb-1"><span>Wet DBA Check</span><span>€29,00</span></div>
-                <div id="addon-line" class="hidden justify-between text-sm text-gray-600 mb-1"><span>Blijf Compliant (jaar 1)</span><span>€15,00</span></div>
-                <div class="flex justify-between font-bold text-gray-900 mt-3 pt-3 border-t border-gray-100"><span>Totaal</span><span id="total-price">€29,00</span></div>
-            </div>
-            <input type="text" id="checkout-name" placeholder="Jouw naam" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent">
-            <input type="email" id="checkout-email" placeholder="jouw@email.nl" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm mb-4 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent">
-            <button onclick="submitPayment()" id="pay-submit-btn" class="w-full bg-brand text-white font-bold py-3.5 rounded-xl hover:bg-brandDark transition flex items-center justify-center gap-2 text-sm">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                Betalen via Mollie →
-            </button>
-            <button onclick="simulatePaymentSuccess()" class="w-full mt-2 border border-gray-200 text-gray-400 text-xs py-2 rounded-xl hover:bg-gray-50 transition">
-                🧪 Test: Simuleer betaling (tijdelijk — verwijderen voor go-live)
-            </button>
-            <p class="text-center text-gray-400 text-xs mt-3">🔒 Veilige betaling · 14 dagen geld terug garantie</p>
-        </div>
+      </div>
+      <div class="flex items-center gap-2 text-sm text-gray-400">
+        <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        Risicoscore gratis &nbsp;·&nbsp;
+        <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        Geen registratie &nbsp;·&nbsp;
+        <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        Direct resultaat
+      </div>
     </div>
-    <script>
-        var addonActive = false;
-        var BACKEND_URL = 'https://api.zzpcompliancecheck.nl';
+  </div>
+</section>
 
-        function openCheckout() { document.getElementById('checkout-modal').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-        function closeCheckout() { document.getElementById('checkout-modal').style.display = 'none'; document.body.style.overflow = ''; }
-        function toggleAddon() {
-            addonActive = !addonActive;
-            var t = document.getElementById('addon-toggle'), th = document.getElementById('addon-thumb');
-            var al = document.getElementById('addon-line'), tp = document.getElementById('total-price'), box = document.getElementById('addon-box');
-            if (addonActive) { t.style.backgroundColor='#1E40AF'; th.style.transform='translateX(16px)'; al.style.display='flex'; tp.textContent='€44,00'; box.style.borderColor='#1E40AF'; }
-            else { t.style.backgroundColor='#e5e7eb'; th.style.transform='translateX(0)'; al.style.display='none'; tp.textContent='€29,00'; box.style.borderColor='#e5e7eb'; }
-        }
-        document.getElementById('checkout-modal').addEventListener('click', function(e) { if (e.target===this) closeCheckout(); });
+<!-- STATS + WARNING BLOCK -->
+<section class="bg-brand text-white py-8">
+  <div class="max-w-4xl mx-auto px-5 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div><div class="text-3xl font-semibold mb-1">1.2M+</div><div class="text-blue-200 text-sm">ZZP'ers in Nederland</div></div>
+    <div><div class="text-3xl font-semibold mb-1">€100K</div><div class="text-blue-200 text-sm">Maximale boete</div></div>
+    <div><div class="text-3xl font-semibold mb-1">5.000+</div><div class="text-blue-200 text-sm">Checks uitgevoerd</div></div>
+    <div><div class="text-3xl font-semibold mb-1">72%</div><div class="text-blue-200 text-sm">Had aanpassing nodig</div></div>
+  </div>
+</section>
 
-        async function submitPayment() {
-            var name = document.getElementById('checkout-name').value.trim();
-            var email = document.getElementById('checkout-email').value.trim();
+<section class="bg-white border-b border-gray-100 py-10">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <div class="inline-block bg-blue-50 border border-blue-200 text-brand text-xs font-semibold px-3 py-1.5 rounded-full mb-4">⚠️ Let op: Handhaving is gestart</div>
+    <h2 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Per 1 januari 2026 handhaaft de Belastingdienst actief op schijnzelfstandigheid</h2>
+    <p class="text-gray-500 leading-relaxed">Veel ZZP'ers weten niet dat hun werkrelatie als dienstverband kan worden gezien. De gevolgen voor jou: naheffingen, boetes, en verlies van opdrachten.</p>
+  </div>
+</section>
 
-            if (!name) { document.getElementById('checkout-name').style.borderColor='#ef4444'; return; }
-            if (!email || !email.includes('@')) { document.getElementById('checkout-email').style.borderColor='#ef4444'; return; }
+<!-- 3 GROOTSTE RISICO'S -->
+<section class="py-14 max-w-4xl mx-auto px-5">
+  <div class="text-center mb-10">
+    <h2 class="serif text-3xl text-gray-900 mb-3">De 3 grootste risico's voor jou als ZZP'er in 2026</h2>
+    <p class="text-gray-500 text-sm">Dit zijn de gevolgen als de Belastingdienst jouw situatie als schijnzelfstandigheid beoordeelt</p>
+  </div>
+  <div class="grid md:grid-cols-3 gap-5">
+    <div class="bg-red-50 rounded-2xl p-6">
+      <div class="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center mb-4">
+        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h3 class="font-semibold text-gray-900 mb-2">Naheffing loonbelasting</h3>
+      <p class="text-sm text-gray-600 leading-relaxed mb-3">De Belastingdienst kan tot <strong>5 jaar terug</strong> loonbelasting van jou navorderen. Bij langdurige opdrachten loopt dit snel op tot tienduizenden euro's.</p>
+      <p class="text-xs text-gray-400">Dit geldt ook als jij niet wist dat je risico liep. Onwetendheid is geen verweer bij een controle.</p>
+    </div>
+    <div class="bg-amber-50 rounded-2xl p-6">
+      <div class="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center mb-4">
+        <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+      </div>
+      <h3 class="font-semibold text-gray-900 mb-2">Boetes tot €100.000</h3>
+      <p class="text-sm text-gray-600 leading-relaxed mb-3">Bij bewuste schijnconstructies legt de Belastingdienst vergrijpboetes op van tot <strong>100% van de naheffing</strong>. Dit kan jouw financiële situatie volledig op zijn kop zetten.</p>
+      <p class="text-xs text-gray-400">Sinds 2026 worden ook ZZP'ers zelf aangesproken — niet alleen de opdrachtgever.</p>
+    </div>
+    <div class="bg-purple-50 rounded-2xl p-6">
+      <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center mb-4">
+        <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+      </div>
+      <h3 class="font-semibold text-gray-900 mb-2">Verlies van opdrachten</h3>
+      <p class="text-sm text-gray-600 leading-relaxed mb-3">Steeds meer opdrachtgevers stoppen met ZZP'ers inhuren uit angst voor controles. Als jouw situatie niet klopt, ben jij <strong>de eerste die ze laten gaan</strong>.</p>
+      <p class="text-xs text-gray-400">Een negatieve beoordeling van jouw werkrelatie kan leiden tot directe beëindiging van je contract.</p>
+    </div>
+  </div>
+</section>
 
-            var btn = document.getElementById('pay-submit-btn');
-            btn.disabled = true;
-            btn.textContent = 'Bezig met verwerken...';
+<!-- ZO WERKT DE CHECK -->
+<section class="bg-white border-y border-gray-100 py-14">
+  <div class="max-w-4xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <h2 class="serif text-3xl text-gray-900 mb-3">Zo werkt de Compliance Check</h2>
+      <p class="text-gray-500 text-sm">In drie simpele stappen weet je waar je staat</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-2xl bg-brand text-white text-lg font-semibold flex items-center justify-center mx-auto mb-4">1</div>
+        <h3 class="font-semibold text-gray-900 mb-2">Beantwoord 12 vragen</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">Over je werkrelatie, vervanging, gezag en hoe je betaald wordt. Duurt maximaal 5 minuten.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-2xl bg-brand text-white text-lg font-semibold flex items-center justify-center mx-auto mb-4">2</div>
+        <h3 class="font-semibold text-gray-900 mb-2">Krijg je risicoscore</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">Direct inzicht in hoe de Belastingdienst jouw opdracht waarschijnlijk beoordeelt: groen, oranje of rood.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-2xl bg-brand text-white text-lg font-semibold flex items-center justify-center mx-auto mb-4">3</div>
+        <h3 class="font-semibold text-gray-900 mb-2">Ontvang persoonlijk actieplan</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">Concrete stappen om jouw situatie compliant te maken, of bevestiging dat je goed zit.</p>
+      </div>
+    </div>
+    <div class="text-center mt-10">
+      <a href="#check" class="inline-block bg-green-600 text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-green-700 transition text-sm">Start de check — gratis →</a>
+      <p class="text-xs text-gray-400 mt-2">Geen registratie · Direct resultaat · Risicoscore gratis</p>
+    </div>
+  </div>
+</section>
 
-            // Get answers from report data
-            var reportData = window._reportData;
-            if (!reportData) {
-                alert('Doe eerst de check voordat je betaalt.');
-                btn.disabled = false;
-                btn.textContent = 'Betalen via Mollie →';
-                return;
-            }
+<!-- THE CHECK — immediately below hero -->
+<section id="check" class="max-w-4xl mx-auto px-5 py-10">
+  <div class="max-w-2xl mx-auto">
 
-            try {
-                var response = await fetch(BACKEND_URL + '/create-payment', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        include_update_service: addonActive,
-                        answers: {
-                            scores: reportData.scores,
-                            risk_level: reportData.riskLevel,
-                            total_score: reportData.total,
-                            pct: reportData.pct
-                        }
-                    })
-                });
+    <!-- Progress bar -->
+    <div id="check-form" class="slide-in">
+      <div class="flex justify-between items-center mb-2">
+        <span id="q-label" class="text-xs font-semibold text-brand uppercase tracking-wide">Vraag 1 van 12</span>
+        <span id="q-pct" class="text-xs text-gray-400">0%</span>
+      </div>
+      <div class="w-full bg-gray-100 rounded-full h-1.5 mb-6">
+        <div id="progress-bar" class="bg-brand h-1.5 rounded-full progress-bar" style="width:0%"></div>
+      </div>
 
-                var data = await response.json();
-
-                if (data.payment_url) {
-                    // Redirect to Mollie payment page
-                    window.location.href = data.payment_url;
-                } else {
-                    throw new Error('No payment URL received');
-                }
-            } catch (err) {
-                console.error(err);
-                btn.disabled = false;
-                btn.textContent = 'Betalen via Mollie →';
-                alert('Er ging iets mis. Probeer het opnieuw of neem contact op.');
-            }
-        }
-    </script>
-
-    <!-- THE ACTUAL CHECK -->
-    <section id="check" class="py-16 md:py-24 bg-gray-50">
-        <div class="max-w-2xl mx-auto px-6">
-            <div class="text-center mb-10">
-                <div class="inline-block bg-brand text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">✓ Gebaseerd op officiële Belastingdienst criteria</div>
-                <h2 class="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-4">Doe de Wet DBA Check</h2>
-                <p class="text-gray-500 text-lg">12 vragen · 5 minuten · Direct jouw risicoscore</p>
-                <p class="text-gray-400 text-sm mt-2">Risicoscore gratis. Volledig rapport + actieplan voor €29.</p>
-            </div>
-
-            <!-- Progress bar -->
-            <div class="mb-8">
-                <div class="flex justify-between text-xs text-gray-400 mb-2">
-                    <span id="q-label">Vraag 1 van 12</span>
-                    <span id="q-pct">0%</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div id="progress-bar" class="bg-brand h-2 rounded-full transition-all duration-500" style="width:0%"></div>
-                </div>
-            </div>
-
-            <!-- Question card -->
-            <div id="check-form" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-                <div id="q-block-label" class="text-xs font-semibold text-brand uppercase tracking-wider mb-2"></div>
-                <h3 id="q-text" class="text-xl font-bold text-gray-900 mb-6"></h3>
-                <div id="q-options" class="space-y-3"></div>
-                <div class="mt-8 flex justify-between items-center">
-                    <button id="btn-back" onclick="prevQuestion()" class="text-gray-400 hover:text-gray-600 text-sm font-medium transition hidden">← Terug</button>
-                    <div></div>
-                    <button id="btn-next" onclick="nextQuestion()" class="bg-brand text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-brandDark transition text-sm disabled:opacity-40" disabled>Volgende →</button>
-                </div>
-            </div>
-
-            <!-- Result card: free teaser -->
-            <div id="result-card" class="hidden space-y-4">
-
-                <!-- Risk score — always visible -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center">
-                    <div id="result-icon" class="text-6xl mb-3"></div>
-                    <h3 id="result-title" class="text-2xl font-bold text-gray-900 mb-2"></h3>
-                    <p id="result-desc" class="text-gray-500 mb-6 max-w-sm mx-auto text-sm leading-relaxed"></p>
-                    <div class="mb-3">
-                        <div class="flex justify-between text-xs text-gray-400 mb-1.5"><span>Hoog risico</span><span>Laag risico</span></div>
-                        <div class="w-full bg-gray-100 rounded-full h-5">
-                            <div id="score-indicator" class="h-5 rounded-full transition-all duration-700 flex items-center justify-end pr-2" style="width:50%">
-                                <span id="score-pct-label" class="text-white text-xs font-bold"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-xs text-gray-400" id="score-label"></p>
-                </div>
-
-                <!-- Criterium summary — always visible -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                    <h4 class="font-bold text-gray-900 mb-4 text-sm uppercase tracking-wide">Analyse per criterium</h4>
-                    <div id="result-points" class="space-y-2"></div>
-                </div>
-
-                <!-- Teaser: 2 blurred actieplan items + lock -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-                        <h4 class="font-bold text-gray-900">Jouw persoonlijk actieplan</h4>
-                        <span class="text-xs bg-amber-100 text-amber-700 font-semibold px-2 py-0.5 rounded-full">🔒 Betaald</span>
-                    </div>
-                    <div class="p-6">
-                        <!-- Teaser items blurred -->
-                        <div class="space-y-3 mb-4 relative">
-                            <div class="flex gap-3 items-start opacity-40 blur-sm select-none">
-                                <div class="w-7 h-7 rounded-full bg-brand text-white text-xs font-bold flex items-center justify-center shrink-0">1</div>
-                                <div><p class="text-sm font-semibold text-gray-900">Leg werkwijze contractueel vast</p><p class="text-xs text-gray-500 mt-0.5">Zorg dat in jouw overeenkomst van opdracht expliciet staat dat jij zelf bepaalt hoe je het werk uitvoert.</p></div>
-                            </div>
-                            <div class="flex gap-3 items-start opacity-40 blur-sm select-none">
-                                <div class="w-7 h-7 rounded-full bg-brand text-white text-xs font-bold flex items-center justify-center shrink-0">2</div>
-                                <div><p class="text-sm font-semibold text-gray-900">Flexibiliseer locatie en werktijden</p><p class="text-xs text-gray-500 mt-0.5">Spreek af dat je niet gebonden bent aan vaste locaties of tijden. Werk resultaatgericht.</p></div>
-                            </div>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="bg-white border border-gray-200 rounded-xl px-4 py-2 shadow-sm text-center">
-                                    <span class="text-lg">🔒</span>
-                                    <p class="text-xs font-semibold text-gray-700 mt-0.5">+ <span id="locked-count">3</span> acties vergrendeld</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- What you get -->
-                        <div class="bg-blue-50 rounded-xl p-4 mb-4">
-                            <p class="text-sm font-semibold text-gray-900 mb-2">Wat zit er in het volledige rapport?</p>
-                            <ul class="space-y-1.5 text-xs text-gray-600">
-                                <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Volledig actieplan op maat (tot 11 acties met prioriteit)</li>
-                                <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Juridische toelichting per criterium (met wetsreferenties)</li>
-                                <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Contract clausules die je direct kunt gebruiken</li>
-                                <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Risicomatrix: jouw situatie vs. ideaal ZZP profiel</li>
-                                <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>PDF om te delen met je opdrachtgever</li>
-                                <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Handtekeningblok voor opdrachtgever</li>
-                            </ul>
-                        </div>
-
-                        <button onclick="openCheckoutFromResult()" class="w-full bg-brand text-white font-bold py-4 rounded-xl hover:bg-brandDark transition text-sm">
-                            Ontgrendel volledig rapport + actieplan — €29 →
-                        </button>
-                        <p class="text-center text-gray-400 text-xs mt-2">🔒 Veilige betaling · 14 dagen geld terug garantie</p>
-                    </div>
-                </div>
-
-                <button onclick="restartCheck()" class="w-full text-gray-400 hover:text-gray-600 text-sm transition py-2">↺ Opnieuw beginnen</button>
-            </div>
-
-            <!-- Full report — shown after payment (demo: after checkout modal) -->
-            <div id="full-report" class="hidden space-y-4">
-
-                <!-- Report header -->
-                <div class="bg-brand text-white rounded-2xl p-8">
-                    <div class="flex items-center gap-2 mb-4 opacity-80">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        <span class="text-sm font-semibold">ZZP Compliance Check — Officieel Rapport</span>
-                    </div>
-                    <div class="flex justify-between items-start flex-wrap gap-4">
-                        <div>
-                            <h2 class="font-serif text-3xl font-bold mb-1">Wet DBA Compliance Rapport</h2>
-                            <p class="text-blue-200 text-sm" id="report-meta"></p>
-                        </div>
-                        <div class="bg-white/15 rounded-xl px-5 py-3 text-center border border-white/20">
-                            <div id="report-risk-label" class="text-2xl font-bold"></div>
-                            <div class="text-blue-200 text-xs mt-0.5">Risicoprofiel</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Score + matrix -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                    <h3 class="font-bold text-gray-900 mb-4">Risicoscore</h3>
-                    <div class="mb-2">
-                        <div class="flex justify-between text-xs text-gray-400 mb-1.5"><span>Hoog risico</span><span>Laag risico</span></div>
-                        <div class="w-full bg-gray-100 rounded-full h-6">
-                            <div id="report-score-bar" class="h-6 rounded-full flex items-center justify-end pr-3" style="width:50%">
-                                <span id="report-score-pct" class="text-white text-xs font-bold"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-xs text-gray-500 mb-6" id="report-score-text"></p>
-
-                    <!-- Risk matrix table -->
-                    <h4 class="font-semibold text-gray-900 text-sm mb-3">Risicomatrix: jouw situatie vs. ideaal ZZP profiel</h4>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-xs">
-                            <thead>
-                                <tr class="bg-gray-50">
-                                    <th class="text-left px-3 py-2 text-gray-500 font-semibold rounded-tl-lg">Criterium</th>
-                                    <th class="text-center px-3 py-2 text-gray-500 font-semibold">Jouw situatie</th>
-                                    <th class="text-center px-3 py-2 text-gray-500 font-semibold rounded-tr-lg">Ideaal ZZP</th>
-                                </tr>
-                            </thead>
-                            <tbody id="risk-matrix"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Per criterium legal breakdown -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                    <h3 class="font-bold text-gray-900 mb-1">Juridische analyse per criterium</h3>
-                    <p class="text-gray-500 text-xs mb-5">Gebaseerd op Wet DBA, artikel 7:610 BW en Belastingdienst webmodule 2026</p>
-                    <div id="report-breakdown" class="space-y-5"></div>
-                </div>
-
-                <!-- Full actieplan -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="bg-brand text-white px-6 py-4">
-                        <h3 class="font-bold text-lg">Jouw persoonlijk actieplan</h3>
-                        <p class="text-blue-200 text-xs mt-0.5">Op basis van jouw antwoorden — gesorteerd op prioriteit</p>
-                    </div>
-                    <div id="actieplan" class="p-6 space-y-4"></div>
-                </div>
-
-                <!-- Contract clausules -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                    <h3 class="font-bold text-gray-900 mb-1">Contract clausules</h3>
-                    <p class="text-gray-500 text-xs mb-4">Kopieer deze clausules naar jouw overeenkomst van opdracht</p>
-                    <div id="clausules" class="space-y-3"></div>
-                </div>
-
-                <!-- Signature block -->
-                <div class="bg-gray-50 rounded-2xl border border-gray-200 p-6">
-                    <h3 class="font-bold text-gray-900 mb-1">Handtekeningblok</h3>
-                    <p class="text-gray-500 text-xs mb-4">Laat opdrachtgever tekenen om compliance te bevestigen</p>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <p class="text-xs font-semibold text-gray-500 uppercase mb-2">ZZP'er</p>
-                            <div id="sig-zzp" class="space-y-2"></div>
-                        </div>
-                        <div>
-                            <p class="text-xs font-semibold text-gray-500 uppercase mb-2">Opdrachtgever</p>
-                            <div class="space-y-2">
-                                <div class="border-b border-gray-300 pb-1"><p class="text-xs text-gray-400">Naam</p><p class="text-sm text-gray-300 italic">___________________</p></div>
-                                <div class="border-b border-gray-300 pb-1"><p class="text-xs text-gray-400">Bedrijf</p><p class="text-sm text-gray-300 italic">___________________</p></div>
-                                <div class="border-b border-gray-300 pb-1"><p class="text-xs text-gray-400">Datum</p><p class="text-sm text-gray-300 italic">___________________</p></div>
-                                <div class="border-b border-gray-300 pb-1"><p class="text-xs text-gray-400">Handtekening</p><p class="text-sm text-gray-300 italic">___________________</p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 text-xs mt-4">Door ondertekening bevestigen beide partijen dat de samenwerking voldoet aan de Wet DBA criteria zoals beschreven in dit rapport.</p>
-                </div>
-
-                <!-- Disclaimer -->
-                <div class="bg-yellow-50 border border-yellow-100 rounded-xl p-4">
-                    <p class="text-xs text-yellow-800"><strong>Disclaimer:</strong> Dit rapport is informatief en gebaseerd op door de gebruiker verstrekte informatie. Het vervangt geen professioneel juridisch of fiscaal advies. Raadpleeg bij twijfel een belastingadviseur of arbeidsrechtadvocaat.</p>
-                </div>
-
-                <button onclick="restartCheck()" class="w-full text-gray-400 hover:text-gray-600 text-sm transition py-2">↺ Nieuwe check starten</button>
-            </div>
-
-            <p class="text-center text-gray-400 text-xs mt-4">Deze check is informatief en vervangt geen juridisch advies.</p>
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8">
+        <div class="text-xs font-semibold text-brand uppercase tracking-wide mb-2" id="q-block-label">Gezagsverhouding</div>
+        <h2 class="serif text-xl md:text-2xl text-gray-900 mb-6" id="q-text">Wie bepaalt hoe jij je werk uitvoert?</h2>
+        <div id="q-options" class="space-y-2.5 mb-6"></div>
+        <div class="flex justify-between items-center">
+          <button id="btn-back" onclick="prevQuestion()" class="hidden text-sm text-gray-400 hover:text-gray-600 transition px-3 py-2 rounded-lg hover:bg-gray-50">← Terug</button>
+          <div></div>
+          <button id="btn-next" onclick="nextQuestion()" disabled class="bg-brand text-white text-sm font-semibold px-6 py-2.5 rounded-xl hover:bg-blue-700 transition disabled:opacity-40 disabled:cursor-not-allowed">Volgende →</button>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <script>
-    var questions = [
-        { block: "Gezagsverhouding", text: "Wie bepaalt hoe jij je werk uitvoert?", options: [
-            { label: "Ik bepaal dat volledig zelf", score: 3 },
-            { label: "Grotendeels ik, soms overleg met opdrachtgever", score: 1 },
-            { label: "De opdrachtgever geeft duidelijke instructies", score: -2 },
-            { label: "De opdrachtgever bepaalt alles", score: -4 }
-        ]},
-        { block: "Gezagsverhouding", text: "Ben jij verplicht persoonlijk aanwezig te zijn op een vaste locatie of tijd?", options: [
-            { label: "Nee, ik werk wanneer en waar ik wil", score: 3 },
-            { label: "Soms vaste locatie maar met flexibele tijden", score: 1 },
-            { label: "Vaste tijden of locatie is verplicht", score: -2 },
-            { label: "Vaste tijden én locatie zijn beiden verplicht", score: -4 }
-        ]},
-        { block: "Gezagsverhouding", text: "Kan de opdrachtgever je tussentijds opdrachten geven buiten de originele opdracht?", options: [
-            { label: "Nee, ik werk alleen aan wat in het contract staat", score: 2 },
-            { label: "Soms kleine aanvullingen", score: 0 },
-            { label: "Ja, regelmatig", score: -2 },
-            { label: "Ja, altijd", score: -3 }
-        ]},
-        { block: "Gezagsverhouding", text: "Word jij beoordeeld zoals een werknemer? (functioneringsgesprekken, targets)", options: [
-            { label: "Nee, helemaal niet", score: 2 },
-            { label: "Af en toe informeel", score: 0 },
-            { label: "Ja, formeel met vaste gesprekken", score: -3 }
-        ]},
-        { block: "Vervangbaarheid", text: "Kun jij je laten vervangen door iemand anders?", options: [
-            { label: "Ja, ik regel zelf vervanging zonder toestemming", score: 4 },
-            { label: "Ja, maar de opdrachtgever moet akkoord geven", score: 1 },
-            { label: "In theorie ja, maar het is nog nooit gebeurd", score: -1 },
-            { label: "Nee, ik moet het persoonlijk uitvoeren", score: -4 }
-        ]},
-        { block: "Vervangbaarheid", text: "Is de opdracht aan jou gegund op basis van jouw persoonlijke naam of expertise?", options: [
-            { label: "Nee, het gaat puur om het resultaat", score: 2 },
-            { label: "Deels — zowel mijn persoon als het resultaat", score: 0 },
-            { label: "Ja, puur op mijn persoon", score: -2 }
-        ]},
-        { block: "Vervangbaarheid", text: "Betaalt de opdrachtgever door bij ziekte of vakantie?", options: [
-            { label: "Nee, geen uren gewerkt = geen inkomsten", score: 3 },
-            { label: "Nee, maar er is enige flexibiliteit", score: 1 },
-            { label: "Ja, ik word doorbetaald", score: -4 }
-        ]},
-        { block: "Ondernemersrisico", text: "Loop jij financieel risico? (eigen materiaal, aansprakelijkheid, geen betaling bij slechte kwaliteit)", options: [
-            { label: "Ja, significant ondernemersrisico", score: 4 },
-            { label: "Beperkt risico", score: 1 },
-            { label: "Nee, vrijwel geen financieel risico", score: -3 }
-        ]},
-        { block: "Ondernemersrisico", text: "Hoeveel opdrachtgevers heb jij dit jaar?", options: [
-            { label: "3 of meer", score: 4 },
-            { label: "2", score: 2 },
-            { label: "1", score: -3 }
-        ]},
-        { block: "Ondernemersrisico", text: "Investeer jij zelf in je bedrijf? (tools, training, marketing, website)", options: [
-            { label: "Ja, regelmatig", score: 3 },
-            { label: "Af en toe", score: 1 },
-            { label: "Nauwelijks", score: -2 }
-        ]},
-        { block: "Tarief & duur", text: "Wat is jouw gemiddeld uurtarief bij deze opdrachtgever?", options: [
-            { label: "Meer dan €38 per uur", score: 2 },
-            { label: "Tussen €32 en €38 per uur", score: 0 },
-            { label: "Minder dan €32 per uur", score: -3 }
-        ]},
-        { block: "Tarief & duur", text: "Hoe lang werk je al voor deze opdrachtgever?", options: [
-            { label: "Minder dan 6 maanden", score: 2 },
-            { label: "6 tot 12 maanden", score: 0 },
-            { label: "1 tot 2 jaar", score: -1 },
-            { label: "Meer dan 2 jaar", score: -3 }
-        ]}
-    ];
-
-    var current = 0;
-    var scores = new Array(12).fill(null);
-    var selectedIndex = null;
-
-    function renderQuestion() {
-        var q = questions[current];
-        document.getElementById('q-block-label').textContent = q.block;
-        document.getElementById('q-text').textContent = q.text;
-        document.getElementById('q-label').textContent = 'Vraag ' + (current+1) + ' van 12';
-        var pct = Math.round((current/12)*100);
-        document.getElementById('q-pct').textContent = pct + '%';
-        document.getElementById('progress-bar').style.width = pct + '%';
-
-        var opts = document.getElementById('q-options');
-        opts.innerHTML = '';
-        q.options.forEach(function(opt, i) {
-            var btn = document.createElement('button');
-            btn.className = 'w-full text-left px-4 py-3.5 rounded-xl border-2 text-sm font-medium transition-all duration-150 ' +
-                (scores[current] !== null && scores[current] === opt.score && selectedIndex === i
-                    ? 'border-brand bg-blue-50 text-brand'
-                    : 'border-gray-200 text-gray-700 hover:border-brand hover:bg-blue-50');
-            btn.textContent = opt.label;
-            btn.onclick = (function(score, idx) { return function() { selectOption(score, idx); }; })(opt.score, i);
-            opts.appendChild(btn);
-        });
-
-        // Restore selection if navigating back
-        if (scores[current] !== null) {
-            var btnNext = document.getElementById('btn-next');
-            btnNext.disabled = false;
-            highlightSelected();
-        } else {
-            document.getElementById('btn-next').disabled = true;
-        }
-
-        document.getElementById('btn-back').classList.toggle('hidden', current === 0);
-        document.getElementById('btn-next').textContent = current === 11 ? 'Bekijk resultaat →' : 'Volgende →';
-    }
-
-    function highlightSelected() {
-        var q = questions[current];
-        var btns = document.getElementById('q-options').querySelectorAll('button');
-        btns.forEach(function(btn, i) {
-            var isSelected = (q.options[i].score === scores[current] && i === selectedIndex);
-            btn.className = 'w-full text-left px-4 py-3.5 rounded-xl border-2 text-sm font-medium transition-all duration-150 ' +
-                (isSelected ? 'border-brand bg-blue-50 text-brand' : 'border-gray-200 text-gray-700 hover:border-brand hover:bg-blue-50');
-        });
-    }
-
-    function selectOption(score, idx) {
-        scores[current] = score;
-        selectedIndex = idx;
-        document.getElementById('btn-next').disabled = false;
-        highlightSelected();
-    }
-
-    function nextQuestion() {
-        if (scores[current] === null) return;
-        if (current === 11) { showResult(); return; }
-        current++;
-        selectedIndex = null;
-        renderQuestion();
-        document.getElementById('check-form').scrollIntoView({behavior:'smooth', block:'center'});
-    }
-
-    function prevQuestion() {
-        if (current === 0) return;
-        current--;
-        // Restore selectedIndex
-        var q = questions[current];
-        selectedIndex = null;
-        if (scores[current] !== null) {
-            q.options.forEach(function(opt, i) { if (opt.score === scores[current]) selectedIndex = i; });
-        }
-        renderQuestion();
-    }
-
-    function showResult() {
-        var total = scores.reduce(function(a,b){ return a + (b||0); }, 0);
-        var pct = Math.round(((total + 31) / 65) * 100);
-        pct = Math.max(5, Math.min(95, pct));
-        var title, desc, icon, color, riskLevel;
-        if (total >= 15) { icon='🟢'; title='Laag risico'; color='#22c55e'; riskLevel='laag'; desc='Jouw situatie ziet er goed uit. Je werkt als echte ondernemer volgens de Wet DBA criteria.'; }
-        else if (total >= 0) { icon='🟡'; title='Gemiddeld risico'; color='#eab308'; riskLevel='gemiddeld'; desc='Er zijn aandachtspunten. Met gerichte aanpassingen verstevig jij jouw positie als ZZP\'er.'; }
-        else if (total >= -15) { icon='🟠'; title='Hoog risico'; color='#f97316'; riskLevel='hoog'; desc='Er zijn significante signalen van schijnzelfstandigheid. Actie is nodig om naheffingen te voorkomen.'; }
-        else { icon='🔴'; title='Kritiek risico'; color='#ef4444'; riskLevel='kritiek'; desc='Jouw situatie vertoont ernstige signalen van schijnzelfstandigheid. Direct aanpassen is noodzakelijk.'; }
-
-        window._reportData = { total:total, pct:pct, title:title, desc:desc, icon:icon, color:color, riskLevel:riskLevel, scores:scores.slice() };
-
-        document.getElementById('result-icon').textContent = icon;
-        document.getElementById('result-title').textContent = title;
-        document.getElementById('result-desc').textContent = desc;
-        document.getElementById('score-indicator').style.width = pct+'%';
-        document.getElementById('score-indicator').style.backgroundColor = color;
-        document.getElementById('score-pct-label').textContent = pct+'%';
-        document.getElementById('score-label').textContent = 'Totaalscore: '+total+' punten (schaal: -31 tot +34)';
-
-        var blocks = [
-            {name:'Gezagsverhouding', qs:[0,1,2,3]},
-            {name:'Vervangbaarheid', qs:[4,5,6]},
-            {name:'Ondernemersrisico', qs:[7,8,9]},
-            {name:'Tarief & looptijd', qs:[10,11]}
-        ];
-        var pts = document.getElementById('result-points');
-        pts.innerHTML = '';
-        blocks.forEach(function(b) {
-            var s = b.qs.reduce(function(a,i){ return a+(scores[i]||0); },0);
-            var ok = s >= 0;
-            var div = document.createElement('div');
-            div.className = 'flex items-center justify-between px-4 py-3 rounded-xl text-sm '+(ok?'bg-green-50 text-green-800':'bg-red-50 text-red-800');
-            div.innerHTML = '<span>'+(ok?'✅':'❌')+' '+b.name+'</span><span class="font-semibold text-xs">'+(s>=0?'+':'')+s+' pt</span>';
-            pts.appendChild(div);
-        });
-
-        var acties = getActieplan(riskLevel, scores);
-        var locked = Math.max(0, acties.length - 2);
-        document.getElementById('locked-count').textContent = locked;
-
-        document.getElementById('check-form').classList.add('hidden');
-        document.getElementById('result-card').classList.remove('hidden');
-        document.getElementById('progress-bar').style.width = '100%';
-        document.getElementById('q-label').textContent = 'Check voltooid';
-        document.getElementById('q-pct').textContent = '100%';
-        document.getElementById('result-card').scrollIntoView({behavior:'smooth', block:'start'});
-    }
-
-    function openCheckoutFromResult() {
-        window._pendingReport = true;
-        openCheckout();
-    }
-
-    function simulatePaymentSuccess() {
-        window._pendingReport = false;
-        buildFullReport();
-        document.getElementById('result-card').classList.add('hidden');
-        document.getElementById('full-report').classList.remove('hidden');
-        document.getElementById('full-report').scrollIntoView({behavior:'smooth', block:'start'});
-        closeCheckout();
-    }
-
-    function buildFullReport() {
-        var d = window._reportData;
-        var now = new Date();
-        var email = document.getElementById('checkout-email').value || '';
-        document.getElementById('report-meta').textContent = 'Gegenereerd op '+now.toLocaleDateString('nl-NL',{day:'numeric',month:'long',year:'numeric'})+(email?' · '+email:'');
-        document.getElementById('report-risk-label').textContent = d.icon+' '+d.title;
-        document.getElementById('report-score-bar').style.width = d.pct+'%';
-        document.getElementById('report-score-bar').style.backgroundColor = d.color;
-        document.getElementById('report-score-pct').textContent = d.pct+'%';
-        document.getElementById('report-score-text').textContent = 'Totaalscore: '+d.total+' punten | Risicoprofiel: '+d.title;
-
-        var matrixBlocks = [
-            {name:'Gezagsverhouding', qs:[0,1,2,3], ideal:'Volledig vrij in uitvoering'},
-            {name:'Vervangbaarheid', qs:[4,5,6], ideal:'Vrij vervangbaar'},
-            {name:'Ondernemersrisico', qs:[7,8,9], ideal:'Meerdere klanten, eigen risico'},
-            {name:'Tarief', qs:[10], ideal:'>€38/uur'},
-            {name:'Looptijd opdracht', qs:[11], ideal:'<6 maanden of afwisselend'}
-        ];
-        var matrix = document.getElementById('risk-matrix');
-        matrix.innerHTML = '';
-        matrixBlocks.forEach(function(b, i) {
-            var s = b.qs.reduce(function(a,idx){ return a+(d.scores[idx]||0); },0);
-            var ok = s >= 0;
-            var tr = document.createElement('tr');
-            tr.className = i%2===0?'bg-white':'bg-gray-50/50';
-            tr.innerHTML = '<td class="px-3 py-2.5 font-medium text-gray-700 text-xs">'+b.name+'</td>'+
-                '<td class="px-3 py-2.5 text-center"><span class="inline-block px-2 py-0.5 rounded-full text-xs font-semibold '+(ok?'bg-green-100 text-green-700':'bg-red-100 text-red-700')+'">'+(ok?'✅ Goed':'⚠️ Risico')+'</span></td>'+
-                '<td class="px-3 py-2.5 text-center text-gray-400 text-xs">'+b.ideal+'</td>';
-            matrix.appendChild(tr);
-        });
-
-        var legalBlocks = [
-            { name:'Gezagsverhouding', qs:[0,1,2,3], law:'Art. 7:610 BW + Wet DBA art. 1', toelichting:'De gezagsverhouding is het primaire criterium. Als een opdrachtgever kan bepalen hoe, waar en wanneer je werkt, is er sprake van werkgeversgezag — een kernkenmerk van een arbeidsovereenkomst.' },
-            { name:'Vervangbaarheid', qs:[4,5,6], law:'Art. 7:659 BW', toelichting:'Een werknemer is verplicht het werk persoonlijk uit te voeren. Als jij je vrij kunt laten vervangen, wijst dit op een overeenkomst van opdracht in plaats van een arbeidsovereenkomst.' },
-            { name:'Ondernemersrisico', qs:[7,8,9], law:'Belastingdienst webmodule 2026', toelichting:'Echte ondernemers dragen financieel risico. Dit omvat aansprakelijkheid voor fouten, afhankelijkheid van meerdere opdrachtgevers, en eigen investeringen in het bedrijf.' },
-            { name:'Tarief & looptijd', qs:[10,11], law:'Wet DBA art. 2a — Employment presumption', toelichting:'Onder de €38/uur employment presumption wordt bij lagere tarieven vermoed dat er sprake is van een arbeidsrelatie. Langdurige exclusieve opdrachten versterken dit vermoeden.' }
-        ];
-        var breakdown = document.getElementById('report-breakdown');
-        breakdown.innerHTML = '';
-        legalBlocks.forEach(function(block) {
-            var blockScore = block.qs.reduce(function(a,i){ return a+(d.scores[i]||0); },0);
-            var ok = blockScore >= 0;
-            var answersHtml = block.qs.map(function(qi) {
-                var q = questions[qi]; var sc = d.scores[qi]; var answer = '';
-                q.options.forEach(function(opt){ if(opt.score===sc) answer=opt.label; });
-                var isPos = sc >= 0;
-                return '<div class="flex items-start gap-2 py-2 border-b border-gray-50 last:border-0">'+
-                    '<span class="text-xs '+(isPos?'text-green-600':'text-red-600')+' font-bold mt-0.5 shrink-0">'+(isPos?'▲':'▼')+'</span>'+
-                    '<div><p class="text-xs text-gray-500">'+q.text+'</p><p class="text-xs font-semibold text-gray-800 mt-0.5">→ '+answer+'</p></div></div>';
-            }).join('');
-            var div = document.createElement('div');
-            div.className = 'border rounded-xl overflow-hidden '+(ok?'border-green-100':'border-red-100');
-            div.innerHTML = '<div class="px-4 py-3 flex justify-between items-center '+(ok?'bg-green-50':'bg-red-50')+'">'+
-                '<span class="font-semibold text-sm text-gray-900">'+(ok?'✅':'❌')+' '+block.name+'</span>'+
-                '<span class="text-xs text-gray-400">'+block.law+'</span></div>'+
-                '<div class="px-4 py-2.5 bg-blue-50/40 border-y border-blue-50"><p class="text-xs text-gray-600 leading-relaxed"><strong>Juridische context:</strong> '+block.toelichting+'</p></div>'+
-                '<div class="px-4 py-2">'+answersHtml+'</div>';
-            breakdown.appendChild(div);
-        });
-
-        var acties = getActieplan(d.riskLevel, d.scores);
-        var actieplan = document.getElementById('actieplan');
-        actieplan.innerHTML = '';
-        if (acties.length === 0) {
-            actieplan.innerHTML = '<p class="text-sm text-green-700 font-semibold">✅ Geen urgente acties nodig. Blijf de criteria monitoren bij wijziging van je werksituatie.</p>';
-        } else {
-            acties.forEach(function(actie, i) {
-                var pc = actie.priority==='urgent'?'bg-red-100 text-red-700':actie.priority==='soon'?'bg-amber-100 text-amber-700':'bg-blue-100 text-blue-700';
-                var pl = actie.priority==='urgent'?'🚨 Urgent':actie.priority==='soon'?'⚠️ Binnen 3 maanden':'ℹ️ Nice to have';
-                var div = document.createElement('div');
-                div.className = 'border border-gray-100 rounded-xl p-4';
-                div.innerHTML = '<div class="flex items-start gap-3">'+
-                    '<div class="w-7 h-7 rounded-full bg-brand text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">'+(i+1)+'</div>'+
-                    '<div class="flex-1"><div class="flex items-center gap-2 mb-1 flex-wrap">'+
-                    '<p class="text-sm font-bold text-gray-900">'+actie.title+'</p>'+
-                    '<span class="text-xs font-semibold px-2 py-0.5 rounded-full '+pc+'">'+pl+'</span></div>'+
-                    '<p class="text-xs text-gray-600 leading-relaxed mb-2">'+actie.desc+'</p>'+
-                    (actie.clausule?'<div class="bg-gray-50 rounded-lg px-3 py-2 border-l-2 border-brand"><p class="text-xs text-gray-500 font-semibold mb-0.5">Contract clausule:</p><p class="text-xs text-gray-700 italic">'+actie.clausule+'</p></div>':'')+
-                    '</div></div>';
-                actieplan.appendChild(div);
-            });
-        }
-
-        var clausules = document.getElementById('clausules');
-        clausules.innerHTML = '';
-        getClausules(d.scores).forEach(function(c) {
-            var div = document.createElement('div');
-            div.className = 'bg-gray-50 rounded-xl p-4 border border-gray-100';
-            div.innerHTML = '<p class="text-xs font-bold text-gray-700 mb-1">'+c.title+'</p><p class="text-xs text-gray-600 italic leading-relaxed">'+c.text+'</p>';
-            clausules.appendChild(div);
-        });
-
-        var sigZzp = document.getElementById('sig-zzp');
-        sigZzp.innerHTML = [{label:'Naam',val:'___________________'},{label:'KVK',val:'___________________'},{label:'Datum',val:now.toLocaleDateString('nl-NL')},{label:'Handtekening',val:'___________________'}]
-            .map(function(f){ return '<div class="border-b border-gray-300 pb-1"><p class="text-xs text-gray-400">'+f.label+'</p><p class="text-sm text-gray-300 italic">'+f.val+'</p></div>'; }).join('');
-    }
-
-    function getActieplan(riskLevel, sc) {
-        var acties = [];
-        if (sc[0] < 0) acties.push({ title:'Leg werkwijze contractueel vast', priority:'urgent', desc:'Voeg toe aan je overeenkomst van opdracht: jij bepaalt zelf de methode, planning en aanpak. De opdrachtgever ontvangt het resultaat, niet de arbeid.', clausule:'"Opdrachtnemer is vrij in de wijze waarop hij de opdracht uitvoert en is niet gehouden instructies van opdrachtgever op te volgen over de uitvoering van de werkzaamheden."' });
-        if (sc[1] < 0) acties.push({ title:'Flexibiliseer locatie en werktijden', priority:'urgent', desc:'Werk resultaatgericht. Verwijder vaste locatie- of tijdsverplichtingen. Sluit af op basis van het te leveren eindproduct.', clausule:'"Opdrachtnemer is niet verplicht de werkzaamheden op een vaste locatie of op vaste tijdstippen uit te voeren."' });
-        if (sc[2] < 0) acties.push({ title:'Beperk scope tot contractuele opdracht', priority:'soon', desc:'Weiger of heronderhandel opdrachten buiten de originele scope. Leg elke aanvullende taak vast in een nieuwe opdrachtbevestiging.', clausule:null });
-        if (sc[3] < 0) acties.push({ title:'Stop met functioneringsgesprekken', priority:'soon', desc:'Functioneringsgesprekken zijn een sterk werknemerssignaal. Vervang door resultaatreviews op projectbasis, gericht op het opgeleverde werk.', clausule:null });
-        if (sc[4] < 0) acties.push({ title:'Voeg vervangingsclausule toe', priority:'urgent', desc:'Leg contractueel vast dat jij jezelf kunt laten vervangen. Maak hier gebruik van en documenteer dit in je administratie.', clausule:'"Opdrachtnemer is bevoegd de werkzaamheden door een derde te laten uitvoeren, mits deze derde voldoet aan de kwaliteitseisen van opdrachtgever."' });
-        if (sc[5] < 0) acties.push({ title:'Werk resultaatgericht, niet persoonsgebonden', priority:'soon', desc:'Herformuleer de opdracht in termen van op te leveren resultaat, niet op basis van jouw persoonlijke aanwezigheid of expertise.', clausule:null });
-        if (sc[6] < 0) acties.push({ title:'Sluit doorbetaling bij ziekte uit', priority:'urgent', desc:'Verwijder elke doorbetaling bij ziekte of afwezigheid. Werk uitsluitend op basis van geleverde uren of resultaat.', clausule:'"Bij ziekte of afwezigheid van opdrachtnemer vindt geen doorbetaling plaats. Er is geen recht op loon bij niet-gewerkte uren."' });
-        if (sc[7] < 0) acties.push({ title:'Vergroot aantoonbaar ondernemersrisico', priority:'soon', desc:'Sluit een beroepsaansprakelijkheidsverzekering af, werk met eigen materiaal, en zorg dat slechte kwaliteit financieel consequenties heeft.', clausule:null });
-        if (sc[8] < 0) acties.push({ title:'Verbreed je klantenbestand', priority:'urgent', desc:'Één opdrachtgever is het grootste risicosignaal. Streef naar minimaal 2-3 actieve opdrachtgevers dit jaar.', clausule:null });
-        if (sc[9] < 0) acties.push({ title:'Investeer zichtbaar in je onderneming', priority:'nice', desc:'Koop eigen tools, volg trainingen op eigen kosten, onderhoud een website of LinkedIn-profiel. Dit bewijst ondernemerschap bij een eventuele controle.', clausule:null });
-        if (sc[10] < 0) acties.push({ title:'Verhoog tarief boven €38/uur', priority:'soon', desc:'Onder de €38/uur employment presumption val je automatisch in een hogere risicocategorie. Heronderhandel je tarief bij de eerstvolgende contractverlenging.', clausule:null });
-        if (sc[11] < 0) acties.push({ title:'Introduceer een contractpauze of roulatie', priority:'nice', desc:'Langdurige opdrachten (2+ jaar) zijn een risicosignaal. Overweeg een aantoonbare pauze of het afwisselen met andere opdrachtgevers.', clausule:null });
-        return acties;
-    }
-
-    function getClausules(sc) {
-        var list = [];
-        list.push({ title:'Overeenkomst van opdracht — basisclausule', text:'"De overeenkomst tussen partijen betreft een overeenkomst van opdracht als bedoeld in artikel 7:400 BW. Partijen beogen uitdrukkelijk geen arbeidsovereenkomst aan te gaan."' });
-        list.push({ title:'Zelfstandige uitvoering', text:'"Opdrachtnemer voert de opdracht uit als zelfstandig ondernemer, bepaalt zelf de wijze van uitvoering en is bevoegd anderen in te schakelen."' });
-        if (sc[8] < 0) list.push({ title:'Meerdere opdrachtgevers', text:'"Opdrachtnemer is vrij om naast de onderhavige opdracht werkzaamheden voor derden te verrichten."' });
-        list.push({ title:'Geen arbeidsrechtelijke aanspraken', text:'"Opdrachtnemer heeft geen recht op vakantiegeld, doorbetaling bij ziekte, ontslagbescherming of andere arbeidsrechtelijke aanspraken."' });
-        return list;
-    }
-
-    function restartCheck() {
-        current = 0; scores = new Array(12).fill(null); selectedIndex = null; window._reportData = null;
-        document.getElementById('result-card').classList.add('hidden');
-        document.getElementById('full-report').classList.add('hidden');
-        document.getElementById('check-form').classList.remove('hidden');
-        renderQuestion();
-        document.getElementById('check-form').scrollIntoView({behavior:'smooth', block:'center'});
-    }
-
-    // Init
-    renderQuestion();
-    </script>
-
-    <!-- FOR OPDRACHTGEVERS -->
-    <section class="py-16 bg-blue-50 border-y border-blue-100">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <div class="inline-block bg-brand text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">Voor opdrachtgevers</div>
-                    <h2 class="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-4">Ook jij als opdrachtgever loopt risico</h2>
-                    <p class="text-gray-600 leading-relaxed mb-4">Als de Belastingdienst bepaalt dat een ZZP'er die jij inhuurt eigenlijk een werknemer is, ben jij als opdrachtgever verantwoordelijk voor de naheffing. Je kunt tot 5 jaar terug worden aangesproken voor loonheffingen en premies — ook als je te goeder trouw handelde.</p>
-                    <p class="text-gray-600 leading-relaxed mb-6">Bescherm jezelf en jouw ZZP'ers door de werkrelatie vooraf te toetsen. Een compliance check geeft beide partijen zekerheid en een gedocumenteerd bewijs van zelfstandigheid.</p>
-                    <a href="#check" class="inline-block bg-brand text-white font-bold px-6 py-3 rounded-xl hover:opacity-90 transition text-sm">Check de werkrelatie →</a>
-                </div>
-                <div class="space-y-4">
-                    <div class="bg-white rounded-xl p-4 border border-blue-100 flex gap-3">
-                        <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-                        <div><p class="font-semibold text-sm text-gray-900">Naheffing tot 5 jaar terug</p><p class="text-xs text-gray-500 mt-0.5">De Belastingdienst vordert loonheffingen na bij de opdrachtgever, niet de ZZP'er.</p></div>
-                    </div>
-                    <div class="bg-white rounded-xl p-4 border border-blue-100 flex gap-3">
-                        <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
-                        <div><p class="font-semibold text-sm text-gray-900">Verplicht dienstverband</p><p class="text-xs text-gray-500 mt-0.5">Jij moet de ZZP'er alsnog als werknemer behandelen, inclusief alle werkgeverslasten.</p></div>
-                    </div>
-                    <div class="bg-white rounded-xl p-4 border border-blue-100 flex gap-3">
-                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-                        <div><p class="font-semibold text-sm text-gray-900">Rapport als bewijs</p><p class="text-xs text-gray-500 mt-0.5">Het compliance rapport dient als aantoonbaar bewijs dat de werkrelatie is getoetst.</p></div>
-                    </div>
-                </div>
-            </div>
+    <!-- RESULT CARD -->
+    <div id="result-card" class="hidden slide-in">
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8 mb-4">
+        <div class="text-center mb-6">
+          <div id="result-icon" class="text-5xl mb-3"></div>
+          <h2 class="serif text-2xl text-gray-900 mb-2" id="result-title"></h2>
+          <p class="text-gray-500 text-sm" id="result-desc"></p>
         </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="py-16 md:py-20 bg-white">
-        <div class="max-w-3xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-3">Veelgestelde vragen</h2>
-                <p class="text-gray-500">Alles wat je wilt weten over de Wet DBA check</p>
-            </div>
-            <div class="space-y-4" id="faq">
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(0)" class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
-                        <span class="font-semibold text-gray-900 text-sm">Is de gratis check echt gratis?</span>
-                        <svg class="w-4 h-4 text-gray-400 faq-icon-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="faq-answer-0 hidden px-6 pb-4"><p class="text-sm text-gray-600 leading-relaxed">Ja. De 12 vragen en jouw risicoscore (groen/oranje/rood) zijn volledig gratis. Je betaalt €29 voor het volledige rapport — inclusief juridische analyse per criterium, persoonlijk actieplan, contract clausules, en het PDF-rapport om te delen met je opdrachtgever.</p></div>
-                </div>
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(1)" class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
-                        <span class="font-semibold text-gray-900 text-sm">Hoe betrouwbaar is de check?</span>
-                        <svg class="w-4 h-4 text-gray-400 faq-icon-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="faq-answer-1 hidden px-6 pb-4"><p class="text-sm text-gray-600 leading-relaxed">De check is gebaseerd op de officiële criteria van de Belastingdienst: gezagsverhouding (art. 7:610 BW), vervangbaarheid (art. 7:659 BW), ondernemersrisico, en de employment presumption van de Wet DBA 2026. Het is een indicatief instrument — geen juridisch advies. Bij twijfel raden we aan een belastingadviseur te raadplegen.</p></div>
-                </div>
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(2)" class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
-                        <span class="font-semibold text-gray-900 text-sm">Wat krijg ik precies voor €29?</span>
-                        <svg class="w-4 h-4 text-gray-400 faq-icon-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="faq-answer-2 hidden px-6 pb-4"><p class="text-sm text-gray-600 leading-relaxed">Je ontvangt: een volledig PDF-rapport met jouw risicoscore en juridische toelichting per criterium, een persoonlijk actieplan met concrete stappen gesorteerd op prioriteit (urgent/binnen 3 maanden/nice to have), kant-en-klare contract clausules die je direct kunt gebruiken, en een handtekeningblok voor je opdrachtgever. Het rapport wordt direct na betaling per e-mail verstuurd.</p></div>
-                </div>
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(3)" class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
-                        <span class="font-semibold text-gray-900 text-sm">Ik werk al jaren voor dezelfde opdrachtgever. Is dat een probleem?</span>
-                        <svg class="w-4 h-4 text-gray-400 faq-icon-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="faq-answer-3 hidden px-6 pb-4"><p class="text-sm text-gray-600 leading-relaxed">Een langdurige samenwerking met één opdrachtgever is op zichzelf niet verboden, maar het is wel een risicosignaal. De Belastingdienst kijkt extra kritisch naar situaties waarbij een ZZP'er al meer dan een jaar exclusief voor één bedrijf werkt. Doe de check om te zien hoe jouw totaalplaatje eruitziet en wat je eventueel kunt aanpassen.</p></div>
-                </div>
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(4)" class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
-                        <span class="font-semibold text-gray-900 text-sm">Mijn tarief is onder €38 per uur. Moet ik stoppen?</span>
-                        <svg class="w-4 h-4 text-gray-400 faq-icon-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="faq-answer-4 hidden px-6 pb-4"><p class="text-sm text-gray-600 leading-relaxed">Nee. Werken onder €38 per uur is niet verboden, maar de employment presumption maakt het lastiger om zelfstandigheid te bewijzen. Je kunt dit vermoeden weerleggen door sterk te scoren op de andere criteria: geen gezagsverhouding, vervangbaarheid, en duidelijk ondernemersrisico. De check laat je precies zien hoe je ervoor staat.</p></div>
-                </div>
-            </div>
+        <div class="mb-6">
+          <div class="flex justify-between text-xs text-gray-400 mb-1.5">
+            <span>Hoog risico</span><span id="score-pct-label"></span><span>Laag risico</span>
+          </div>
+          <div class="w-full bg-gray-100 rounded-full h-3">
+            <div id="score-indicator" class="h-3 rounded-full transition-all duration-700" style="width:0%"></div>
+          </div>
+          <p id="score-label" class="text-xs text-gray-400 mt-1.5 text-center"></p>
         </div>
-    </section>
-    <script>
-    function toggleFaq(i) {
-        var ans = document.querySelector('.faq-answer-'+i);
-        var icon = document.querySelector('.faq-icon-'+i);
-        ans.classList.toggle('hidden');
-        icon.style.transform = ans.classList.contains('hidden') ? '' : 'rotate(180deg)';
-    }
-    </script>
+        <div id="result-points" class="space-y-2 mb-6"></div>
 
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-400 py-12">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8 mb-10">
-                <div>
-                    <div class="flex items-center gap-2 text-white font-bold mb-3"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>ZZP Compliance Check</div>
-                    <p class="text-sm leading-relaxed">Jouw onafhankelijke tool voor Wet DBA compliance. Gebouwd voor Nederlandse ZZP'ers.</p>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-3 text-sm">Product</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#hoe-werkt-het" class="hover:text-white transition">Hoe het werkt</a></li>
-                        <li><a href="#check" class="hover:text-white transition">Prijzen</a></li>
-                        <li><a href="#check" class="hover:text-white transition">Gratis check</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-3 text-sm">Informatie</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white transition">Wet DBA uitleg</a></li>
-                        <li><a href="#" class="hover:text-white transition">Schijnzelfstandigheid</a></li>
-                        <li><a href="#" class="hover:text-white transition">Belastingdienst criteria</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-3 text-sm">Juridisch</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white transition">Privacybeleid</a></li>
-                        <li><a href="#" class="hover:text-white transition">Algemene voorwaarden</a></li>
-                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
-                    </ul>
-                </div>
+        <!-- Partial actieplan teaser -->
+        <div class="border border-gray-100 rounded-xl overflow-hidden mb-6">
+          <div class="px-4 py-3 bg-gray-50 border-b border-gray-100">
+            <p class="text-sm font-semibold text-gray-800">Jouw persoonlijk actieplan</p>
+          </div>
+          <div class="p-4 space-y-3">
+            <div class="flex gap-3 text-sm">
+              <div class="w-6 h-6 rounded-full bg-brand text-white text-xs font-bold flex items-center justify-center shrink-0">1</div>
+              <div><p class="font-semibold text-gray-800">Leg werkwijze contractueel vast</p><p class="text-xs text-gray-400 mt-0.5">Voeg toe aan je overeenkomst van opdracht: jij bepaalt zelf de methode...</p></div>
             </div>
-            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs">
-                <p>© 2026 ZZP Compliance Check. Alle rechten voorbehouden.</p>
-                <p class="text-gray-600">Deze tool is informatief en vervangt geen juridisch advies.</p>
+            <div class="flex gap-3 text-sm">
+              <div class="w-6 h-6 rounded-full bg-brand text-white text-xs font-bold flex items-center justify-center shrink-0">2</div>
+              <div><p class="font-semibold text-gray-800">Flexibiliseer locatie en werktijden</p><p class="text-xs text-gray-400 mt-0.5">Werk resultaatgericht. Verwijder vaste locatie- of tijdsverplichtingen...</p></div>
             </div>
+            <div class="flex gap-3 items-center text-sm text-gray-400 border-t border-gray-50 pt-3">
+              <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+              <span><span id="locked-count">0</span> acties vergrendeld — inclusief contract clausules en juridische toelichting</span>
+            </div>
+          </div>
         </div>
-    </footer>
 
+        <!-- What's in the report -->
+        <div class="bg-blue-50 rounded-xl p-4 mb-6">
+          <p class="text-sm font-semibold text-brand mb-2">Wat zit er in het volledige rapport?</p>
+          <ul class="space-y-1.5">
+            <li class="flex items-center gap-2 text-xs text-blue-700"><svg class="w-3.5 h-3.5 text-brand shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Volledig actieplan op maat (tot 11 acties met prioriteit)</li>
+            <li class="flex items-center gap-2 text-xs text-blue-700"><svg class="w-3.5 h-3.5 text-brand shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Juridische toelichting per criterium (met wetsreferenties)</li>
+            <li class="flex items-center gap-2 text-xs text-blue-700"><svg class="w-3.5 h-3.5 text-brand shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Contract clausules die je direct kunt gebruiken</li>
+            <li class="flex items-center gap-2 text-xs text-blue-700"><svg class="w-3.5 h-3.5 text-brand shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>PDF om te delen met je opdrachtgever + handtekeningblok</li>
+          </ul>
+        </div>
+
+        <button onclick="openCheckoutFromResult()" class="w-full bg-brand text-white font-semibold py-3.5 rounded-xl hover:bg-blue-700 transition text-sm">
+          Ontgrendel volledig rapport + actieplan — €29 →
+        </button>
+        <p class="text-center text-xs text-gray-400 mt-2">🔒 Veilige betaling · 14 dagen geld terug garantie</p>
+        <button onclick="restartCheck()" class="w-full text-xs text-gray-400 hover:text-gray-500 mt-3 py-1">↺ Opnieuw beginnen</button>
+      </div>
+    </div>
+
+    <!-- FULL REPORT (after payment) -->
+    <div id="full-report" class="hidden slide-in">
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mb-6">
+        <div class="bg-brand px-6 py-5 text-white">
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-blue-200 text-xs font-semibold uppercase tracking-wide mb-1">ZZP Compliance Check — Officieel Rapport</p>
+              <h2 class="serif text-xl">Wet DBA Compliance Rapport</h2>
+            </div>
+            <button onclick="window.print()" class="text-blue-200 hover:text-white transition text-xs flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              Download PDF
+            </button>
+          </div>
+          <p id="report-meta" class="text-blue-200 text-xs mt-3"></p>
+        </div>
+        <div class="p-6">
+          <div class="mb-6">
+            <div class="flex justify-between items-center mb-1">
+              <p class="text-sm font-semibold text-gray-700">Risicoprofiel</p>
+              <span id="report-risk-label" class="text-sm font-semibold"></span>
+            </div>
+            <div class="w-full bg-gray-100 rounded-full h-2.5">
+              <div id="report-score-bar" class="h-2.5 rounded-full transition-all duration-700" style="width:0%"></div>
+            </div>
+            <div class="flex justify-between mt-1">
+              <p class="text-xs text-gray-400">Hoog risico</p>
+              <p class="text-xs text-gray-400"><span id="report-score-pct"></span></p>
+              <p class="text-xs text-gray-400">Laag risico</p>
+            </div>
+            <p id="report-score-text" class="text-xs text-gray-400 mt-1 text-center"></p>
+          </div>
+
+          <h3 class="text-sm font-semibold text-gray-800 mb-3">Risicomatrix: jouw situatie vs. ideaal ZZP profiel</h3>
+          <div class="rounded-xl border border-gray-100 overflow-hidden mb-6">
+            <table class="w-full text-xs">
+              <thead><tr class="bg-gray-50"><th class="px-3 py-2 text-left text-gray-500 font-medium">Criterium</th><th class="px-3 py-2 text-center text-gray-500 font-medium">Jouw situatie</th><th class="px-3 py-2 text-center text-gray-500 font-medium">Ideaal ZZP</th></tr></thead>
+              <tbody id="risk-matrix"></tbody>
+            </table>
+          </div>
+
+          <h3 class="text-sm font-semibold text-gray-800 mb-3">Juridische analyse per criterium</h3>
+          <p class="text-xs text-gray-400 mb-4">Gebaseerd op Wet DBA, artikel 7:610 BW en Belastingdienst webmodule 2026</p>
+          <div id="report-breakdown" class="space-y-3 mb-6"></div>
+
+          <h3 class="text-sm font-semibold text-gray-800 mb-3">Jouw persoonlijk actieplan</h3>
+          <p class="text-xs text-gray-400 mb-3">Op basis van jouw antwoorden — gesorteerd op prioriteit</p>
+          <div id="actieplan" class="space-y-3 mb-6"></div>
+
+          <h3 class="text-sm font-semibold text-gray-800 mb-3">Contract clausules</h3>
+          <p class="text-xs text-gray-400 mb-3">Kopieer deze clausules naar jouw overeenkomst van opdracht</p>
+          <div id="clausules" class="space-y-3 mb-6"></div>
+
+          <h3 class="text-sm font-semibold text-gray-800 mb-3">Handtekeningblok</h3>
+          <p class="text-xs text-gray-400 mb-3">Laat opdrachtgever tekenen om compliance te bevestigen</p>
+          <div class="grid grid-cols-2 gap-6 border border-gray-100 rounded-xl p-5">
+            <div>
+              <p class="text-xs font-semibold text-gray-500 mb-3">ZZP'er</p>
+              <div id="sig-zzp" class="space-y-3"></div>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-gray-500 mb-3">Opdrachtgever</p>
+              <div class="space-y-3">
+                <div class="border-b border-gray-300 pb-1"><p class="text-xs text-gray-400">Bedrijf</p><p class="text-sm text-gray-300 italic">___________________</p></div>
+                <div class="border-b border-gray-300 pb-1"><p class="text-xs text-gray-400">Naam</p><p class="text-sm text-gray-300 italic">___________________</p></div>
+                <div class="border-b border-gray-300 pb-1"><p class="text-xs text-gray-400">Datum</p><p class="text-sm text-gray-300 italic">___________________</p></div>
+                <div class="border-b border-gray-300 pb-1"><p class="text-xs text-gray-400">Handtekening</p><p class="text-sm text-gray-300 italic">___________________</p></div>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-400 mt-3 text-center">Door ondertekening bevestigen beide partijen dat de samenwerking voldoet aan de Wet DBA criteria zoals beschreven in dit rapport.</p>
+          <p class="text-xs text-gray-300 mt-4 text-center">Disclaimer: Dit rapport is informatief en gebaseerd op door de gebruiker verstrekte informatie. Het vervangt geen professioneel juridisch of fiscaal advies.</p>
+          <button onclick="restartCheck()" class="w-full text-xs text-gray-400 hover:text-gray-500 mt-4 py-1">↺ Nieuwe check starten</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHAT IS SCHIJNZELFSTANDIGHEID -->
+<section class="py-14 max-w-4xl mx-auto px-5">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="serif text-3xl text-gray-900 mb-6">Wat is schijnzelfstandigheid en waarom loopt jij risico?</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">Schijnzelfstandigheid betekent dat jij op papier ZZP'er bent, maar in de praktijk functioneert als werknemer. De Belastingdienst kijkt niet naar wat er in je contract staat — maar naar hoe jouw dagelijkse werkrelatie er <em>in de praktijk</em> uitziet.</p>
+    <p class="text-gray-600 leading-relaxed mb-4">Drie criteria zijn doorslaggevend: is er sprake van een <strong>gezagsverhouding</strong> (bepaalt de opdrachtgever hoe jij werkt?), ben jij <strong>persoonlijk verplicht</strong> het werk uit te voeren (of kun je jezelf laten vervangen?), en loop jij <strong>ondernemersrisico</strong> (meerdere opdrachtgevers, eigen aansprakelijkheid, geen doorbetaling bij ziekte)?</p>
+    <p class="text-gray-600 leading-relaxed mb-8">Voldoe jij aan deze criteria niet, dan kan de Belastingdienst jouw werkrelatie herkwalificeren als dienstverband — met naheffingen, boetes en verlies van opdrachten als gevolg. Sinds 1 januari 2026 is het moratorium op handhaving beëindigd en worden actief controles uitgevoerd.</p>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="artikel-1.html" class="block border border-gray-100 rounded-xl p-4 hover:border-brand transition group">
+        <p class="text-xs font-semibold text-brand mb-1 group-hover:underline">Lees meer →</p>
+        <p class="font-semibold text-gray-800 text-sm">De €38 per uur regel uitgelegd</p>
+        <p class="text-xs text-gray-400 mt-1">Wat de employment presumption betekent voor jou</p>
+      </a>
+      <a href="artikel-2.html" class="block border border-gray-100 rounded-xl p-4 hover:border-brand transition group">
+        <p class="text-xs font-semibold text-brand mb-1 group-hover:underline">Lees meer →</p>
+        <p class="font-semibold text-gray-800 text-sm">7 signalen dat jij risico loopt</p>
+        <p class="text-xs text-gray-400 mt-1">Herken schijnzelfstandigheid in jouw situatie</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="bg-white border-t border-gray-100 py-14">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-8">ZZP'ers vertrouwen op onze check</p>
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="bg-gray-50 rounded-2xl p-5">
+        <div class="text-yellow-400 text-sm mb-3">★★★★★</div>
+        <p class="text-sm text-gray-700 leading-relaxed mb-4">"Dacht dat ik compliant was, maar de check wees op 3 concrete verbeterpunten. Scheelde me waarschijnlijk een naheffing van €30K."</p>
+        <div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-blue-100 text-brand text-xs font-semibold flex items-center justify-center">MV</div><div><p class="text-xs font-semibold text-gray-800">Mark de V.</p><p class="text-xs text-gray-400">IT Consultant, Utrecht</p></div></div>
+      </div>
+      <div class="bg-gray-50 rounded-2xl p-5">
+        <div class="text-yellow-400 text-sm mb-3">★★★★★</div>
+        <p class="text-sm text-gray-700 leading-relaxed mb-4">"Als freelance designer werkte ik al 3 jaar voor één opdrachtgever. De check liet zien dat dit een risico is. Met het actieplan heb ik twee extra klanten aangenomen."</p>
+        <div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-blue-100 text-brand text-xs font-semibold flex items-center justify-center">SB</div><div><p class="text-xs font-semibold text-gray-800">Sarah B.</p><p class="text-xs text-gray-400">UX Designer, Amsterdam</p></div></div>
+      </div>
+      <div class="bg-gray-50 rounded-2xl p-5">
+        <div class="text-yellow-400 text-sm mb-3">★★★★★</div>
+        <p class="text-sm text-gray-700 leading-relaxed mb-4">"Mijn accountant adviseerde me de check te doen. Bleek dat ik grotendeels goed zat, op één punt na. Dat gerust gevoel is me echt wat waard."</p>
+        <div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-blue-100 text-brand text-xs font-semibold flex items-center justify-center">RJ</div><div><p class="text-xs font-semibold text-gray-800">Remco J.</p><p class="text-xs text-gray-400">Projectmanager, Rotterdam</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR OPDRACHTGEVERS -->
+<section class="py-14 max-w-4xl mx-auto px-5">
+  <div class="bg-white rounded-2xl border border-gray-100 p-8 md:flex gap-8 items-start">
+    <div class="flex-1 mb-6 md:mb-0">
+      <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Voor opdrachtgevers</p>
+      <h2 class="serif text-2xl text-gray-900 mb-3">Ook jij als opdrachtgever loop jij risico</h2>
+      <p class="text-sm text-gray-500 leading-relaxed mb-4">Bij schijnzelfstandigheid word jij aangeslagen voor naheffingen loonheffingen over 5 jaar, plus vergrijpboetes. Een compliance rapport beschermt jou én de ZZP'er.</p>
+      <a href="#" onclick="shareCheckEmail(); return false;" class="inline-block bg-gray-900 text-white text-sm font-medium px-5 py-2.5 rounded-xl hover:bg-gray-700 transition">Stuur de check naar jouw ZZP'er →</a>
+    </div>
+    <div class="flex-1 space-y-3">
+      <div class="flex gap-3 text-sm"><span class="text-brand font-bold mt-0.5">→</span><div><p class="font-semibold text-gray-800">Naheffing tot 5 jaar terug</p><p class="text-xs text-gray-400">Loonheffingen + premies, bij de opdrachtgever navorderen.</p></div></div>
+      <div class="flex gap-3 text-sm"><span class="text-brand font-bold mt-0.5">→</span><div><p class="font-semibold text-gray-800">Verplicht dienstverband</p><p class="text-xs text-gray-400">ZZP'er alsnog als werknemer behandelen, inclusief alle lasten.</p></div></div>
+      <div class="flex gap-3 text-sm"><span class="text-green-600 font-bold mt-0.5">→</span><div><p class="font-semibold text-gray-800">Rapport als bewijs</p><p class="text-xs text-gray-400">Het compliance rapport dient als aantoonbaar bewijs van toetsing.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-10 max-w-4xl mx-auto px-5">
+  <h2 class="serif text-2xl text-gray-900 mb-6 text-center">Veelgestelde vragen</h2>
+  <div class="max-w-2xl mx-auto space-y-2">
+    <div class="bg-white rounded-xl border border-gray-100 overflow-hidden">
+      <button onclick="toggleFaq(0)" class="w-full text-left px-5 py-4 flex justify-between items-center text-sm font-semibold text-gray-800">Is de gratis check echt gratis?<svg class="faq-icon-0 w-4 h-4 text-gray-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+      <div class="faq-answer-0 hidden px-5 pb-4 text-sm text-gray-500 leading-relaxed">Ja. De 12 vragen en jouw risicoscore zijn volledig gratis. Je betaalt €29 voor het volledige rapport inclusief juridische analyse, actieplan, contract clausules, en het PDF-rapport.</div>
+    </div>
+    <div class="bg-white rounded-xl border border-gray-100 overflow-hidden">
+      <button onclick="toggleFaq(1)" class="w-full text-left px-5 py-4 flex justify-between items-center text-sm font-semibold text-gray-800">Hoe betrouwbaar is de check?<svg class="faq-icon-1 w-4 h-4 text-gray-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+      <div class="faq-answer-1 hidden px-5 pb-4 text-sm text-gray-500 leading-relaxed">De check is gebaseerd op de officiële criteria van de Belastingdienst: gezagsverhouding (art. 7:610 BW), vervangbaarheid, ondernemersrisico, en de employment presumption 2026. Het is een indicatief instrument — geen juridisch advies.</div>
+    </div>
+    <div class="bg-white rounded-xl border border-gray-100 overflow-hidden">
+      <button onclick="toggleFaq(2)" class="w-full text-left px-5 py-4 flex justify-between items-center text-sm font-semibold text-gray-800">Wat krijg ik voor €29?<svg class="faq-icon-2 w-4 h-4 text-gray-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+      <div class="faq-answer-2 hidden px-5 pb-4 text-sm text-gray-500 leading-relaxed">Volledig PDF-rapport met risicoscore en juridische toelichting per criterium, persoonlijk actieplan gesorteerd op prioriteit, kant-en-klare contract clausules, en een handtekeningblok voor je opdrachtgever. Direct na betaling per e-mail.</div>
+    </div>
+    <div class="bg-white rounded-xl border border-gray-100 overflow-hidden">
+      <button onclick="toggleFaq(3)" class="w-full text-left px-5 py-4 flex justify-between items-center text-sm font-semibold text-gray-800">Ik werk al jaren voor dezelfde opdrachtgever. Is dat een probleem?<svg class="faq-icon-3 w-4 h-4 text-gray-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+      <div class="faq-answer-3 hidden px-5 pb-4 text-sm text-gray-500 leading-relaxed">Een langdurige samenwerking is op zichzelf niet verboden, maar het is een risicosignaal. De Belastingdienst kijkt extra kritisch naar situaties waarbij een ZZP'er meer dan een jaar exclusief voor één bedrijf werkt.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white border-t border-gray-100 py-10">
+  <div class="max-w-4xl mx-auto px-5">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-6">
+      <div>
+        <p class="font-semibold text-gray-900 mb-1">ZZP Compliance Check</p>
+        <p class="text-xs text-gray-400">Jouw onafhankelijke tool voor Wet DBA compliance.</p>
+      </div>
+      <div class="flex gap-8 text-xs text-gray-400">
+        <div class="space-y-1.5"><a href="#" class="block hover:text-gray-600">Privacybeleid</a><a href="#" class="block hover:text-gray-600">Algemene voorwaarden</a></div>
+        <div class="space-y-1.5"><a href="#check" class="block hover:text-gray-600">Gratis check</a><a href="mailto:support@zzpcompliancecheck.nl" class="block hover:text-gray-600">Contact</a></div>
+      </div>
+    </div>
+    <div class="border-t border-gray-100 mt-6 pt-6 text-xs text-gray-400 text-center">
+      © 2026 ZZP Compliance Check. Alle rechten voorbehouden. Deze tool is informatief en vervangt geen juridisch advies.
+    </div>
+  </div>
+</footer>
+
+<!-- CHECKOUT MODAL -->
+<div id="checkout-modal" style="display:none" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-xl">
+    <div class="flex justify-between items-center mb-5">
+      <h3 class="serif text-xl text-gray-900">Jouw bestelling</h3>
+      <button onclick="closeCheckout()" class="text-gray-300 hover:text-gray-500 text-xl leading-none">×</button>
+    </div>
+    <div class="border border-gray-100 rounded-xl p-4 mb-4 space-y-2">
+      <div class="flex justify-between text-sm"><span class="text-gray-600">Wet DBA Check — Persoonlijk rapport + actieplan</span><span class="font-semibold">€29</span></div>
+    </div>
+    <!-- Addon -->
+    <div id="addon-box" class="border rounded-xl p-4 mb-4 transition-colors" style="border-color: #e5e7eb;">
+      <div class="flex justify-between items-start gap-3">
+        <div>
+          <p class="text-sm font-semibold text-gray-800">Blijf Compliant <span class="text-xs font-normal text-gray-400 ml-1">optioneel</span></p>
+          <p class="text-xs text-gray-400 mt-0.5">Jaarlijkse updates als Wet DBA regels veranderen</p>
+          <ul class="mt-2 space-y-1">
+            <li class="text-xs text-gray-500 flex items-center gap-1"><svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Melding bij wetswijzigingen</li>
+            <li class="text-xs text-gray-500 flex items-center gap-1"><svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Jaarlijkse hercheck herinnering</li>
+          </ul>
+        </div>
+        <div class="text-right shrink-0">
+          <p class="text-sm font-semibold text-gray-800">+€15/jr</p>
+          <button id="addon-toggle" onclick="toggleAddon()" class="w-10 h-6 rounded-full relative mt-2 transition-colors" style="background:#e5e7eb;">
+            <span id="addon-thumb" class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform"></span>
+          </button>
+        </div>
+      </div>
+      <div id="addon-line" class="hidden flex justify-between text-xs text-brand mt-2 pt-2 border-t border-blue-100">
+        <span>Blijf Compliant (jaar 1)</span><span>€15,00</span>
+      </div>
+    </div>
+    <div class="flex justify-between text-sm font-semibold border-t border-gray-100 pt-3 mb-4">
+      <span>Totaal</span><span id="total-price">€29,00</span>
+    </div>
+    <input id="checkout-name" type="text" placeholder="Jouw naam" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm mb-3 focus:outline-none focus:border-brand transition">
+    <input id="checkout-email" type="email" placeholder="E-mailadres voor rapport" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm mb-4 focus:outline-none focus:border-brand transition">
+    <button id="pay-submit-btn" onclick="submitPayment()" class="w-full bg-brand text-white font-semibold py-3.5 rounded-xl hover:bg-blue-700 transition text-sm">Betalen via Mollie →</button>
+    <p class="text-center text-xs text-gray-400 mt-2">🔒 Veilige betaling · 14 dagen geld terug garantie</p>
+  </div>
+</div>
+
+<script>
+var addonActive = false;
+var BACKEND_URL = 'https://api.zzpcompliancecheck.nl';
+
+function openCheckout() { document.getElementById('checkout-modal').style.display='flex'; document.body.style.overflow='hidden'; }
+function closeCheckout() { document.getElementById('checkout-modal').style.display='none'; document.body.style.overflow=''; }
+function toggleAddon() {
+  addonActive = !addonActive;
+  var t=document.getElementById('addon-toggle'), th=document.getElementById('addon-thumb');
+  var al=document.getElementById('addon-line'), tp=document.getElementById('total-price'), box=document.getElementById('addon-box');
+  if (addonActive) { t.style.backgroundColor='#1E40AF'; th.style.transform='translateX(16px)'; al.style.display='flex'; tp.textContent='€44,00'; box.style.borderColor='#1E40AF'; }
+  else { t.style.backgroundColor='#e5e7eb'; th.style.transform='translateX(0)'; al.style.display='none'; tp.textContent='€29,00'; box.style.borderColor='#e5e7eb'; }
+}
+document.getElementById('checkout-modal').addEventListener('click', function(e){ if(e.target===this) closeCheckout(); });
+
+async function submitPayment() {
+  var name=document.getElementById('checkout-name').value.trim();
+  var email=document.getElementById('checkout-email').value.trim();
+  if (!name) { document.getElementById('checkout-name').style.borderColor='#ef4444'; return; }
+  if (!email||!email.includes('@')) { document.getElementById('checkout-email').style.borderColor='#ef4444'; return; }
+  var btn=document.getElementById('pay-submit-btn');
+  btn.disabled=true; btn.textContent='Bezig met verwerken...';
+  var reportData=window._reportData;
+  if (!reportData) { alert('Doe eerst de check voordat je betaalt.'); btn.disabled=false; btn.textContent='Betalen via Mollie →'; return; }
+  try {
+    var response=await fetch(BACKEND_URL+'/create-payment', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ name:name, email:email, include_update_service:addonActive, answers:{scores:reportData.scores,risk_level:reportData.riskLevel,total_score:reportData.total,pct:reportData.pct} }) });
+    var data=await response.json();
+    if (data.payment_url) { window.location.href=data.payment_url; }
+    else throw new Error('No payment URL');
+  } catch(err) { console.error(err); btn.disabled=false; btn.textContent='Betalen via Mollie →'; alert('Er ging iets mis. Probeer het opnieuw.'); }
+}
+
+var questions=[
+  {block:"Gezagsverhouding",text:"Wie bepaalt hoe jij je werk uitvoert?",options:[{label:"Ik bepaal dat volledig zelf",score:3},{label:"Grotendeels ik, soms overleg met opdrachtgever",score:1},{label:"De opdrachtgever geeft duidelijke instructies",score:-2},{label:"De opdrachtgever bepaalt alles",score:-4}]},
+  {block:"Gezagsverhouding",text:"Ben jij verplicht persoonlijk aanwezig te zijn op een vaste locatie of tijd?",options:[{label:"Nee, ik werk wanneer en waar ik wil",score:3},{label:"Soms vaste locatie maar met flexibele tijden",score:1},{label:"Vaste tijden of locatie is verplicht",score:-2},{label:"Vaste tijden én locatie zijn beiden verplicht",score:-4}]},
+  {block:"Gezagsverhouding",text:"Kan de opdrachtgever je tussentijds opdrachten geven buiten de originele opdracht?",options:[{label:"Nee, ik werk alleen aan wat in het contract staat",score:2},{label:"Soms kleine aanvullingen",score:0},{label:"Ja, regelmatig",score:-2},{label:"Ja, altijd",score:-3}]},
+  {block:"Gezagsverhouding",text:"Word jij beoordeeld zoals een werknemer? (functioneringsgesprekken, targets)",options:[{label:"Nee, helemaal niet",score:2},{label:"Af en toe informeel",score:0},{label:"Ja, formeel met vaste gesprekken",score:-3}]},
+  {block:"Vervangbaarheid",text:"Kun jij je laten vervangen door iemand anders?",options:[{label:"Ja, ik regel zelf vervanging zonder toestemming",score:4},{label:"Ja, maar de opdrachtgever moet akkoord geven",score:1},{label:"In theorie ja, maar het is nog nooit gebeurd",score:-1},{label:"Nee, ik moet het persoonlijk uitvoeren",score:-4}]},
+  {block:"Vervangbaarheid",text:"Is de opdracht aan jou gegund op basis van jouw persoonlijke naam of expertise?",options:[{label:"Nee, het gaat puur om het resultaat",score:2},{label:"Deels — zowel mijn persoon als het resultaat",score:0},{label:"Ja, puur op mijn persoon",score:-2}]},
+  {block:"Vervangbaarheid",text:"Betaalt de opdrachtgever door bij ziekte of vakantie?",options:[{label:"Nee, geen uren gewerkt = geen inkomsten",score:3},{label:"Nee, maar er is enige flexibiliteit",score:1},{label:"Ja, ik word doorbetaald",score:-4}]},
+  {block:"Ondernemersrisico",text:"Loop jij financieel risico? (eigen materiaal, aansprakelijkheid, geen betaling bij slechte kwaliteit)",options:[{label:"Ja, significant ondernemersrisico",score:4},{label:"Beperkt risico",score:1},{label:"Nee, vrijwel geen financieel risico",score:-3}]},
+  {block:"Ondernemersrisico",text:"Hoeveel opdrachtgevers heb jij dit jaar?",options:[{label:"3 of meer",score:4},{label:"2",score:2},{label:"1",score:-3}]},
+  {block:"Ondernemersrisico",text:"Investeer jij zelf in je bedrijf? (tools, training, marketing, website)",options:[{label:"Ja, regelmatig",score:3},{label:"Af en toe",score:1},{label:"Nauwelijks",score:-2}]},
+  {block:"Tarief & duur",text:"Wat is jouw gemiddeld uurtarief bij deze opdrachtgever?",options:[{label:"Meer dan €38 per uur",score:2},{label:"Tussen €32 en €38 per uur",score:0},{label:"Minder dan €32 per uur",score:-3}]},
+  {block:"Tarief & duur",text:"Hoe lang werk je al voor deze opdrachtgever?",options:[{label:"Minder dan 6 maanden",score:2},{label:"6 tot 12 maanden",score:0},{label:"1 tot 2 jaar",score:-1},{label:"Meer dan 2 jaar",score:-3}]}
+];
+
+var current=0, scores=new Array(12).fill(null), selectedIndex=null;
+
+function renderQuestion() {
+  var q=questions[current];
+  document.getElementById('q-block-label').textContent=q.block;
+  document.getElementById('q-text').textContent=q.text;
+  document.getElementById('q-label').textContent='Vraag '+(current+1)+' van 12';
+  var pct=Math.round((current/12)*100);
+  document.getElementById('q-pct').textContent=pct+'%';
+  document.getElementById('progress-bar').style.width=pct+'%';
+  var opts=document.getElementById('q-options');
+  opts.innerHTML='';
+  q.options.forEach(function(opt,i){
+    var btn=document.createElement('button');
+    btn.className='opt-btn w-full text-left px-4 py-3.5 rounded-xl border-2 text-sm font-medium'+(scores[current]!==null&&scores[current]===opt.score&&selectedIndex===i?' selected border-brand bg-blue-50 text-blue-900':' border-gray-200 text-gray-700');
+    btn.textContent=opt.label;
+    btn.onclick=(function(score,idx){ return function(){ selectOption(score,idx); }; })(opt.score,i);
+    opts.appendChild(btn);
+  });
+  document.getElementById('btn-next').disabled=scores[current]===null;
+  document.getElementById('btn-back').classList.toggle('hidden',current===0);
+  document.getElementById('btn-next').textContent=current===11?'Bekijk resultaat →':'Volgende →';
+}
+
+function selectOption(score,idx) {
+  scores[current]=score; selectedIndex=idx;
+  document.getElementById('btn-next').disabled=false;
+  var q=questions[current];
+  document.querySelectorAll('#q-options button').forEach(function(btn,i){
+    var sel=(q.options[i].score===score&&i===idx);
+    btn.className='opt-btn w-full text-left px-4 py-3.5 rounded-xl border-2 text-sm font-medium'+(sel?' selected border-brand bg-blue-50 text-blue-900':' border-gray-200 text-gray-700');
+  });
+}
+
+function nextQuestion() {
+  if (scores[current]===null) return;
+  if (current===11) { showResult(); return; }
+  current++; selectedIndex=null; renderQuestion();
+  document.getElementById('check-form').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function prevQuestion() {
+  if (current===0) return; current--;
+  var q=questions[current]; selectedIndex=null;
+  if (scores[current]!==null) q.options.forEach(function(opt,i){ if(opt.score===scores[current]) selectedIndex=i; });
+  renderQuestion();
+}
+
+function showResult() {
+  var total=scores.reduce(function(a,b){return a+(b||0);},0);
+  var pct=Math.round(((total+31)/65)*100); pct=Math.max(5,Math.min(95,pct));
+  var title,desc,icon,color,riskLevel;
+  if (total>=15){icon='🟢';title='Laag risico';color='#22c55e';riskLevel='laag';desc='Jouw situatie ziet er goed uit. Je werkt als echte ondernemer volgens de Wet DBA criteria.';}
+  else if (total>=0){icon='🟡';title='Gemiddeld risico';color='#eab308';riskLevel='gemiddeld';desc='Er zijn aandachtspunten. Met gerichte aanpassingen verstevig jij jouw positie als ZZP\'er.';}
+  else if (total>=-15){icon='🟠';title='Hoog risico';color='#f97316';riskLevel='hoog';desc='Er zijn significante signalen van schijnzelfstandigheid. Actie is nodig om naheffingen te voorkomen.';}
+  else{icon='🔴';title='Kritiek risico';color='#ef4444';riskLevel='kritiek';desc='Jouw situatie vertoont ernstige signalen van schijnzelfstandigheid. Direct aanpassen is noodzakelijk.';}
+  window._reportData={total:total,pct:pct,title:title,desc:desc,icon:icon,color:color,riskLevel:riskLevel,scores:scores.slice()};
+  document.getElementById('result-icon').textContent=icon;
+  document.getElementById('result-title').textContent=title;
+  document.getElementById('result-desc').textContent=desc;
+  document.getElementById('score-indicator').style.width=pct+'%';
+  document.getElementById('score-indicator').style.backgroundColor=color;
+  document.getElementById('score-pct-label').textContent=pct+'%';
+  document.getElementById('score-label').textContent='Totaalscore: '+total+' punten (schaal: -31 tot +34)';
+  var blocks=[{name:'Gezagsverhouding',qs:[0,1,2,3]},{name:'Vervangbaarheid',qs:[4,5,6]},{name:'Ondernemersrisico',qs:[7,8,9]},{name:'Tarief & looptijd',qs:[10,11]}];
+  var pts=document.getElementById('result-points'); pts.innerHTML='';
+  blocks.forEach(function(b){
+    var s=b.qs.reduce(function(a,i){return a+(scores[i]||0);},0); var ok=s>=0;
+    var div=document.createElement('div');
+    div.className='flex items-center justify-between px-4 py-3 rounded-xl text-sm '+(ok?'bg-green-50 text-green-800':'bg-red-50 text-red-800');
+    div.innerHTML='<span>'+(ok?'✅':'❌')+' '+b.name+'</span><span class="font-semibold text-xs">'+(s>=0?'+':'')+s+' pt</span>';
+    pts.appendChild(div);
+  });
+  var acties=getActieplan(riskLevel,scores);
+  document.getElementById('locked-count').textContent=Math.max(0,acties.length-2);
+  document.getElementById('check-form').classList.add('hidden');
+  document.getElementById('result-card').classList.remove('hidden');
+  document.getElementById('progress-bar').style.width='100%';
+  document.getElementById('q-label').textContent='Check voltooid';
+  document.getElementById('q-pct').textContent='100%';
+  document.getElementById('result-card').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function openCheckoutFromResult() { window._pendingReport=true; openCheckout(); }
+
+function buildFullReport() {
+  var d=window._reportData; var now=new Date();
+  var email=document.getElementById('checkout-email').value||'';
+  document.getElementById('report-meta').textContent='Gegenereerd op '+now.toLocaleDateString('nl-NL',{day:'numeric',month:'long',year:'numeric'})+(email?' · '+email:'');
+  document.getElementById('report-risk-label').textContent=d.icon+' '+d.title;
+  document.getElementById('report-score-bar').style.width=d.pct+'%';
+  document.getElementById('report-score-bar').style.backgroundColor=d.color;
+  document.getElementById('report-score-pct').textContent=d.pct+'%';
+  document.getElementById('report-score-text').textContent='Totaalscore: '+d.total+' punten | Risicoprofiel: '+d.title;
+  var matrixBlocks=[{name:'Gezagsverhouding',qs:[0,1,2,3],ideal:'Volledig vrij in uitvoering'},{name:'Vervangbaarheid',qs:[4,5,6],ideal:'Vrij vervangbaar'},{name:'Ondernemersrisico',qs:[7,8,9],ideal:'Meerdere klanten, eigen risico'},{name:'Tarief',qs:[10],ideal:'>€38/uur'},{name:'Looptijd opdracht',qs:[11],ideal:'<6 maanden of afwisselend'}];
+  var matrix=document.getElementById('risk-matrix'); matrix.innerHTML='';
+  matrixBlocks.forEach(function(b,i){
+    var s=b.qs.reduce(function(a,idx){return a+(d.scores[idx]||0);},0); var ok=s>=0;
+    var tr=document.createElement('tr'); tr.className=i%2===0?'bg-white':'bg-gray-50/50';
+    tr.innerHTML='<td class="px-3 py-2.5 font-medium text-gray-700 text-xs">'+b.name+'</td><td class="px-3 py-2.5 text-center"><span class="inline-block px-2 py-0.5 rounded-full text-xs font-semibold '+(ok?'bg-green-100 text-green-700':'bg-red-100 text-red-700')+'">'+(ok?'✅ Goed':'⚠️ Risico')+'</span></td><td class="px-3 py-2.5 text-center text-gray-400 text-xs">'+b.ideal+'</td>';
+    matrix.appendChild(tr);
+  });
+  var legalBlocks=[{name:'Gezagsverhouding',qs:[0,1,2,3],law:'Art. 7:610 BW + Wet DBA art. 1',toelichting:'De gezagsverhouding is het primaire criterium. Als een opdrachtgever kan bepalen hoe, waar en wanneer je werkt, is er sprake van werkgeversgezag — een kernkenmerk van een arbeidsovereenkomst.'},{name:'Vervangbaarheid',qs:[4,5,6],law:'Art. 7:659 BW',toelichting:'Een werknemer is verplicht het werk persoonlijk uit te voeren. Als jij je vrij kunt laten vervangen, wijst dit op een overeenkomst van opdracht in plaats van een arbeidsovereenkomst.'},{name:'Ondernemersrisico',qs:[7,8,9],law:'Belastingdienst webmodule 2026',toelichting:'Echte ondernemers dragen financieel risico. Dit omvat aansprakelijkheid voor fouten, afhankelijkheid van meerdere opdrachtgevers, en eigen investeringen in het bedrijf.'},{name:'Tarief & looptijd',qs:[10,11],law:'Wet DBA art. 2a — Employment presumption',toelichting:'Onder de €38/uur employment presumption wordt bij lagere tarieven vermoed dat er sprake is van een arbeidsrelatie. Langdurige exclusieve opdrachten versterken dit vermoeden.'}];
+  var breakdown=document.getElementById('report-breakdown'); breakdown.innerHTML='';
+  legalBlocks.forEach(function(block){
+    var ok=block.qs.reduce(function(a,i){return a+(d.scores[i]||0);},0)>=0;
+    var answersHtml=block.qs.map(function(qi){var q=questions[qi];var sc=d.scores[qi];var answer='';q.options.forEach(function(opt){if(opt.score===sc)answer=opt.label;});var isPos=sc>=0;return '<div class="flex items-start gap-2 py-2 border-b border-gray-50 last:border-0"><span class="text-xs '+(isPos?'text-green-600':'text-red-600')+' font-bold mt-0.5 shrink-0">'+(isPos?'▲':'▼')+'</span><div><p class="text-xs text-gray-500">'+q.text+'</p><p class="text-xs font-semibold text-gray-800 mt-0.5">→ '+answer+'</p></div></div>';}).join('');
+    var div=document.createElement('div'); div.className='border rounded-xl overflow-hidden '+(ok?'border-green-100':'border-red-100');
+    div.innerHTML='<div class="px-4 py-3 flex justify-between items-center '+(ok?'bg-green-50':'bg-red-50')+'"><span class="font-semibold text-sm text-gray-900">'+(ok?'✅':'❌')+' '+block.name+'</span><span class="text-xs text-gray-400">'+block.law+'</span></div><div class="px-4 py-2.5 bg-blue-50/40 border-y border-blue-50"><p class="text-xs text-gray-600 leading-relaxed"><strong>Juridische context:</strong> '+block.toelichting+'</p></div><div class="px-4 py-2">'+answersHtml+'</div>';
+    breakdown.appendChild(div);
+  });
+  var acties=getActieplan(d.riskLevel,d.scores);
+  var actieplan=document.getElementById('actieplan'); actieplan.innerHTML='';
+  if (acties.length===0){actieplan.innerHTML='<p class="text-sm text-green-700 font-semibold">✅ Geen urgente acties nodig.</p>';}
+  else{acties.forEach(function(actie,i){var pc=actie.priority==='urgent'?'bg-red-100 text-red-700':actie.priority==='soon'?'bg-amber-100 text-amber-700':'bg-blue-100 text-blue-700';var pl=actie.priority==='urgent'?'🚨 Urgent':actie.priority==='soon'?'⚠️ Binnen 3 maanden':'ℹ️ Nice to have';var div=document.createElement('div');div.className='border border-gray-100 rounded-xl p-4';div.innerHTML='<div class="flex items-start gap-3"><div class="w-7 h-7 rounded-full bg-brand text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">'+(i+1)+'</div><div class="flex-1"><div class="flex items-center gap-2 mb-1 flex-wrap"><p class="text-sm font-bold text-gray-900">'+actie.title+'</p><span class="text-xs font-semibold px-2 py-0.5 rounded-full '+pc+'">'+pl+'</span></div><p class="text-xs text-gray-600 leading-relaxed mb-2">'+actie.desc+'</p>'+(actie.clausule?'<div class="bg-gray-50 rounded-lg px-3 py-2 border-l-2 border-brand"><p class="text-xs text-gray-500 font-semibold mb-0.5">Contract clausule:</p><p class="text-xs text-gray-700 italic">'+actie.clausule+'</p></div>':'')+'</div></div>';actieplan.appendChild(div);});}
+  var clausules=document.getElementById('clausules'); clausules.innerHTML='';
+  getClausules(d.scores).forEach(function(c){var div=document.createElement('div');div.className='bg-gray-50 rounded-xl p-4 border border-gray-100';div.innerHTML='<p class="text-xs font-bold text-gray-700 mb-1">'+c.title+'</p><p class="text-xs text-gray-600 italic leading-relaxed">'+c.text+'</p>';clausules.appendChild(div);});
+  var sigZzp=document.getElementById('sig-zzp');
+  sigZzp.innerHTML=[{label:'Naam',val:'___________________'},{label:'KVK',val:'___________________'},{label:'Datum',val:now.toLocaleDateString('nl-NL')},{label:'Handtekening',val:'___________________'}].map(function(f){return '<div class="border-b border-gray-300 pb-1"><p class="text-xs text-gray-400">'+f.label+'</p><p class="text-sm text-gray-300 italic">'+f.val+'</p></div>';}).join('');
+}
+
+function getActieplan(riskLevel,sc){var acties=[];if(sc[0]<0)acties.push({title:'Leg werkwijze contractueel vast',priority:'urgent',desc:'Voeg toe aan je overeenkomst van opdracht: jij bepaalt zelf de methode, planning en aanpak. De opdrachtgever ontvangt het resultaat, niet de arbeid.',clausule:'"Opdrachtnemer is vrij in de wijze waarop hij de opdracht uitvoert en is niet gehouden instructies van opdrachtgever op te volgen over de uitvoering van de werkzaamheden."'});if(sc[1]<0)acties.push({title:'Flexibiliseer locatie en werktijden',priority:'urgent',desc:'Werk resultaatgericht. Verwijder vaste locatie- of tijdsverplichtingen.',clausule:'"Opdrachtnemer is niet verplicht de werkzaamheden op een vaste locatie of op vaste tijdstippen uit te voeren."'});if(sc[2]<0)acties.push({title:'Beperk scope tot contractuele opdracht',priority:'soon',desc:'Weiger of heronderhandel opdrachten buiten de originele scope.',clausule:null});if(sc[3]<0)acties.push({title:'Stop met functioneringsgesprekken',priority:'soon',desc:'Vervang door resultaatreviews op projectbasis, gericht op het opgeleverde werk.',clausule:null});if(sc[4]<0)acties.push({title:'Voeg vervangingsclausule toe',priority:'urgent',desc:'Leg contractueel vast dat jij jezelf kunt laten vervangen.',clausule:'"Opdrachtnemer is bevoegd de werkzaamheden door een derde te laten uitvoeren, mits deze derde voldoet aan de kwaliteitseisen van opdrachtgever."'});if(sc[5]<0)acties.push({title:'Werk resultaatgericht, niet persoonsgebonden',priority:'soon',desc:'Herformuleer de opdracht in termen van op te leveren resultaat.',clausule:null});if(sc[6]<0)acties.push({title:'Sluit doorbetaling bij ziekte uit',priority:'urgent',desc:'Verwijder elke doorbetaling bij ziekte of afwezigheid.',clausule:'"Bij ziekte of afwezigheid van opdrachtnemer vindt geen doorbetaling plaats."'});if(sc[7]<0)acties.push({title:'Vergroot aantoonbaar ondernemersrisico',priority:'soon',desc:'Sluit een beroepsaansprakelijkheidsverzekering af, werk met eigen materiaal.',clausule:null});if(sc[8]<0)acties.push({title:'Verbreed je klantenbestand',priority:'urgent',desc:'Één opdrachtgever is het grootste risicosignaal. Streef naar minimaal 2-3 actieve opdrachtgevers.',clausule:null});if(sc[9]<0)acties.push({title:'Investeer zichtbaar in je onderneming',priority:'nice',desc:'Koop eigen tools, volg trainingen op eigen kosten, onderhoud een website.',clausule:null});if(sc[10]<0)acties.push({title:'Verhoog tarief boven €38/uur',priority:'soon',desc:'Heronderhandel je tarief bij de eerstvolgende contractverlenging.',clausule:null});if(sc[11]<0)acties.push({title:'Introduceer een contractpauze of roulatie',priority:'nice',desc:'Langdurige opdrachten (2+ jaar) zijn een risicosignaal.',clausule:null});return acties;}
+function getClausules(sc){var list=[];list.push({title:'Overeenkomst van opdracht — basisclausule',text:'"De overeenkomst tussen partijen betreft een overeenkomst van opdracht als bedoeld in artikel 7:400 BW. Partijen beogen uitdrukkelijk geen arbeidsovereenkomst aan te gaan."'});list.push({title:'Zelfstandige uitvoering',text:'"Opdrachtnemer voert de opdracht uit als zelfstandig ondernemer, bepaalt zelf de wijze van uitvoering en is bevoegd anderen in te schakelen."'});if(sc[8]<0)list.push({title:'Meerdere opdrachtgevers',text:'"Opdrachtnemer is vrij om naast de onderhavige opdracht werkzaamheden voor derden te verrichten."'});list.push({title:'Geen arbeidsrechtelijke aanspraken',text:'"Opdrachtnemer heeft geen recht op vakantiegeld, doorbetaling bij ziekte, ontslagbescherming of andere arbeidsrechtelijke aanspraken."'});return list;}
+function restartCheck(){current=0;scores=new Array(12).fill(null);selectedIndex=null;window._reportData=null;document.getElementById('result-card').classList.add('hidden');document.getElementById('full-report').classList.add('hidden');document.getElementById('check-form').classList.remove('hidden');renderQuestion();document.getElementById('check-form').scrollIntoView({behavior:'smooth',block:'center'});}
+function shareCheckEmail() {
+  var subject = encodeURIComponent('Doe de Wet DBA Compliance Check — gratis');
+  var body = encodeURIComponent(
+    'Hoi,\n\n' +
+    'Ik wil je vragen de Wet DBA Compliance Check te doen. Sinds 1 januari 2026 handhaaft de Belastingdienst actief op schijnzelfstandigheid — voor ons beiden belangrijk om compliant te zijn.\n\n' +
+    'De check duurt 5 minuten en de risicoscore is gratis:\n' +
+    'https://www.zzpcompliancecheck.nl\n\n' +
+    'Een volledig rapport met actieplan en contract clausules is beschikbaar voor €29.\n\n' +
+    'Met vriendelijke groet'
+  );
+  window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+}
+
+function toggleFaq(i){var ans=document.querySelector('.faq-answer-'+i);var icon=document.querySelector('.faq-icon-'+i);ans.classList.toggle('hidden');icon.style.transform=ans.classList.contains('hidden')?'':'rotate(180deg)';}
+
+renderQuestion();
+</script>
 </body>
 </html>
