@@ -261,7 +261,7 @@
         <button onclick="openCheckoutFromResult()" class="w-full bg-brand text-white font-semibold py-3.5 rounded-xl hover:bg-blue-700 transition text-sm">
           Ontgrendel volledig rapport + actieplan — €29 →
         </button>
-        <p class="text-center text-xs text-gray-400 mt-2">🔒 Veilige betaling </p>
+        <p class="text-center text-xs text-gray-400 mt-2">🔒 Veilige betaling · 14 dagen geld terug garantie</p>
         <button onclick="restartCheck()" class="w-full text-xs text-gray-400 hover:text-gray-500 mt-3 py-1">↺ Opnieuw beginnen</button>
       </div>
     </div>
@@ -506,7 +506,17 @@
       <span>Totaal</span><span id="total-price">€29,00</span>
     </div>
     <input id="checkout-name" type="text" placeholder="Jouw naam" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm mb-3 focus:outline-none focus:border-brand transition">
-    <input id="checkout-email" type="email" placeholder="E-mailadres voor rapport" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm mb-4 focus:outline-none focus:border-brand transition">
+    <input id="checkout-email" type="email" placeholder="E-mailadres voor rapport" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm mb-3 focus:outline-none focus:border-brand transition">
+    <div class="grid grid-cols-2 gap-3 mb-4">
+      <div>
+        <input id="checkout-kvk" type="text" placeholder="KVK-nummer" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand transition">
+        <p class="text-xs text-gray-400 mt-1 px-1">Voor de factuur</p>
+      </div>
+      <div>
+        <input id="checkout-btw" type="text" placeholder="BTW-nummer (opt.)" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand transition">
+        <p class="text-xs text-gray-400 mt-1 px-1">Optioneel</p>
+      </div>
+    </div>
     <button id="pay-submit-btn" onclick="submitPayment()" class="w-full bg-brand text-white font-semibold py-3.5 rounded-xl hover:bg-blue-700 transition text-sm">Betalen via Mollie →</button>
     <p class="text-center text-xs text-gray-400 mt-2">🔒 Veilige betaling · 14 dagen geld terug garantie</p>
   </div>
@@ -536,8 +546,10 @@ async function submitPayment() {
   btn.disabled=true; btn.textContent='Bezig met verwerken...';
   var reportData=window._reportData;
   if (!reportData) { alert('Doe eerst de check voordat je betaalt.'); btn.disabled=false; btn.textContent='Betalen via Mollie →'; return; }
+  var kvk=document.getElementById('checkout-kvk').value.trim();
+  var btw=document.getElementById('checkout-btw').value.trim();
   try {
-    var response=await fetch(BACKEND_URL+'/create-payment', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ name:name, email:email, include_update_service:addonActive, answers:{scores:reportData.scores,risk_level:reportData.riskLevel,total_score:reportData.total,pct:reportData.pct} }) });
+    var response=await fetch(BACKEND_URL+'/create-payment', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ name:name, email:email, kvk:kvk, btw:btw, include_update_service:addonActive, answers:{scores:reportData.scores,risk_level:reportData.riskLevel,total_score:reportData.total,pct:reportData.pct} }) });
     var data=await response.json();
     if (data.payment_url) { window.location.href=data.payment_url; }
     else throw new Error('No payment URL');
